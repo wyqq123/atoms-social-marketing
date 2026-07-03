@@ -1,0 +1,97 @@
+{
+  "$schema_version": "2026-07-02",
+  "$description": "YouTube case study 提取 schema。与 IG 版本平行,但字段调整以适配 YT 特性(video/short/live 类型、CTR/AVD 数据、YT SEO 相关)。",
+  "$example": {
+    "source_article": {
+      "url": "https://backlinko.com/hub/content/youtube-seo",
+      "title": "YouTube SEO: The Complete Guide 2025",
+      "publisher": "Backlinko",
+      "date_published": "2025-06-01",
+      "fetched_at": "2026-07-02"
+    },
+    "cases": [
+      {
+        "case_id": "backlinko-saas-01",
+        "brand": "Ahrefs",
+        "channel_handle": "@AhrefsCom",
+        "channel_url": "https://www.youtube.com/@AhrefsCom",
+        "business_type": "saas",
+        "video_url": "https://www.youtube.com/watch?v=xxx",
+        "video_id": "xxx",
+        "video_type": "long_form",
+        "video_duration_seconds": 620,
+        "thumbnail_description": "founder face + 大字标语 'SEO in 2025'",
+        "title": "SEO in 2025: What Actually Works",
+        "title_length_chars": 34,
+        "description_excerpt": "In this video I'll walk through the 3 SEO tactics that actually move the needle in 2025...",
+        "description_length_chars": 320,
+        "hashtags": ["#SEO", "#DigitalMarketing", "#Ahrefs"],
+        "engagement": {
+          "views": "180K",
+          "likes": "9.2K",
+          "comments": "620",
+          "shares": null,
+          "avd_seconds": 320,
+          "avp_percent": 52,
+          "ctr_percent": 8.4,
+          "as_reported_date": "2025-06",
+          "notes": "博客引用的 CTR/AVD 数据为 creator 后台 disclosure,可信度中"
+        },
+        "why_featured": "博客选它作为 'tutorial-focus + founder credibility' 组合的典型样本;CTR 8.4% 远高于平台平均 4-5%",
+        "insight_from_blog": "缩略图选择 face + 承诺具体成果('actually works')在 SEO tutorial 类效果最强",
+        "atoms_relevance": "SaaS Template §5 caption pattern:'X in [year]: what actually works' 结构;founder face 缩略图对 credibility 类内容显著提升 CTR",
+        "confidence": "high"
+      }
+    ]
+  },
+  "$field_definitions": {
+    "case_id": "自动生成,格式 <publisher-slug>-<biz-type>-<n>",
+    "business_type": "枚举:saas | ecommerce | creator",
+    "channel_handle": "YT @handle 格式",
+    "channel_url": "频道主页 URL",
+    "video_url": "YT 视频 URL(canonical watch URL 优先)",
+    "video_id": "YT video_id(11 位字符)",
+    "video_type": "枚举:long_form | short | live | community_post | premiere",
+    "video_duration_seconds": "int 或 null;short 通常 ≤180",
+    "thumbnail_description": "文字描述缩略图内容(不复制图片,合规)",
+    "title_length_chars": "int;YT title 硬上限 100 字符",
+    "description_excerpt": "博客引用的 description 片段;前 100-150 字符最重要(mobile 折叠前可见)",
+    "description_length_chars": "int 或 null",
+    "hashtags": "数组;YT 有效数量 3-5",
+    "engagement.avd_seconds": "Average View Duration 绝对秒数;博客/creator 后台披露值",
+    "engagement.avp_percent": "Average View Percentage 相对完成率(0-100)",
+    "engagement.ctr_percent": "Click-Through Rate(缩略图点击率),YT 平台平均 4-5%",
+    "engagement.as_reported_date": "博客/后台数据的时间点",
+    "engagement.notes": "任何 caveat",
+    "why_featured": "博客作者选它的原因",
+    "insight_from_blog": "博客对这个 case 的核心观察",
+    "atoms_relevance": "我们的判断:适合哪类 Atoms 用户参考、可复用什么模式",
+    "confidence": "high | medium | low"
+  },
+  "$fields_vs_ig_schema_diff": {
+    "renamed": {
+      "post_url": "video_url",
+      "post_type": "video_type",
+      "caption_excerpt": "description_excerpt",
+      "caption_length_chars": "description_length_chars",
+      "handle": "channel_handle"
+    },
+    "added": [
+      "channel_url",
+      "video_id",
+      "video_duration_seconds",
+      "thumbnail_description",
+      "title",
+      "title_length_chars",
+      "engagement.views",
+      "engagement.avd_seconds",
+      "engagement.avp_percent",
+      "engagement.ctr_percent"
+    ],
+    "removed": [
+      "engagement.saves(YT 无 saves 概念,已用 likes 替代)",
+      "engagement.reach(YT 用 views + impressions,不用 reach)"
+    ],
+    "rationale": "YT 数据模型比 IG 丰富(有 CTR/AVD 明确数字),schema 需要承载这些额外字段以支撑 §9 winning structures 归纳"
+  }
+}

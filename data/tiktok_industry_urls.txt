@@ -1,0 +1,169 @@
+# Industry Blog & Official Resource URLs — TikTok Playbook Research
+
+**Collection date**: 2026-07-02(v0.1 首版占位;首轮 WebSearch 后填充完整)
+**Sources**: WebSearch (Category B/C queries in `scripts/search_queries.md` TikTok 章节)
+**Next step**: 逐个 WebFetch → 按 `data/case_study_schema.json` 提取 → 追加到 `data/tiktok_case_studies.json`
+
+**动态更新节奏**:
+- Category B/C URL 池:每 6 个月强制刷新(与 playbook §3/§4 复核同步)
+- Category E(Creative Center 趋势):每 2-4 周刷新 → 写入 `data/tiktok_trend_snapshot.json`
+
+---
+
+## B1 — 通用 TikTok Benchmark / Data 报告
+
+### SocialInsider(engagement benchmark 主源)
+- https://www.socialinsider.io/blog/tiktok-benchmarks/ — TikTok Organic Engagement Benchmarks 2025-2026
+- https://www.socialinsider.io/social-media-benchmarks/tiktok — TikTok benchmarks hub
+- https://www.socialinsider.io/blog/tiktok-analytics/ — TikTok Analytics metrics guide
+- https://www.socialinsider.io/blog/tiktok-hashtag-strategy/ — Hashtag strategy 2025
+
+### Sprout Social
+- https://sproutsocial.com/insights/tiktok-stats/ — TikTok statistics 2025
+- https://sproutsocial.com/insights/tiktok-marketing/ — TikTok marketing guide
+- https://sproutsocial.com/insights/tiktok-algorithm/ — TikTok algorithm explanation
+
+### RivalIQ
+- https://www.rivaliq.com/blog/tiktok-benchmark-report/ — Annual TikTok benchmark report
+- https://www.rivaliq.com/blog/social-media-industry-benchmark-report/ — Cross-platform industry benchmarks(含 TikTok section)
+
+### DataReportal / Statista
+- https://datareportal.com/reports/digital-2026-tiktok — TikTok users 2026(cross-country breakdown)
+- https://datareportal.com/social-media-users — Social media users overview
+
+---
+
+## B2 — Later / Buffer / Hootsuite / HubSpot 深度案例
+
+### Later
+- https://later.com/blog/tiktok-marketing/ — TikTok Marketing Strategy 2025
+- https://later.com/blog/tiktok-algorithm/ — TikTok algorithm 2025 breakdown
+- https://later.com/blog/how-to-go-viral-on-tiktok/ — Viral case decomposition
+- https://later.com/blog/tiktok-analytics/ — TikTok analytics deep-dive
+- https://later.com/blog/tiktok-for-business/ — Business-focused guide
+
+### Buffer
+- https://buffer.com/resources/tiktok-marketing/ — TikTok marketing playbook
+- https://buffer.com/resources/tiktok-case-studies/ — TikTok growth case studies
+- https://buffer.com/library/tiktok-algorithm/ — TikTok algorithm primer
+- https://buffer.com/library/tiktok-strategy-small-business/ — SMB TikTok strategy
+
+### Hootsuite
+- https://blog.hootsuite.com/tiktok-algorithm/ — TikTok Algorithm 2026(主源)
+- https://blog.hootsuite.com/tiktok-marketing/ — TikTok marketing complete guide
+- https://blog.hootsuite.com/how-to-go-viral-on-tiktok/ — Viral mechanics
+- https://blog.hootsuite.com/tiktok-statistics/ — TikTok stats rollup
+
+### HubSpot
+- https://blog.hubspot.com/marketing/tiktok-marketing — TikTok for marketing
+- https://blog.hubspot.com/marketing/tiktok-algorithm — Algorithm explanation
+
+---
+
+## B3 — 分业务类型 / 分内容形式深挖
+
+### SaaS / AI Tool on TikTok
+- https://buffer.com/resources/tiktok-b2b/ — TikTok for B2B(含 SaaS 分析)
+- https://sproutsocial.com/insights/tiktok-b2b/ — B2B TikTok playbook
+- (待补:2025 AI 工具 TikTok 增长案例)
+
+### Ecommerce / TikTok Shop
+- https://later.com/blog/tiktok-shop/ — TikTok Shop guide
+- https://buffer.com/resources/tiktok-ecommerce/ — Ecom TikTok strategy
+- (待补:TikTok Made Me Buy It 案例合集)
+
+### Creator / Build in Public
+- (待补:indie hacker / solo builder TikTok 案例——博客覆盖稀疏,需人工补齐)
+
+### 内容形式(短视频 / Live / Photo Mode)
+- https://later.com/blog/tiktok-live/ — TikTok Live guide
+- https://buffer.com/library/tiktok-video-length/ — Video length study
+- https://sproutsocial.com/insights/tiktok-live-shopping/ — Live shopping mechanics
+
+---
+
+## C — TikTok 官方资源
+
+### TikTok Newsroom(算法/政策官方口径)
+- https://newsroom.tiktok.com/en-us/how-tiktok-recommends-content — How TikTok recommends content
+- https://newsroom.tiktok.com/en-us — 官方 blog hub
+
+### TikTok For Business(创作/广告最佳实践)
+- https://www.tiktok.com/business/en — TikTok For Business hub
+- https://www.tiktok.com/business/en/blog — Blog(creative best practices)
+- https://ads.tiktok.com/business/creativecenter — **Creative Center**(见 Category E)
+
+### TikTok Creator Portal
+- https://www.tiktok.com/creators/creator-portal/ — Creator Portal(官方创作者指南)
+- https://www.tiktok.com/creators/creator-portal/en-us/how-to-be-a-creator/ — 创作者入门
+- https://effecthouse.tiktok.com/ — Effect House(effect 制作)
+
+### 政策与合规
+- https://www.tiktok.com/community-guidelines — Community Guidelines
+- https://www.tiktok.com/business/en/blog/tiktok-brand-safety — Brand safety
+- https://www.tiktok.com/creators/creator-portal/en-us/community-guidelines-and-safety/ — Creator 合规指南
+
+---
+
+## E — TikTok Creative Center(动态趋势层,TikTok 独有)
+
+**每 2-4 周刷新,数据落 `data/tiktok_trend_snapshot.json`**
+
+### 主入口
+- https://ads.tiktok.com/business/creativecenter — Creative Center 主页
+
+### 关键子页(WebFetch 抓取路径)
+- https://ads.tiktok.com/business/creativecenter/inspiration/popular/hashtag — **Trending Hashtags**(可按地域/时间/行业过滤)
+- https://ads.tiktok.com/business/creativecenter/inspiration/popular/song — **Trending Sounds**
+- https://ads.tiktok.com/business/creativecenter/inspiration/popular/creator — **Popular Creators**(按行业)
+- https://ads.tiktok.com/business/creativecenter/topads — **Top Ads Library**(可看行业高转化广告结构)
+- https://ads.tiktok.com/business/creativecenter/keyword-insights — **Keyword Insights**(SEO 层)
+- https://ads.tiktok.com/business/creativecenter/trends — Trends overview
+
+### 目标过滤维度
+- **Region**:优先 US / UK / DE / AU / CA(Atoms 主要市场)
+- **Industry**:Tech / Ecommerce / Beauty / Food / Finance 按业务类型对应
+- **Time window**:Last 7 days / 30 days / 120 days —— trending 只看 7-30 天
+
+**抓取策略**:
+- 优先 WebFetch(公开可访问,无登录门槛)
+- 兜底:playwright 脚本(见 `scripts/tiktok_creative_center_workflow.md`)
+
+---
+
+## 已知优质样本高亮(v0.1 占位,待 WebFetch batch 后填充)
+
+从初步搜索预期浮现的样本类型:
+
+| 品牌 / handle | 品类 | 期望出现博客 | 何以匹配 Atoms |
+|---|---|---|---|
+| Duolingo (@duolingo) | SaaS / edtech | 多博客 | 大厂但用小账号策略,mascot-driven 娱乐化 |
+| Notion (@notionhq) | SaaS | Later / Buffer | build in public + tutorial mix |
+| Gymshark (@gymshark) | Ecom | 通用 | UGC + creator collab 教科书 |
+| The Ordinary (@theordinary) | Ecom / beauty | TikTok Made Me Buy It | UGC 驱动爆款 |
+| Tony Dinh(@tdinh_me)/ MonAi 类 | Creator / indie | 稀缺,需人工补齐 | Solo builder 冷启动 |
+| Codie Sanchez / Money-Tok | Creator / edu | 通用 | edutainment 结构范例 |
+
+---
+
+## v0.1 → v0.2 补齐 checklist
+
+- [ ] Category B1:跑 5-7 条 query,收集 8-10 篇通用报告 URL
+- [ ] Category B2:跑 6-8 条 query,收集 12-15 篇分业务/形式 URL
+- [ ] Category B3(Creator 类):至少 5 条 query,尽量收集(预期稀疏)
+- [ ] Category C:跑 4-6 条 query,收集 5-8 篇官方文档
+- [ ] Category E:首次 Creative Center 快照,写入 `tiktok_trend_snapshot.json`
+- [ ] 逐个 WebFetch → 按 `data/case_study_schema.json` 结构提取 → `data/tiktok_case_studies.json`
+- [ ] 人工补齐 → `data/tiktok_manual_supplements.md`(重点:Creator 类 + vibe coding SMB)
+
+---
+
+## 关键数据点占位(WebFetch 后填充)
+
+- TikTok engagement rate 2025-2026(SocialInsider)
+- 各内容长度完播率对比(21-34s vs 45s vs 60s+)
+- 各时段发帖 view 增益幅度
+- Trending hashtag 生命周期(7 天 vs 14 天 vs 30 天)
+- 小账号(<1K)FYP 爆发概率
+- TikTok Shop 2025 GMV / 类目分布
+- SaaS × TikTok signup conversion 基线

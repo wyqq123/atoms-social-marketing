@@ -1,0 +1,541 @@
+[
+  {
+    "source_article": {
+      "url": "https://buffer.com/resources/growing-business-organically-on-instagram/",
+      "title": "How This Small Business Owner Is Growing Her Brand Organically on Instagram",
+      "publisher": "Buffer",
+      "date_published": null,
+      "fetched_at": "2026-07-02"
+    },
+    "cases": [
+      {
+        "case_id": "buffer-ecommerce-01",
+        "brand": "Eizzy Baby",
+        "handle": "@eizzybaby",
+        "business_type": "ecommerce",
+        "post_url": null,
+        "post_type": "mixed (Stories + Reels dominant)",
+        "screenshot_asset": null,
+        "caption_excerpt": null,
+        "caption_length_chars": null,
+        "hashtags": [],
+        "engagement": {
+          "likes": null,
+          "comments": null,
+          "shares": null,
+          "saves": null,
+          "reach": null,
+          "followers_at_reporting": "~5,000",
+          "as_reported_date": "2023",
+          "notes": "博客未列具体 post 数据,以定性描述为主。Follower 量 ~5K,属真实 SMB 量级,而非头部品牌"
+        },
+        "why_featured": "Buffer 选它作为 organic-only、solo-founder、真实 SMB 增长的样板——没有 ad spend、没有 team、founder Assie 一人扛全流程(marketing / buying / customer service)",
+        "insight_from_blog": "核心增长机制不是'内容工艺',而是**vulnerability + build-in-public**:(1) Stories 里随手分享 baby plates,followers 反馈直接催生了产品线转向;(2) 用 Stories & polls 收集颜色/设计意见,让 followers 有 'co-owner' 感;(3) '不化妆、素颜出镜时 engagement 反而更高' —— Assie 亲述,反工艺化的真实感是 unlock 转化的关键;(4) 补充渠道:Facebook parenting Groups 引流至 IG,以'解决痛点的产品'切入而非硬广",
+        "atoms_relevance": "**极匹配 Atoms 用户画像**:(1) solo founder、非技术背景、无营销预算——正是 vibe coding SMB 的常见状态;(2) 'build-in-public + community-driven pivot' 模式可直接作为 Atoms Ecommerce Template §2(内容策略)的锚点样本;(3) 反工艺化启示——playbook 应避免推'高制作门槛'的内容形式(专业剪辑 Reels、精修 carousel);(4) '产品迭代由 followers 意见驱动'的机制,可映射到 Atoms 'Agent 帮你解读 IG 评论 → 生成产品调整建议' 的功能设想",
+        "confidence": "medium (定性洞察 confidence 高;具体 engagement 数字 confidence 低——博客未披露)"
+      }
+    ],
+    "extraction_notes": [
+      "本文属'品牌故事型'博客,不是数据型 case study。真正可数字化的只有:~5K followers、2022 春业务下滑一次(裁 1 名员工)、Shopify 免费 audit 参与",
+      "博客未列 post URL、post-level engagement、caption 全文——这是 Buffer 编辑口径的限制,不是我们提取遗漏",
+      "对 playbook 的用法:作为'为什么反工艺化的真实感 > 高制作内容'的定性证据引用,而非'某种打法带来 X% engagement' 的数字锚点"
+    ]
+  },
+  {
+    "source_article": {
+      "url": "https://later.com/blog/instagram-hashtags/",
+      "title": "Instagram Hashtags 2026: Strategy, Limits & Best Practices Guide",
+      "publisher": "Later",
+      "date_published": "2026 edition",
+      "fetched_at": "2026-07-02"
+    },
+    "cases": [
+      {
+        "case_id": "later-ecommerce-01",
+        "brand": "Sweaty Betty",
+        "handle": null,
+        "business_type": "ecommerce",
+        "post_url": null,
+        "post_type": "mixed",
+        "screenshot_asset": null,
+        "caption_excerpt": null,
+        "caption_length_chars": null,
+        "hashtags": ["#GlobalRunningDay", "#IAmASweabyBetty"],
+        "engagement": {
+          "likes": "2K+ per top-performing post",
+          "comments": null,
+          "shares": null,
+          "saves": null,
+          "reach": null,
+          "as_reported_date": "2026",
+          "notes": "Later 引用的唯一具体品牌案例——数字为顶帖水平,非中位"
+        },
+        "why_featured": "Later 用它示范'search-led hashtag + branded hashtag' 双轨结构:前者(#GlobalRunningDay)抓活跃搜索意图,后者(#IAmASweabyBetty)聚合 UGC + 建社群身份",
+        "insight_from_blog": "Hashtag 只做 targeting,内容质量 + community 感闭合 engagement——'hashtags do the targeting work, content quality and community feeling close the engagement loop'",
+        "atoms_relevance": "Ecommerce Template §6 的双 hashtag 类型样板:1 个 cultural-moment/topic tag + 1 个 branded tag。Atoms 用户品牌初期没有 branded tag 沉淀,可先只用 topic + niche,后续引导用户建立 branded tag",
+        "confidence": "medium (品牌真实,数字未 timestamp)"
+      }
+    ],
+    "rules_extracted": {
+      "5_hashtag_cap": {
+        "effective_date": "2025-12",
+        "scope": "platform-enforced, applies globally, both posts AND Reels, both organic AND boosted content",
+        "location_rule": "caption + comments 合计计数——分开放不给额外 slot",
+        "violation_behavior": "IG 要么阻止发布,要么自动删除超出部分",
+        "confidence": "high"
+      },
+      "followed_hashtags_removed": {
+        "effective_date": "2024-12",
+        "impact": "hashtag reach 从 subscriber feed 全面转为 algorithm-mediated——'accurate tagging matters more than searchable tagging'",
+        "confidence": "high"
+      },
+      "algorithm_role_shift": {
+        "old_role": "reach driver (spray & pray for volume)",
+        "new_role": "classification signal — 给算法精确分类信号,由算法决定推给哪些非 followers",
+        "co_signals": [
+          "content quality and originality",
+          "watch time and completion rate (Reels)",
+          "saves and shares (最强的非 follower reach signal)",
+          "target audience engagement pattern match",
+          "hashtag relevance vs actual content"
+        ],
+        "confidence": "high"
+      }
+    },
+    "hashtag_tier_framework": {
+      "under_10K_posts": "太窄 — 无足够活跃搜索流量",
+      "10K_to_200K_posts": "SWEET SPOT — 强 niche audience + 可控竞争",
+      "200K_to_1M_posts": "适合 topic tags,提供更宽 category 上下文",
+      "over_1M_posts": "谨慎使用,只作次要 topic/industry 信号,不做主发现引擎",
+      "over_1B_posts": "避免——#love (2B+), #instagood (1.7B+), #photooftheday 类,秒被覆盖",
+      "confidence": "high"
+    },
+    "5_slot_portfolio_framework": {
+      "structure": "5 个 slot 视为 portfolio,每个 slot 承担不同角色",
+      "recommended_mix": "2 × niche community + 1-2 × topic + 1 × branded 或 format",
+      "slot_types": [
+        {
+          "type": "niche_community",
+          "purpose": "接入 engaged micro-communities",
+          "ideal_range": "50K-500K posts",
+          "usage": "always — 每帖 1-2 个",
+          "examples_data_backed": [
+            "#VanLifeLiving (~180K)",
+            "#PlantParenthood (~290K)",
+            "#BookstagramCommunity (~145K)",
+            "#SourdoughBakers (~95K)",
+            "#SlowFashionMovement (~180K)"
+          ]
+        },
+        {
+          "type": "branded",
+          "purpose": "品牌识别 + UGC 聚合",
+          "ideal_range": "任意 size",
+          "usage": "campaign 或社区建设时"
+        },
+        {
+          "type": "topic",
+          "purpose": "描述内容主题,workhorse",
+          "ideal_range": "100K-1M posts",
+          "usage": "always — 每帖 1-2 个"
+        },
+        {
+          "type": "format",
+          "purpose": "signal 内容形式,当形式本身是价值",
+          "usage": "只当形式是 hook 时用"
+        },
+        {
+          "type": "location",
+          "purpose": "地理相关性",
+          "usage": "本地生意/事件/地点相关内容"
+        }
+      ]
+    },
+    "format_specific_advice": {
+      "reels": "prioritize topic + niche community tags;format tags 当视频形式即核心价值时用;避免 mega-tags,Reels 算法本身足够精准",
+      "carousel": "hashtag 要 match specific value(不是宽 category)——e.g. '5 email subject line formulas' 用 #EmailMarketingTips + #CopywritingTips,不用 #Marketing;niche community 尤其有效,因这些受众爱 save 教育型深内容",
+      "single_image": "hyper-niche;location tag 对产品/品牌摄影特别有效;product-category + lifestyle-usage tag 组合优于泛行业 tag"
+    },
+    "common_mistakes": [
+      "用 mega-hashtags(billions of posts)——分类信号价值 ≈ 0,秒被覆盖",
+      "每帖用同一套 5 tag ——被算法判 spammy,限制不同 audience segment 覆盖",
+      "用 banned/restricted hashtags ——不仅无效,还会降低整帖分发",
+      "误以为 comment 里的 tag 不占 5 slot ——错,合计计数",
+      "为 reach 而用不相关 trending tag ——反被算法判 gaming, 主动伤害 classification 精度",
+      "不追踪 hashtag 表现 —— 纯猜",
+      "spammy tag 模式 → shadowban 风险(可视性静默下降,无通知)"
+    ],
+    "atoms_playbook_direct_mapping": {
+      "§6_hashtag_seo_rewrite": "整章重写:从'hashtag 组合'旧范式 → '5-slot portfolio + algorithm-classification signal' 新范式",
+      "template_defaults": {
+        "saas": "2 × niche community(如 #ContentCreatorTips ~175K, #SocialMediaManager ~285K) + 1 × topic(#SmallBusinessMarketing ~130K) + 1 × format(#CarouselTips 类) + 1 × branded (Atoms 用户自建)",
+        "ecommerce": "参考 Sweaty Betty 双轨:1 × cultural-moment/topic + 1 × branded + 2 × niche community + 1 × location(如本地品牌)",
+        "creator": "2 × niche community + 2 × topic + 1 × format(#ReelsTutorial 类,当形式为 hook)"
+      },
+      "generic_tags_to_forbid": ["#love", "#instagood", "#photooftheday", "#instadaily", "#follow"],
+      "tier_rule_to_enforce": "Agent 在生成 hashtag 时,post_count 必须在 10K-500K 范围内为 niche,100K-1M 为 topic;超过 1M 的只允许作 secondary 且需明确标注"
+    }
+  },
+  {
+    "source_article": {
+      "url": "https://blog.hootsuite.com/instagram-algorithm/",
+      "title": "Instagram Algorithm 2026: Everything You Need to Know",
+      "publisher": "Hootsuite",
+      "date_published": "2026 edition",
+      "fetched_at": "2026-07-02"
+    },
+    "cases": [
+      {
+        "case_id": "hootsuite-tactical-01",
+        "brand": "BKind Products / Dohhut / JLPatisserie AZ / Ducks in Space / Vancouver Magazine / The Foodie Diaries / Mad Over Marketing Mom / Caitiejune Fit / William Mattar Law Offices / Cozy Cookies Delivery / Olive and Bean Photo",
+        "handle": null,
+        "business_type": "mixed (creator + smb + ecommerce)",
+        "post_url": null,
+        "post_type": "各种(Feed/Reels/Carousels/Stories 混合)",
+        "screenshot_asset": null,
+        "caption_excerpt": null,
+        "caption_length_chars": null,
+        "hashtags": [],
+        "engagement": {
+          "likes": null,
+          "comments": null,
+          "shares": null,
+          "saves": null,
+          "reach": null,
+          "as_reported_date": "2026",
+          "notes": "Hootsuite 用这批品牌做 tactical illustration(第 3 秒 hook / carousel save-worthy 结构 / interactive stickers / reply-to-comments 等),不提供 engagement 数字。低 confidence tactical exemplar,不作数字锚点"
+        },
+        "why_featured": "Hootsuite 用来演示 13 tactical tips 的执行样貌——每个品牌绑定一条具体战术,而非成功案例研究",
+        "insight_from_blog": "Tactical exemplars 覆盖:(1) 前 3 秒 hook(BKind Products);(2) Carousel 首帧要 tease scroll(Dohhut);(3) Interactive stickers 用 poll/quiz 拉 Stories engagement(JLPatisserie AZ / Ducks in Space);(4) Location tag + 本地 SEO(Vancouver Magazine / Cozy Cookies Delivery);(5) Reply-to-comment 拉 Feed dwell(The Foodie Diaries)",
+        "atoms_relevance": "**执行示例池,不是数字锚点**。适合 playbook §4 每条 tactic 的'长这样'的图示引用;不用作'某打法效果如何'的数据支撑",
+        "confidence": "low (无 engagement 数字,纯 tactical illustration)"
+      }
+    ],
+    "algorithm_signals_by_surface": {
+      "principle": "IG 不是单一算法,是 **4 个独立 AI 排序系统**(Feed / Stories / Reels / Explore),每个 surface 的 signal 权重与含义都不同",
+      "feed": {
+        "top_signals": [
+          "10-second dwell(用户在帖子上停留 ≥10s)",
+          "creator profile click(从帖子跳到主页)",
+          "comment 与 reshare",
+          "recency(近期发布 > 老帖)"
+        ],
+        "negative_signals": ["skip / scroll-past 太快", "hide 或 report"],
+        "confidence": "high"
+      },
+      "reels": {
+        "top_signals_per_mosseri": [
+          "watch time(#1)",
+          "likes(#2)",
+          "sends/shares(#3)"
+        ],
+        "other_signals": ["rewatch(完播 + 再看)", "follow-up actions(看完后 profile click / follow / DM)", "audio 使用相关性"],
+        "notes": "Mosseri 在多次公开发言明确:这三条同时是 connected reach(粉丝)+ unconnected reach(非粉)的顶级排序信号",
+        "confidence": "high"
+      },
+      "stories": {
+        "top_signals": [
+          "viewing history(用户过去是否常看你的 Stories)",
+          "engagement history(过去是否 reply / react)",
+          "closeness('inner circle',你与用户的 IG 亲密度评分)"
+        ],
+        "notes": "Stories 是 4 个 surface 中最依赖'已有关系'的——冷启动最难破圈,但对老粉留存价值最高",
+        "confidence": "high"
+      },
+      "explore": {
+        "signal_count": "36(Meta Transparency Center 披露,4 surface 中最多)",
+        "top_signals": [
+          "follow likelihood(算法判'看完你会不会 follow')",
+          "5-second dwell(比 Feed 的 10s 门槛低)",
+          "95%+ video completion rate"
+        ],
+        "notes": "Explore 是唯一 100% 面向非粉的 surface,signal 密度最高;95%+ 完播是所有 signal 里最锐利的 unconnected reach 触发器",
+        "confidence": "high"
+      }
+    },
+    "mosseri_direct_quotes": {
+      "top_3_ranking_signals": {
+        "quote": "The top signals are watch time, likes, and sends per view",
+        "scope": "同时适用 connected reach(粉丝)与 unconnected reach(非粉)",
+        "playbook_implication": "'sends per view' 是新提法——不是绝对 send 数,而是 send/view ratio,鼓励做'值得 DM 给朋友'的内容",
+        "confidence": "high (Mosseri 多次公开重复)"
+      },
+      "creativity_priority_2026": {
+        "quote_paraphrase": "算法将奖励原创的、为 Instagram 制作的内容;从 TikTok 直接搬运带水印视频将被降权",
+        "playbook_implication": "playbook §4 需要明确禁令:禁跨平台带水印搬运;每个平台独立生产",
+        "confidence": "high"
+      },
+      "viral_momentum_window": {
+        "quote_paraphrase": "if you have a viral post, follow up with another post in the next day or two",
+        "playbook_implication": "playbook §9 加入'爆款接续机制':单帖爆量后 48h 内必须接续一帖同 topic/format,承接算法给的临时权重",
+        "confidence": "high"
+      }
+    },
+    "changes_2026": {
+      "your_algorithm": {
+        "launch": "2025-12",
+        "mechanism": "用户可主动选'我要多看/少看'某类 topic,IG 按选择调整推荐",
+        "marketer_implication": "品牌 niche 定位比以前更关键——用户如果没选你的 topic,你的分类信号再准也难触达;反推 Atoms:引导用户建立**明确 topic 标签**(而非模糊'生活方式'类)",
+        "confidence": "high"
+      },
+      "ai_translations": {
+        "supported_languages": ["Hindi", "Portuguese", "English", "Spanish"],
+        "purpose_per_mosseri": "explicitly to expand reach beyond native-language audience",
+        "playbook_implication": "对英语 SMB:caption 里避免 heavy slang / 文化梗,给 AI 翻译留清晰语义;对非英语 SMB:重要 CTA 也用英语并列",
+        "confidence": "high"
+      },
+      "shares_over_saves": {
+        "shift": "2026 起 shares 权重明确 > saves",
+        "reasoning_per_mosseri": "shares 'bring people together',是更强的社交传导信号",
+        "playbook_implication": "内容目标从 'save-worthy'(信息价值)迁移到 'share-worthy'(社交价值:能表达身份/引发共鸣/引发讨论)。碎片化 tips-list 依然做,但要加'share prompt'(如'tag a friend who needs this')",
+        "confidence": "high"
+      },
+      "trial_reels": {
+        "mechanism": "对非 followers 首推,不影响主账号 metrics;数据好则全网推",
+        "playbook_implication": "对新账号或转型账号是低风险试错工具——playbook §4 加入 'Trial Reel 试错流程':新形式先用 Trial 跑 3-5 条,数据好再进主发布队列",
+        "confidence": "high"
+      },
+      "teen_accounts": {
+        "launch": "late 2024 / early 2025",
+        "changes": "13-17 岁账号默认更严的内容过滤 + 推荐限制",
+        "playbook_implication": "Gen Z targeting 的 SMB 需要审查内容合规:美妆/健身/心理健康类品牌是主要影响面",
+        "confidence": "high"
+      }
+    },
+    "tactical_tips_13": [
+      {"tip": "回复所有 comments", "surface": "feed", "signal_targeted": "engagement + dwell(引发二次浏览)", "atoms_relevance": "Agent 可提示用户'新帖发布后 1h 是黄金回复窗口'"},
+      {"tip": "caption 简洁 — 长 caption 抢 dwell 是双刃(可能加也可能减)", "surface": "feed", "signal_targeted": "10-second dwell", "atoms_relevance": "Agent 生成 caption 时 hook + 关键 payoff 前置,长文放 Stories/carousel"},
+      {"tip": "Reels ≤ 90 秒", "surface": "reels", "signal_targeted": "completion rate + watch time", "source": "Instagram Best Practices feature + Mosseri 双源确认", "atoms_relevance": "playbook §4 硬规则:Reels 默认 60-90s,超 90s 需明确理由"},
+      {"tip": "Loop reels(结尾无缝回开头)", "surface": "reels", "signal_targeted": "watch time(rewatch 计入)", "atoms_relevance": "Agent 生成 Reels 脚本时提示'首尾画面对齐',或建议 last 2s 用悬念钩住"},
+      {"tip": "常发 Stories 提升排序", "surface": "stories", "signal_targeted": "viewing history 累积", "atoms_relevance": "playbook §9 频率:Stories daily > weekly Feed"},
+      {"tip": "Story slide count 超过 5 → views 与 engagement 下降", "surface": "stories", "source": "Hootsuite Social Marketing Specialist Eileen Kwok 直引", "atoms_relevance": "**硬规则**:Stories 单序列 ≤5 slides,长内容拆成 2 天发"},
+      {"tip": "用交互 stickers(poll / quiz / question / slider)", "surface": "stories", "signal_targeted": "engagement history", "atoms_relevance": "Agent 生成 Stories 时默认每 3 slides 插 1 个 interactive"},
+      {"tip": "Carousels 做 save-worthy(tips / checklists / how-to / infographics)", "surface": "feed_carousel", "signal_targeted": "saves(依然是 second-tier 强信号)", "atoms_relevance": "SaaS/AI template 主打形式:Carousel-first,不是 Reels-first"},
+      {"tip": "Carousel 首帧用 cover copy 诱导 scroll", "surface": "feed_carousel", "signal_targeted": "swipe rate → dwell time", "atoms_relevance": "Agent 生成 carousel 时首帧必带 hook copy,不能只是纯图"},
+      {"tip": "Social SEO(keyword-rich caption / bio / alt text)权重 > hashtag", "surface": "explore", "source": "Hootsuite Marketing Coordinator Jason Fung 直引:'social SEO reigns supreme'", "atoms_relevance": "**playbook §6 重大调整**:hashtag 章节前面必须加 SEO keyword 章节;Agent 生成时先做 keyword targeting,hashtag 是 targeting 的补强不是替代"},
+      {"tip": "爆款接续 — 48h 内接续同 topic/format", "surface": "all", "source": "Mosseri 直引", "atoms_relevance": "playbook §9 加入 momentum-follow-through 机制;Atoms 未来功能设想:'检测到爆款 → 自动生成 3 条同 topic 续帖候选'"},
+      {"tip": "前 3 秒 hook", "surface": "reels + carousel", "signal_targeted": "scroll-past 负信号规避", "atoms_relevance": "hard rule 已在 §4 覆盖"},
+      {"tip": "与相似账号互动(comment / reshare)", "surface": "all", "signal_targeted": "graph proximity + collaborative signals", "atoms_relevance": "Atoms 未来功能设想:'niche graph 分析 → 推荐 20 个相似账号供用户互动'"}
+    ],
+    "atoms_playbook_direct_mapping": {
+      "§2_algorithm_primer": "整章基于本 source_article 撰写:开篇明确'4 surface 独立算法'的核心认知,列 Mosseri top 3 signals 直引,把 Your Algorithm / Trial Reels / AI translations 作 2026 关键 shift 单列",
+      "§4_content_format_hard_rules": [
+        "Reels ≤ 90 秒",
+        "Stories ≤ 5 slides / 序列",
+        "Carousel 首帧必带 hook copy",
+        "前 3 秒必须有 visual + text 双 hook",
+        "禁跨平台带水印搬运(Mosseri Creativity priority 2026)"
+      ],
+      "§6_seo_over_hashtag": "章节顺序调整:先讲 caption/bio/alt text 的 keyword targeting(Jason Fung 观点),hashtag 5-slot 作补强而非主策略",
+      "§9_posting_cadence": [
+        "Stories daily(利用 viewing history 累积)",
+        "Feed(carousel + single)3-5x/week",
+        "Reels 1-3x/week,新形式先走 Trial Reels",
+        "爆款后 48h 内接续同 topic/format 1 帖(Mosseri 直引)"
+      ],
+      "future_agent_features": [
+        "Trial Reel 数据回收 → 自动决定是否进入正式发布队列",
+        "爆款检测 → 自动生成 3 条续帖候选",
+        "similar-niche 账号图谱推荐(拉 graph proximity signal)"
+      ]
+    },
+    "extraction_notes": [
+      "Hootsuite 文章的独特价值:Mosseri direct quotes + 4-surface 分层拆解——这两点是其他博客覆盖不到的",
+      "文章中 11 个 named brand(BKind / Dohhut 等)全部是 tactical illustration,不是 case study——无 engagement 数字,只用作'某战术长什么样'的图示,confidence low",
+      "关键新概念:'sends per view' 是 Mosseri 新提法(不是绝对 send 数),对内容策略是重大 shift 指令——'能被 DM 给朋友的内容' 成为新首要目标",
+      "2026 Creativity priority 直接影响 Atoms 定位:如果 Atoms 未来做'跨平台内容一键分发',必须做平台原生化适配,不能纯搬运"
+    ]
+  },
+  {
+    "source_article": {
+      "url": "https://www.socialinsider.io/social-media-benchmarks/instagram",
+      "title": "2026 Instagram Organic Engagement Benchmarks",
+      "publisher": "SocialInsider",
+      "date_published": "2026 edition (数据窗口 2025-01 至 2025-12)",
+      "fetched_at": "2026-07-02",
+      "sample_size": "35M posts / 447,613 pages",
+      "methodology_note": "SocialInsider 声明:标签'2026'但实际是 2025 全年数据。engagement rate = (likes + comments) / followers × 100"
+    },
+    "cases": [],
+    "cases_note": "本文是 aggregate benchmark 报告,不含具体品牌 case——只有跨品牌统计 + 7 位社媒专家 quote。价值全部在数据锚点与结构性洞察",
+    "headline_stats_2025": {
+      "overall_engagement_rate": {
+        "value": "0.48%",
+        "yoy_change": "-24%",
+        "playbook_implication": "playbook §2 基线数字:告诉 Atoms 用户'0.48% 是平台平均,你的目标应至少匹配此数'",
+        "confidence": "high"
+      },
+      "engagement_by_format_full_year_2025": {
+        "reels": {"rate": "0.52%", "yoy": "+0.02pt (基本持平)"},
+        "carousel": {"rate": "0.55%", "yoy": "flat (0.55% → 0.55%)"},
+        "images": {"rate": "0.37%", "yoy": "-17%"},
+        "insight": "Carousel 是唯一未跌的格式;Reels 微涨;Images 独自承担下滑;'2025 是 Instagram 结构性 reset'",
+        "confidence": "high"
+      },
+      "q1_2026_snapshot": {
+        "reels": "0.50% (Q4 2025 的 0.52% → Q1 2026 的 0.50%,轻微回落)",
+        "carousel": "0.52% (维持 highest)",
+        "images": "0.35% (flat 低位)",
+        "confidence": "high"
+      }
+    },
+    "comments_by_brand_size_and_format_2026": {
+      "unit": "average comments per post",
+      "data": {
+        "1-5K": {"reels": 3, "carousel": 2, "image": 1},
+        "5-10K": {"reels": 6, "carousel": 4, "image": 1},
+        "10-50K": {"reels": 12, "carousel": 10, "image": 4},
+        "50-100K": {"reels": 22, "carousel": 15, "image": 10},
+        "100K-1M": {"reels": 60, "carousel": 40, "image": 38}
+      },
+      "structural_insight": "Reels 在所有 brand size 都领先 comments,且**领先幅度随规模扩大**——小账号 Reel/Carousel/Image = 3/2/1(格式差异微弱),大账号 60/40/38(Reel 全面碾压)。含义:**tiny brands(1-5K)选格式对 comments 影响很小,应先解决其他基础问题;规模上来后再堆 Reels**",
+      "atoms_relevance": "**核心 Atoms 定标数字**:Atoms 用户以 1-5K 为主(甚至 0-1K),Reel 平均 3 条 comment、Carousel 2 条、Image 1 条——'一条帖子 3 条 comment 就是行业中位' 是需要写进 playbook 的现实主义预期,防止用户被大 V 数字打击信心",
+      "confidence": "high"
+    },
+    "saves_by_brand_size_and_format_2026": {
+      "unit": "average saves per post",
+      "data": {
+        "1-5K": {"reels": 1, "carousel": 1, "image": 1},
+        "5-10K": {"reels": 2, "carousel": 2, "image": 1},
+        "10-50K": {"reels": 7, "carousel": 8, "image": 3},
+        "50-100K": {"reels": 22, "carousel": 35, "image": 10},
+        "100K-1M": {"reels": 96, "carousel": 98, "image": 43}
+      },
+      "structural_insight": "Carousel 是 saves 王者,但**只在 10K+ 规模显现**。1-5K 时 saves 全都是 1,格式无差异;10-50K 起 Carousel 反超 Reel;50-100K 时 Carousel(35) > Reel(22),差距 60%;100K+ Carousel 与 Reel 齐平(98 vs 96)",
+      "atoms_relevance": "对 Atoms 用户(1-5K):saves 不是可优化 metric——数据就是 1,做啥都是 1。**不要让 Agent 把 saves 当 KPI 建议给用户,除非账号 >10K**。playbook §9 metric 优先级:comments > shares > saves(saves 仅在 10K+ 有意义)",
+      "confidence": "high"
+    },
+    "views_by_brand_size_and_format_2026": {
+      "unit": "average views per post",
+      "data": {
+        "1-5K": {"reels": 580, "carousel": 993, "image": 417},
+        "5-10K": {"reels": 1000, "carousel": 2117, "image": 1068},
+        "10-50K": {"reels": 2460, "carousel": 4275, "image": 2340},
+        "50-100K": {"reels": 6095, "carousel": 11597, "image": 7405},
+        "100K-1M": {"reels": 16035, "carousel": 35370, "image": 22900}
+      },
+      "structural_insight": "**Carousel views 在所有 brand size 全面 > Reels**——这颠覆'Reels 是最大 reach 引擎'的通说。核心机制:**Carousel double exposure**——用户初次未 engage 时,IG 会用第 2 帧作为封面把 carousel 再推一次进 feed",
+      "mechanism_detail_per_nancy_oganezov": "Instagram 对未 engage 的 carousel 会 resurface,以第 2 slide 作 cover。等于每条 carousel 有 2 次 shot 进 feed。这是 Carousel views 碾压 Reels 的根本原因,不是内容质量差异",
+      "atoms_relevance": "**对 Atoms playbook 的重大修正**:Carousel 不只是 SaaS/AI 教育型内容的首选,是**所有 business type 追求 views 时的首选**。ecommerce/creator 模板也要 elevate Carousel 权重。'Reels-first' 是错的行业惯性",
+      "confidence": "high"
+    },
+    "posting_frequency_shift_2024_to_2025": {
+      "unit": "average posts per month",
+      "data": {
+        "reels": {"2024": 6, "2025": 8, "yoy": "+33%"},
+        "carousels": {"2024": 4, "2025": 5, "yoy": "+25%"},
+        "images": {"2024": 10, "2025": 7, "yoy": "-30%"}
+      },
+      "structural_insight": "**行业正在向 Reels/Carousel 迁移预算,砍 Image**——但数据显示 Carousel 才是 views 王者。行业'跟风堆 Reels'是次优选择",
+      "sam_oliver_ideal_mix_2026": {
+        "reels": "60-70%",
+        "carousels": "20-30% (built for saves, 教育/观点/故事)",
+        "images": "10% (culture-driven / humanise brand)",
+        "stories": "frequently alongside — 'relationship layer that turns reach into brand trust'"
+      },
+      "atoms_deviation_from_industry": "Atoms 用户以 1-5K 为主,数据显示此规模下 **Carousel views 已经 = 1.7x Reels**。因此 Atoms 推荐的 mix 应偏离 Sam Oliver 的 60-30-10 主流建议,更接近 **40-40-10-10(Reel-Carousel-Image-Stories)** 或直接 Carousel-first",
+      "confidence": "high"
+    },
+    "audience_growth_collapse_2024_to_2025": {
+      "unit": "annual follower growth rate",
+      "data": {
+        "1-5K": {"2024": "38%", "2025": "22%", "yoy_drop": "-42%"},
+        "5-10K": {"2024": "35%", "2025": "20.29%", "yoy_drop": "-42%"},
+        "10-50K": {"2024": "33.8%", "2025": "17.2%", "yoy_drop": "-49%"},
+        "50-100K": {"2024": "30%", "2025": "13.62%", "yoy_drop": "-55%"},
+        "100K-1M": {"2024": "27%", "2025": "11.25%", "yoy_drop": "-58%"}
+      },
+      "structural_insight": "**所有规模的增长率都腰斩**,越大账号越惨(100K+ 跌 58%)。原因:Sam Oliver 观察 '算法停止给早期 boost,只推给已有 followers'",
+      "atoms_playbook_expectation_setting": "playbook §1 必须写清楚:'2025 起 IG 增长已结构性放缓——1-5K 阶段年增长中位 22%(而非博客常引用的 38%);不要用 2024 及以前的数字定 KPI'。这是防止 Atoms 用户失望离开的关键预期管理",
+      "confidence": "high"
+    },
+    "expert_quotes_key_insights": [
+      {
+        "speaker": "Chloe Maguire, Brand & Social Media Lead at Leapsome",
+        "quote_paraphrase": "engagement 下滑不是随机的,是结构性的——AI 大量增产 + 品牌更激进商业化,导致 supply-demand 严重失衡。同时用户从公开 engagement(likes)迁移到私域 engagement(shares / saves / DMs)+ community-based interaction。'engagement hasn't disappeared, it's evolved'",
+        "atoms_relevance": "确认 Hootsuite 的 shares priority shift;playbook 定位:Atoms 生成的内容目标是'触发 DM 转发 / 私域讨论',而非公开 likes"
+      },
+      {
+        "speaker": "Taryn Potasky, Social Media Specialist at Intuit",
+        "quote_paraphrase": "'For brands to win today, high relatability or a clear utility value-add is the only way to earn a spot in a user's private conversation'",
+        "atoms_relevance": "指导 Atoms Agent 生成 caption 时,必须评估'这条内容有没有一个明确的 relatability hook 或 utility payoff'——两个都没有的帖子直接拒绝生成"
+      },
+      {
+        "speaker": "Courtney Coleman, Global Social Media Manager",
+        "quote_paraphrase": "Reels 被 IG 强推是因为对标 TikTok;品牌因此把 Reels 优先做成 shareable → DM 传播 → comment 讨论。副作用:engagement bait 泛滥,但真正 out-of-box storytelling 依然能留下印象",
+        "atoms_relevance": "Agent 避免生成'engagement bait'(如'double tap if you agree')——短期数据好看,长期损伤 classification 精度"
+      },
+      {
+        "speaker": "Nancy Oganezov, Senior Social Strategist at Dentsu Creative",
+        "quote_paraphrase": "Carousel 高 saves 三原因:(1) 物理 swipe 比看视频/图更 'sticky';(2) IG 对未 engage 的 carousel 用第 2 slide 再推一次(算法特权);(3) 类比 brick-and-mortar brochure,易于 skim",
+        "atoms_relevance": "**关键机制解释**——carousel 的 double exposure 特权是 SocialInsider 数据背后的 root cause。playbook §4 需要单列'为什么 Carousel 值得优先'"
+      },
+      {
+        "speaker": "Kyle Mccall, Social Media Manager (running brand)",
+        "quote_paraphrase": "'save-worthy carousel' 的核心是 service content——真正 useful 的信息。给跑鞋品牌做的最成功帖子是 shoes + product feature callout(简单、有用、可分享)",
+        "atoms_relevance": "对 ecommerce Atoms 用户:carousel 首选主题不是 lifestyle,是'产品特性拆解'(1 slide 1 feature 结构)"
+      },
+      {
+        "speaker": "Sam Oliver, Social Media Strategist",
+        "quote_paraphrase": "2026 ideal mix:60-70% Reels(discovery via watch time + shares)/ 20-30% Carousel(saves / 教育)/ 10% single image(humanise brand)。Stories 高频作 relationship layer",
+        "atoms_relevance": "**Atoms 主流建议参考,但需按 brand size 调整**——tiny brand(<10K)应上调 Carousel 权重(views 优势),下调 Reels(comments 优势尚不显)"
+      },
+      {
+        "speaker": "Sierra Winnow, Senior Social Strategy Manager",
+        "quote_paraphrase": "早期品牌靠'借注意力 + 无处不在'增长;成熟品牌靠 brand equity 复利 + 选择性拓展。'stalling at scale = 还在跑 challenger playbook,但已经不是 challenger 了'",
+        "atoms_relevance": "playbook 分级策略:0-1K 阶段 = borrow attention(合作 / UGC / everywhere);1-10K = 沉淀差异化;10K+ = compound equity。三段式建议"
+      }
+    ],
+    "atoms_playbook_direct_mapping": {
+      "§1_expectation_setting_new_chapter": [
+        "'2025 是 Instagram 结构性 reset,不是你个人做错了什么'——开篇首页共情",
+        "1-5K 阶段年增长中位 22%(而非 38%,防止过高预期)",
+        "1-5K 阶段单帖 comments 中位:Reel 3 / Carousel 2 / Image 1——把'一条帖子 3 条 comment' 定为'达标',不是失败",
+        "saves 在 <10K 阶段全都是 1,不作 KPI"
+      ],
+      "§2_algorithm_and_data_baseline": [
+        "overall engagement 0.48% 作为平台平均基线",
+        "format 层:Carousel 0.55% / Reel 0.52% / Image 0.37%",
+        "YoY:整体 -24% engagement,Image -17%,Reel/Carousel 稳中微涨"
+      ],
+      "§4_format_priority_by_brand_size": {
+        "principle": "格式优先级不是固定的,按 brand size 变化",
+        "tier_1_1K_to_10K": {
+          "primary_goal": "views + baseline exposure",
+          "primary_format": "Carousel(views 优势 = 1.7x-2x Reels)",
+          "secondary": "Reel(用于测试 hook,不作主力)",
+          "avoid": "Image(views 与 engagement 都最弱)",
+          "explanation": "小账号 comments 层格式差异小,但 views 层 Carousel 碾压。优先做 views 累积"
+        },
+        "tier_2_10K_to_100K": {
+          "primary_goal": "engagement depth(saves / comments)",
+          "primary_format": "Carousel(saves 反超 Reel)+ Reel(comments 领先)",
+          "avoid_ratio": "Image ≤ 15%"
+        },
+        "tier_3_100K_plus": {
+          "goal": "algorithm favor + brand equity compound",
+          "mix": "Reels 60% + Carousel 30% + Image 10%(接近 Sam Oliver 主流建议)"
+        }
+      },
+      "§4_carousel_optimization_hard_rules": [
+        "封面 slide(第 1 帧)必须 hook,因为决定初次曝光的 CTR",
+        "**第 2 slide 也要 hook**(独立的 hook)——因为 IG 会用第 2 slide 作为二次曝光的封面(Nancy Oganezov 引 IG 算法特权)",
+        "每 slide 要能独立成立(单帧被截图/转发时不失去含义)",
+        "ecommerce carousel:优先 '1 slide 1 product feature' 结构(Kyle Mccall 实证)"
+      ],
+      "§9_metric_priority_by_brand_size": {
+        "1-5K": "views(Carousel 主指标)> comments(Reel 主指标)。忽略 saves",
+        "5-50K": "views + comments 并重;saves 开始有意义(Carousel 领先)",
+        "50K+": "shares + saves 优先(与 Hootsuite Mosseri 'shares > saves' 结合)"
+      },
+      "§10_content_pillar_evaluation_gate": "每条 Agent 生成的 caption 过 Taryn Potasky gate:'这条有 clear relatability hook 吗?或有 clear utility payoff 吗?'——两个都没有,拒绝生成"
+    },
+    "extraction_notes": [
+      "SocialInsider 是本次 4 篇里唯一提供**跨规模 × 跨格式二维数字**的源——这是 playbook 分级建议的唯一数据依据",
+      "样本量 35M posts / 447K pages 是 Category B 最大源;数据 confidence 高于其他",
+      "SocialInsider 自述'2026 数据实际是 2025 全年',我们按 2025 引用避免误导",
+      "**关键洞察修正**:'Reels-first' 是错误的行业惯性——数据显示 Carousel 才是 views + saves 双料王者,尤其对 tiny brand(<10K)",
+      "对 Atoms 定位的战略含义:Atoms 用户 90%+ 是 1-5K 规模,playbook 主推 Carousel-first,与主流媒体宣传的 'Reels-first' 直接冲突——但这是数据背书的差异化建议"
+    ]
+  }
+]

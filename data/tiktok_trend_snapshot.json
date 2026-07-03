@@ -1,0 +1,95 @@
+{
+  "$schema_version": "2026-07-02",
+  "$description": "TikTok Creative Center 公开趋势数据快照。每 2-4 周从 https://ads.tiktok.com/business/creativecenter 刷新,写入 trending_hashtags / trending_sounds / top_ads_patterns / keyword_insights 四个数组。此文件与 tiktok_case_studies.json 独立 —— case studies 关注结构模式(长期稳定),trend snapshot 关注具体素材(短期热点)。",
+  "$refresh_cadence": "2-4 周",
+  "$refresh_workflow_ref": "scripts/tiktok_creative_center_workflow.md",
+  "$last_refresh": null,
+  "$last_refresh_scope": {
+    "regions": [],
+    "industries": [],
+    "time_window": null
+  },
+  "$next_refresh_due": "2026-08-01",
+  "$data_freshness_warning": "TikTok trending 生命周期通常 7-14 天。若 last_refresh > 4 周,内容建议不再作为「借势素材」使用,只作为「历史 pattern 参考」。playbook §5/§6/§9 使用此数据时必须核查 last_refresh 时间戳。",
+
+  "trending_hashtags": {
+    "$description": "从 Creative Center → Inspiration → Popular → Hashtag 抓取。按行业 + 地域 + 时间窗过滤。",
+    "$structure_ref": "每条对象:{ tag, category, posts_count, growth_rate_7d, growth_rate_30d, region, industry, snapshot_date, atoms_relevance }",
+    "$example": {
+      "tag": "#buildinpublic",
+      "category": "niche-tech",
+      "posts_count": "142K",
+      "growth_rate_7d": "+18%",
+      "growth_rate_30d": "+42%",
+      "region": "US",
+      "industry": "Tech / SaaS",
+      "snapshot_date": "2026-07-02",
+      "atoms_relevance": "Creator / SaaS 类 build-in-public 内容首选 mid-tag"
+    },
+    "entries": []
+  },
+
+  "trending_sounds": {
+    "$description": "从 Creative Center → Inspiration → Popular → Song 抓取。TikTok 独有的关键分发信号——借势 trending sound 是冷启动加速的核心手段。",
+    "$structure_ref": "每条对象:{ sound_id, title, artist, video_count, growth_rate_7d, category, region, license_type, snapshot_date, atoms_relevance, decay_estimate }",
+    "$example": {
+      "sound_id": "7XXXXXXXXXXX",
+      "title": "[sound name]",
+      "artist": "[artist]",
+      "video_count": "580K",
+      "growth_rate_7d": "+62%",
+      "category": "background-music",
+      "region": "US",
+      "license_type": "commercial-safe",
+      "snapshot_date": "2026-07-02",
+      "atoms_relevance": "适合 SaaS / Creator 类 tutorial 铺底;节奏适合 25-30s 快剪",
+      "decay_estimate": "预计还有 5-10 天窗口"
+    },
+    "entries": []
+  },
+
+  "top_ads_patterns": {
+    "$description": "从 Creative Center → Top Ads Library 归纳。这里关注的不是具体广告,而是**广告结构 pattern**——高转化广告的 hook / 时长 / 视觉节奏组合。",
+    "$structure_ref": "每条对象:{ pattern_name, hook_type, video_length_range, visual_style, industry, snapshot_date, atoms_relevance }",
+    "$example": {
+      "pattern_name": "before-after transformation (beauty)",
+      "hook_type": "before-after",
+      "video_length_range": "15-25s",
+      "visual_style": "手持自然光 + 前后对比字幕",
+      "industry": "Beauty / Skincare",
+      "snapshot_date": "2026-07-02",
+      "atoms_relevance": "Ecom 类首选 pattern;需真实使用场景素材"
+    },
+    "entries": []
+  },
+
+  "keyword_insights": {
+    "$description": "从 Creative Center → Keyword Insights 抓取。TikTok SEO 层数据 —— 用户实际搜索的关键词与搜索量趋势。",
+    "$structure_ref": "每条对象:{ keyword, search_volume_relative, growth_7d, industry, region, snapshot_date, atoms_relevance }",
+    "$example": {
+      "keyword": "ai productivity tools",
+      "search_volume_relative": "high",
+      "growth_7d": "+28%",
+      "industry": "Tech / SaaS",
+      "region": "US",
+      "snapshot_date": "2026-07-02",
+      "atoms_relevance": "SaaS 类 caption 前 100 字符与 voiceover 内嵌关键词候选"
+    },
+    "entries": []
+  },
+
+  "$notes": {
+    "data_source_compliance": "Creative Center 是 TikTok 官方公开工具,无登录门槛,无第三方 scraping API,合规。WebFetch 为首选抓取方式;playwright 兜底见 scripts/。",
+    "atoms_usage": {
+      "hook_generation": "playbook §5 hook_patterns 结合 top_ads_patterns 生成具体 hook 建议",
+      "hashtag_selection": "playbook §6 mix_strategy 的 slot 2/3(niche mid-tag)从 trending_hashtags 中筛",
+      "sound_recommendation": "生成 content brief 时,若在 sound decay 窗口内,主动建议借势 sound",
+      "seo_keywords": "caption 与 voiceover 关键词候选来自 keyword_insights"
+    },
+    "cross_reference": {
+      "case_studies": "tiktok_case_studies.json 关注长期结构;此文件关注短期素材",
+      "playbook": "references/platform-playbooks/tiktok.md §5 §6 §9 引用此文件",
+      "refresh_log": "每次 refresh 后在 scripts/README.md TikTok 章节记录一行 log(日期 + 抓取范围 + 数量)"
+    }
+  }
+}

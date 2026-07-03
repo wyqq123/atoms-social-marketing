@@ -1,0 +1,111 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "atoms-social-marketing/inputs_schema",
+  "$schema_version": "0.1.0",
+  "title": "Launch Pack Pipeline Inputs",
+  "description": "atoms-social-marketing skill 的 pipeline 输入契约。上层调用方(Atoms builder)负责收集并按此结构传入。",
+  "type": "object",
+  "required": ["app_context", "builder_prompt", "positioning"],
+  "properties": {
+    "app_context": {
+      "type": "object",
+      "required": ["name", "description", "category"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "description": { "type": "string", "minLength": 100, "maxLength": 500 },
+        "category": { "type": "string", "description": "参考 Atoms 品类枚举" },
+        "target_market": {
+          "type": "array",
+          "items": { "type": "string", "pattern": "^[A-Z]{2}$" },
+          "default": ["US"]
+        },
+        "urls": {
+          "type": "object",
+          "properties": {
+            "product": { "type": "string", "format": "uri" },
+            "docs": { "type": "string", "format": "uri" },
+            "landing": { "type": "string", "format": "uri" }
+          }
+        },
+        "screenshots_ref": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "builder_prompt": {
+      "type": "string",
+      "minLength": 50,
+      "description": "Atoms builder 里用户构建应用时的原始 prompt"
+    },
+    "positioning": {
+      "type": "object",
+      "required": ["promo_goal", "target_audience", "key_selling_point"],
+      "properties": {
+        "promo_goal": {
+          "type": "string",
+          "description": "推广目标, e.g. '冷启动首周破 1000 registered users'"
+        },
+        "target_audience": {
+          "type": "string",
+          "description": "目标用户画像, e.g. 'SMB solo builders working on AI side projects'"
+        },
+        "key_selling_point": {
+          "type": "string",
+          "description": "想突出的产品卖点, e.g. '零代码 15 分钟上线一个能收钱的 landing page'"
+        }
+      }
+    },
+    "ga4_snapshot": {
+      "type": ["object", "null"],
+      "properties": {
+        "period": { "type": "string", "enum": ["last_7d", "last_30d"] },
+        "top_geo": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "country": { "type": "string" },
+              "sessions": { "type": "integer" }
+            }
+          }
+        },
+        "top_referrer": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "source": { "type": "string" },
+              "sessions": { "type": "integer" }
+            }
+          }
+        },
+        "device_split": {
+          "type": "object",
+          "properties": {
+            "mobile": { "type": "number" },
+            "desktop": { "type": "number" },
+            "tablet": { "type": "number" }
+          }
+        },
+        "top_pages": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "path": { "type": "string" },
+              "pv": { "type": "integer" }
+            }
+          }
+        }
+      }
+    },
+    "platform_scope": {
+      "type": "array",
+      "items": { "type": "string", "enum": ["ig", "yt", "tt"] },
+      "minItems": 1,
+      "uniqueItems": true,
+      "default": ["ig", "yt", "tt"]
+    }
+  }
+}

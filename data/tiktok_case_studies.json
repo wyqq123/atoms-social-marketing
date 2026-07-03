@@ -1,0 +1,52 @@
+{
+  "$schema_version": "2026-07-02",
+  "$description": "TikTok case studies extracted from Category B industry blogs (SocialInsider / Later / Buffer / Hootsuite / RivalIQ / HubSpot). 每篇博客文章可提取 1-N 个 case 到 cases 数组。schema 与 IG 保持一致以便复用提取管线(见 data/case_study_schema.json)。",
+  "$refresh_cadence": "案例增量:每 6 个月;结构性大调整:每 12 个月",
+  "$last_refresh": "2026-07-02 (v0.1 初始骨架,cases 数组待 WebFetch 后填充)",
+  "$next_refresh_due": "2027-01-02",
+  "$tiktok_specific_fields": {
+    "video_length_seconds": "视频时长(TikTok 关键分层维度)",
+    "sound_type": "trending | original | licensed | none —— TikTok 独有维度",
+    "hook_pattern": "对应 playbook §5 的 6 种 hook 之一(broken-hook | number-promise | before-after | pov | suspense | hot-take)",
+    "loop_designed": "boolean —— 视频结尾是否为 rewatch 设计",
+    "fyp_penetration": "high | medium | low —— 是否成功进入 FYP unconnected reach"
+  },
+  "cases": [],
+  "$example_case": {
+    "case_id": "later-saas-tt-01",
+    "brand": "Notion",
+    "handle": "@notionhq",
+    "business_type": "saas",
+    "post_url": "https://www.tiktok.com/@notionhq/video/XXXX",
+    "post_type": "reel",
+    "video_length_seconds": 28,
+    "sound_type": "trending",
+    "hook_pattern": "before-after",
+    "loop_designed": false,
+    "fyp_penetration": "high",
+    "screenshot_asset": "",
+    "caption_excerpt": "The productivity system I wish I knew 5 years ago...",
+    "caption_length_chars": 68,
+    "hashtags": ["#notion", "#productivitytok", "#studytok", "#buildinpublic"],
+    "engagement": {
+      "views": "2.1M",
+      "likes": "180K",
+      "comments": "3.2K",
+      "shares": "12K",
+      "saves": null,
+      "reach": null,
+      "as_reported_date": "2025-03",
+      "notes": "博客未列 saves;views 为报道时快照"
+    },
+    "why_featured": "博客 highlight:'small-team SaaS 通过 before-after 结构在 TikTok 破圈的范例'",
+    "insight_from_blog": "SaaS TikTok 关键不是 feature demo,而是 outcome-visualization —— show the result users care about",
+    "atoms_relevance": "SaaS/AI 类 launch post 或 educational post 可参考 before-after 结构 + 28s 时长 + trending sound 组合",
+    "confidence": "high"
+  },
+  "$field_definitions_ref": "详见 data/case_study_schema.json,新增 TikTok 独有字段见 $tiktok_specific_fields",
+  "$notes": {
+    "sampling_bias": "博客案例偏向高转化爆款;人工补齐(tiktok_manual_supplements.md)负责平衡样本 bias",
+    "creator_class_sparsity": "TikTok Creator/indie 类案例博客覆盖极少,需重度依赖人工补齐(≥10 条)",
+    "trend_decoupled_from_case_studies": "案例样本关注结构模式(hook / length / loop);具体 trending sound / hashtag 每 2-4 周从 Creative Center 单独刷新(tiktok_trend_snapshot.json)"
+  }
+}

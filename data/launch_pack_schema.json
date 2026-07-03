@@ -1,0 +1,338 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "atoms-social-marketing/launch_pack_schema",
+  "$schema_version": "0.1.0",
+  "title": "Launch Pack",
+  "description": "atoms-social-marketing skill pipeline 顶层产物。Stage 5 组装。",
+  "type": "object",
+  "required": [
+    "$schema_version",
+    "generated_at",
+    "launch_brief",
+    "platform_fit",
+    "strategies",
+    "deliverables",
+    "schedule",
+    "checks",
+    "_pipeline_meta"
+  ],
+  "properties": {
+    "$schema_version": { "type": "string", "const": "0.1.0" },
+    "generated_at": { "type": "string", "format": "date-time" },
+
+    "launch_brief": {
+      "type": "object",
+      "required": ["app_name", "one_liner", "promo_goal", "target_audience", "key_selling_point"],
+      "properties": {
+        "app_name": { "type": "string" },
+        "one_liner": { "type": "string", "maxLength": 100 },
+        "promo_goal": { "type": "string" },
+        "target_audience": { "type": "string" },
+        "key_selling_point": { "type": "string" },
+        "primary_market": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+
+    "platform_fit": {
+      "type": "object",
+      "required": ["ranking", "scores"],
+      "properties": {
+        "ranking": {
+          "type": "array",
+          "items": { "type": "string", "enum": ["ig", "yt", "tt"] }
+        },
+        "scores": {
+          "type": "object",
+          "patternProperties": {
+            "^(ig|yt|tt)$": {
+              "type": "object",
+              "required": ["fit_score", "strengths", "weaknesses", "recommended_focus"],
+              "properties": {
+                "fit_score": { "type": "integer", "minimum": 0, "maximum": 100 },
+                "strengths": { "type": "array", "items": { "type": "string" } },
+                "weaknesses": { "type": "array", "items": { "type": "string" } },
+                "recommended_focus": { "type": "array", "items": { "type": "string" } }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "strategies": {
+      "type": "object",
+      "patternProperties": {
+        "^(ig|yt|tt)$": { "$ref": "#/definitions/PlatformStrategy" }
+      }
+    },
+
+    "deliverables": {
+      "type": "object",
+      "patternProperties": {
+        "^(ig|yt|tt)$": {
+          "type": "object",
+          "required": ["posts"],
+          "properties": {
+            "posts": { "type": "array", "items": { "$ref": "#/definitions/Caption" } },
+            "storyboards": { "type": "array", "items": { "$ref": "#/definitions/Storyboard" } },
+            "ab_variants": { "type": "array", "items": { "$ref": "#/definitions/Caption" } }
+          }
+        }
+      }
+    },
+
+    "schedule": {
+      "type": "object",
+      "required": ["week_1"],
+      "properties": {
+        "week_1": {
+          "type": "array",
+          "minItems": 3,
+          "items": {
+            "type": "object",
+            "required": ["day", "platform", "post_ref", "recommended_time"],
+            "properties": {
+              "day": { "type": "string" },
+              "date_offset_from_launch": { "type": "integer", "minimum": 0 },
+              "platform": { "type": "string", "enum": ["ig", "yt", "tt"] },
+              "post_ref": { "type": "string" },
+              "recommended_time": { "type": "string" },
+              "rationale": { "type": "string" }
+            }
+          }
+        },
+        "notes": { "type": "string" }
+      }
+    },
+
+    "checks": {
+      "type": "object",
+      "required": ["blocker", "warning", "info"],
+      "properties": {
+        "blocker": { "type": "array", "items": { "type": "string" } },
+        "warning": { "type": "array", "items": { "type": "string" } },
+        "info": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+
+    "_pipeline_meta": {
+      "type": "object",
+      "required": [
+        "playbook_versions",
+        "trend_snapshot_last_refresh",
+        "confidence_summary",
+        "ga4_used",
+        "media_generation_deferred",
+        "injectable_prompts_count"
+      ],
+      "properties": {
+        "playbook_versions": {
+          "type": "object",
+          "properties": {
+            "ig": { "type": "string" },
+            "yt": { "type": "string" },
+            "tt": { "type": "string" }
+          }
+        },
+        "trend_snapshot_last_refresh": { "type": ["string", "null"] },
+        "confidence_summary": {
+          "type": "object",
+          "patternProperties": {
+            "^(ig|yt|tt)$": { "type": "string", "enum": ["low", "medium", "medium-high", "high"] }
+          }
+        },
+        "ga4_used": { "type": "boolean" },
+        "media_generation_deferred": { "type": "boolean", "const": true },
+        "injectable_prompts_count": {
+          "type": "object",
+          "required": ["images", "videos"],
+          "properties": {
+            "images": { "type": "integer", "minimum": 0 },
+            "videos": { "type": "integer", "minimum": 0 }
+          }
+        }
+      }
+    }
+  },
+
+  "definitions": {
+    "PlatformStrategy": {
+      "type": "object",
+      "required": ["platform", "angles", "hashtag_mix", "posting_cadence"],
+      "properties": {
+        "platform": { "type": "string", "enum": ["ig", "yt", "tt"] },
+        "angles": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 5,
+          "items": {
+            "type": "object",
+            "required": ["angle_id", "core_message", "hook_pattern", "post_type"],
+            "properties": {
+              "angle_id": { "type": "string" },
+              "core_message": { "type": "string" },
+              "hook_pattern": { "type": "string" },
+              "post_type": { "type": "string" },
+              "narrative_arc": { "type": "string" },
+              "estimated_fit": { "type": "string", "enum": ["low", "medium", "high"] }
+            }
+          }
+        },
+        "hashtag_mix": {
+          "type": "object",
+          "required": ["slots"],
+          "properties": {
+            "slots": {
+              "type": "object",
+              "required": ["1_broad", "2_mid_1", "3_mid_2", "4_niche", "5_brand"],
+              "properties": {
+                "1_broad": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+                "2_mid_1": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+                "3_mid_2": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+                "4_niche": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+                "5_brand": { "type": "array", "items": { "type": "string" }, "minItems": 1 }
+              }
+            }
+          }
+        },
+        "posting_cadence": {
+          "type": "object",
+          "properties": {
+            "week_1_frequency": { "type": "string" },
+            "best_time_slots": { "type": "array", "items": { "type": "string" } },
+            "rationale_ref": { "type": "string" }
+          }
+        },
+        "trend_borrow": {
+          "type": ["object", "null"],
+          "properties": {
+            "trending_hashtags_slot_2": { "type": "array" },
+            "trending_sounds_top_3": { "type": "array" },
+            "snapshot_date": { "type": "string" }
+          }
+        },
+        "_rationale": { "type": "string" }
+      }
+    },
+
+    "Caption": {
+      "type": "object",
+      "required": ["angle_id", "platform", "post_type", "hook", "body", "cta", "hashtags", "confidence"],
+      "properties": {
+        "angle_id": { "type": "string" },
+        "platform": { "type": "string", "enum": ["ig", "yt", "tt"] },
+        "post_type": { "type": "string" },
+        "hook": { "type": "string" },
+        "body": { "type": "string" },
+        "cta": {
+          "type": "object",
+          "required": ["text", "link_style"],
+          "properties": {
+            "text": { "type": "string" },
+            "link_style": { "type": "string", "enum": ["bio-link", "comment-pin", "swipe-up", "none"] }
+          }
+        },
+        "hashtags": { "type": "array", "items": { "type": "string" }, "minItems": 5 },
+        "confidence": { "type": "string", "enum": ["low", "medium", "high"] },
+        "media_prompts": { "$ref": "#/definitions/MediaPromptsCaption" },
+        "_rationale": { "type": "string" }
+      }
+    },
+
+    "Storyboard": {
+      "type": "object",
+      "required": ["angle_id", "platform", "post_type", "total_duration_s", "scenes", "caption"],
+      "properties": {
+        "angle_id": { "type": "string" },
+        "platform": { "type": "string", "enum": ["ig", "yt", "tt"] },
+        "post_type": { "type": "string" },
+        "total_duration_s": { "type": "integer", "minimum": 5, "maximum": 180 },
+        "sound_ref": {
+          "type": ["object", "null"],
+          "properties": {
+            "source": { "type": "string" },
+            "sound_id": { "type": "string" },
+            "decay_window_days_left": { "type": "integer" }
+          }
+        },
+        "scenes": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["scene_id", "duration_s", "purpose", "visual_note", "media_prompts"],
+            "properties": {
+              "scene_id": { "type": "integer" },
+              "duration_s": { "type": "integer" },
+              "purpose": { "type": "string", "enum": ["hook", "context", "reveal", "proof", "cta", "loop"] },
+              "visual_note": { "type": "string" },
+              "text_overlay": { "type": ["string", "null"] },
+              "voiceover_or_dialogue": { "type": ["string", "null"] },
+              "b_roll_hint": { "type": ["string", "null"] },
+              "media_prompts": { "$ref": "#/definitions/MediaPromptsScene" }
+            }
+          }
+        },
+        "caption": { "$ref": "#/definitions/Caption" },
+        "_rationale": { "type": "string" }
+      }
+    },
+
+    "MediaPromptsCaption": {
+      "type": "object",
+      "properties": {
+        "cover_image": {
+          "type": ["object", "null"],
+          "required": ["trigger", "injectable_prompt", "aspect_ratio"],
+          "properties": {
+            "trigger": { "type": "string", "const": "on-demand" },
+            "injectable_prompt": { "type": "string", "minLength": 20 },
+            "target_tool_hint": { "type": "string" },
+            "aspect_ratio": { "type": "string", "enum": ["1:1", "9:16", "16:9", "4:5"] }
+          }
+        },
+        "carousel_slides": {
+          "type": ["array", "null"],
+          "items": {
+            "type": "object",
+            "required": ["trigger", "injectable_prompt", "aspect_ratio"],
+            "properties": {
+              "trigger": { "type": "string", "const": "on-demand" },
+              "injectable_prompt": { "type": "string", "minLength": 20 },
+              "target_tool_hint": { "type": "string" },
+              "aspect_ratio": { "type": "string" },
+              "slide_index": { "type": "integer" }
+            }
+          }
+        }
+      }
+    },
+
+    "MediaPromptsScene": {
+      "type": "object",
+      "required": ["trigger"],
+      "properties": {
+        "trigger": { "type": "string", "const": "on-demand" },
+        "video_prompt": {
+          "type": ["object", "null"],
+          "required": ["injectable_prompt", "aspect_ratio", "duration_hint_s"],
+          "properties": {
+            "injectable_prompt": { "type": "string", "minLength": 20 },
+            "target_tool_hint": { "type": "string" },
+            "aspect_ratio": { "type": "string" },
+            "duration_hint_s": { "type": "integer" }
+          }
+        },
+        "image_prompt": {
+          "type": ["object", "null"],
+          "required": ["injectable_prompt", "aspect_ratio"],
+          "properties": {
+            "injectable_prompt": { "type": "string", "minLength": 20 },
+            "target_tool_hint": { "type": "string" },
+            "aspect_ratio": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}

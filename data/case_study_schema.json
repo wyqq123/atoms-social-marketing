@@ -1,0 +1,56 @@
+{
+  "$schema_version": "2026-07-02",
+  "$description": "IG case study 提取 schema。从 Later/Buffer/SocialInsider 等博客文章中,每篇提取 1-N 个 case 到 cases 数组。",
+  "$example": {
+    "source_article": {
+      "url": "https://later.com/blog/instagram-marketing-strategy/",
+      "title": "10 SaaS Instagram Case Studies",
+      "publisher": "Later",
+      "date_published": "2024-11-15",
+      "fetched_at": "2026-07-02"
+    },
+    "cases": [
+      {
+        "case_id": "later-saas-01",
+        "brand": "Notion",
+        "handle": "@notionhq",
+        "business_type": "saas",
+        "post_url": "https://www.instagram.com/p/XXX/",
+        "post_type": "carousel",
+        "screenshot_asset": "",
+        "caption_excerpt": "Meet 3 Notion power users who built their side businesses inside a single workspace...",
+        "caption_length_chars": 180,
+        "hashtags": ["#notion", "#productivity", "#sidehustle"],
+        "engagement": {
+          "likes": "12K",
+          "comments": "340",
+          "shares": null,
+          "saves": null,
+          "reach": null,
+          "as_reported_date": "2024-11",
+          "notes": "博客未列 saves/shares"
+        },
+        "why_featured": "博客 highlight:'social proof + product-in-context 结合的教科书案例'",
+        "insight_from_blog": "case studies + POV 组合让转化率提升 3x(博主原话)",
+        "atoms_relevance": "SaaS/AI 类 launch post 可参考:用真实用户故事替代 feature list",
+        "confidence": "high"
+      }
+    ]
+  },
+  "$field_definitions": {
+    "case_id": "自动生成,格式 <publisher-slug>-<biz-type>-<n>",
+    "business_type": "枚举:saas | ecommerce | creator",
+    "post_type": "枚举:reel | carousel | single | story | live",
+    "post_url": "IG 原帖 URL,若博客未提供则 null",
+    "screenshot_asset": "本地路径(如已下载)或博客里的图片 URL",
+    "caption_excerpt": "博客引用的 caption 片段,不复述整段(合规)",
+    "caption_length_chars": "如可测则填,否则 null",
+    "hashtags": "数组,若博客未列则 []",
+    "engagement.as_reported_date": "博客发布或统计的时间点",
+    "engagement.notes": "任何 caveat,比如'为报道时数据,可能已变化'",
+    "why_featured": "博客作者选它的原因(用博主视角)",
+    "insight_from_blog": "博客对这个 case 的核心观察或结论",
+    "atoms_relevance": "**我们的判断**:适合哪类 Atoms 用户参考、可复用什么模式",
+    "confidence": "high | medium | low —— engagement 数字可信度、样本代表性"
+  }
+}

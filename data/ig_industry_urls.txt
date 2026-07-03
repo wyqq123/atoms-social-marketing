@@ -1,0 +1,152 @@
+# Industry Blog & Official Resource URLs — Instagram Playbook Research
+
+**Collection date**: 2026-07-02
+**Source**: WebSearch (Category B/C queries in `scripts/search_queries.md`)
+**Next step**: 逐个 WebFetch → 按 `data/case_study_schema.json` 提取 → 追加到 `data/ig_case_studies.json`
+
+---
+
+## B1 — 通用 IG Benchmark / Data 报告
+
+### SocialInsider(engagement benchmark 主源)
+- https://www.socialinsider.io/social-media-benchmarks/instagram — 2026 IG Organic Engagement Benchmarks
+- https://www.socialinsider.io/data-geeks/instagram_benchmarks_2025.pdf — 2025 IG Benchmarks PDF(35M posts / 447K pages 分析)
+- https://www.socialinsider.io/social-media-benchmarks/instagram-engagement-report — Hidden Engagement Indicators
+- https://www.socialinsider.io/social-media-benchmarks/social-media-content-trends — Cross-industry content trends
+- https://www.socialinsider.io/blog/social-media-reach/ — Social media reach statistics 2025
+- https://www.socialinsider.io/blog/instagram-metrics/ — 23 IG metrics every marketer tracks
+
+### Sprout Social(content benchmark 主源)
+- https://sproutsocial.com/insights/social-media-benchmarks-by-industry/ — Benchmarks by Industry 2025
+- https://sproutsocial.com/insights/data/content-benchmarks/ — 2025 Content Benchmarks Report(3B messages 分析)
+- https://sproutsocial.com/insights/instagram-engagement-rate/ — IG engagement rate 2026
+- https://sproutsocial.com/insights/social-media-statistics/ — 120+ social statistics
+- https://sproutsocial.com/insights/organic-reach/ — Organic reach 2026
+
+---
+
+## B2 — Later / Buffer / 分业务案例分析
+
+### Later
+- https://later.com/blog/instagram-strategy/ — IG Marketing Strategy 2025
+- https://later.com/blog/make-money-on-instagram/ — Making Money on IG 2025(含 SMB 商业化案例)
+- https://later.com/blog/micro-influencer-marketing/ — Micro Influencer(Marlow ecommerce / Mejuri 早期案例)
+- https://later.com/blog/influencer-marketing-for-small-business/ — Small business guide
+- https://later.com/blog/instagram-marketing-trends/ — 15 IG Marketing Trends 2024
+- https://later.com/case-studies/stil/ — STIL 案例
+- https://later.com/case-studies/ — Case studies hub(逐个筛)
+
+### Buffer
+- https://buffer.com/resources/growing-business-organically-on-instagram/ — **Eizzy Baby**(solo founder ecommerce,极匹配)
+- https://buffer.com/resources/small-business-instagram-campaigns/ — 4 SMB campaigns(Dreamers & Doers 等)
+- https://buffer.com/library/instagram-growth/ — Buffer 自家 IG 增长 2×(2026)
+- https://buffer.com/library/instagram-small-business/ — IG for small business FAQ
+- https://buffer.com/resources/case-studies/ — Case studies hub
+
+---
+
+## B3 — 具体机制(算法 / hashtag / caption)
+
+### Hootsuite(algorithm 主源)
+- https://blog.hootsuite.com/instagram-algorithm/ — 2026 IG Algorithm guide(Mosseri 信号解读)
+- https://blog.hootsuite.com/instagram-changes/ — 2025 IG changes rollup
+- https://blog.hootsuite.com/instagram-reels-algorithm/ — Reels-specific ranking
+
+### Hashtag / SEO
+- https://later.com/blog/instagram-hashtags/ — Later 2026 hashtag guide(含 5-tag cap)
+- https://later.com/blog/instagram-seo/ — IG SEO(post-hashtag era)
+- https://buffer.com/library/instagram-hashtags/ — Buffer hashtag limit primer
+
+### Caption / Copy
+- https://later.com/blog/instagram-captions/ — Caption length + hook 结构
+- https://buffer.com/library/instagram-caption-length/ — Caption length study
+
+---
+
+## B4 — 分渠道形式 / 分业务类型深挖
+
+### SaaS 案例
+- https://dansiepen.io/marketing-tools/instagram-marketing-strategy-for-saas-brands/ — SaaS IG strategy checklist(organic + paid)
+- https://www.thenextscoop.com/saas-marketing-instagram-examples/ — Later/Notion/ClickUp SaaS 案例
+- https://improvado.io/blog/saas-influencer-marketing-case-study — **B2B SaaS × influencer failed case**(8K views / 400 likes / **仅 12 signups**——ICP mismatch 教训)
+- https://aimers.io/blog/saas-marketing-instagram-2025 — SaaS IG marketing stats 2025
+
+### Reels / Carousel format 深度
+- https://later.com/blog/instagram-reels-strategy/ — Reels 策略深度
+- https://later.com/blog/instagram-carousel-posts/ — Carousel 深度
+- https://buffer.com/library/instagram-reels/ — Buffer Reels 指南
+
+---
+
+## C — Meta 官方 / IG 官方(待跑)
+
+### 目标 query
+- site:business.instagram.com playbook creator
+- site:creators.instagram.com content strategy
+- site:help.instagram.com algorithm ranking
+- "Instagram Creator" playbook 2024 2025
+
+<!-- URL 待 WebSearch batch 3 后填 -->
+
+---
+
+## 已知优质样本高亮
+
+从 batch 1 搜索结果中已浮现的具体品牌样本(WebFetch 提取时优先):
+
+| 品牌 | 品类 | 出现博客 | 何以匹配 Atoms |
+|---|---|---|---|
+| Eizzy Baby (@) | Ecommerce, solo founder | Buffer | Solo mother-founder,COVID 期间起步,build-in-public 风格,依赖真实故事而非广告 |
+| Marlow | Ecommerce (wellness) | Later | 只有 4K followers 的 SMB,依赖 Micro-influencer + Stories |
+| Mejuri (早期) | Ecommerce (jewelry) | Later | 早期用 affiliate + Nano/Micro influencer 冷启动 |
+| STIL | Ecommerce (stationery) | Later 独立 case study | 社群驱动 + 销售转化 |
+| Blume | Ecommerce (skin/period) | Buffer | Gen Z targeting |
+| Passionfroot (@) | Creator tool | Buffer | Content scheduling growth on IG + LinkedIn |
+| Dreamers & Doers | Community | Buffer | 70% members share custom images(社区裂变机制) |
+
+---
+
+## 已捕获的关键数据点(先摘录,后正式引用)
+
+- **IG engagement rate 2025**: 0.48%(SocialInsider) / Sprout confirmed same
+- **Median all industries**: 0.36%(RivalIQ 报告)
+- **Format engagement Q1 2026**:
+  - Carousel: 0.52%(最高)
+  - Reels: 0.50%
+  - Single image: 0.35%(最低)
+- **Format 特性**:Carousel 驱动 saves,Reels 驱动 shares + comments
+- **Reach**: IG 3.00% engagement/reach,3.50% reach rate,YoY ↓12%
+- **发帖频率**: 品牌平均 5 posts/week
+- **Metric shift**: 2025 起 "Impressions" → "Views"
+- **Comments 趋势**: 平均 comments/post ↓16% YoY(趋向 passive engagement)
+- **Video views**: IG +29% YoY(view metric)
+- **Reels 权重**: Mosseri 2024 conference 确认 Reels 是主要增长渠道
+
+**批注**:这些数字直接进 playbook §2/§4/§9,是"Atoms 用户该知道什么"的基础事实层。
+
+---
+
+## Batch 2 新增关键数据点(2026-07-02)
+
+### 算法(Mosseri 公开信号,Hootsuite 汇总)
+- **Top 3 ranking signals**:watch time / likes / sends per view
+- **Reels max length**: 3 min(2025 Jan 上调)
+- **Trial Reels**:可对非 followers 测试内容,不影响主账号 metrics
+- **Your Algorithm 功能**(2025 Dec):用户可自选偏好类型 → 品牌 targeting 精度更依赖清晰的 niche 定位
+- **2025 平台优先级**:Creativity(原创性 > 模板化)
+
+### Hashtag(重大变更,直接影响 playbook §6)
+- ⚠️ **5-hashtag cap**(2025 Dec 起 platform-enforced):caption + comments 合计 ≤5 个,超出被 IG 判定 spam
+- Mid-tier hashtags(10K-500K posts)outperform mega-tags(1M+)
+- Followed-hashtag 功能已下线(2024 Dec)——用户无法 follow #tag,hashtag reach 主要靠 discover feed
+- **推论**:playbook 从"hashtag 组合"迁移到"caption 内文关键词 + IG SEO"
+
+### SaaS 失败案例(重要负面样本,improvado.io)
+- **B2B SaaS × 50K influencer 合作**:8K views / 400 likes / **仅 12 signups**
+- 失败原因:influencer audience 是学生 + freelancer,不是 SaaS ICP(企业中层)
+- **教训入 playbook §7**:influencer 选品要看 audience 而非 follower 数
+
+### Creator 类样本稀缺(sparsity signal)
+- 搜索结果显示 indie hacker / solopreneur IG 案例极少,多数在 Twitter/X
+- 少数已知:MonAi($50K/mo via creator collab)、Tony Dinh($45K/mo)——但均未有 IG-specific 打法披露
+- **推论**:Creator 类 40-60 样本目标中,人工补齐承担主要 lift(至少 7-10 条,高于原计划 4-7)

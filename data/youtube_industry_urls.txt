@@ -1,0 +1,128 @@
+# Industry Blog & Official Resource URLs — YouTube Playbook Research
+
+**Collection date**: 2026-07-02(初始种子;后续通过 `scripts/youtube_search_queries.md` 补齐)
+**Source**: 已知官方 URL + 待跑 WebSearch
+**Next step**:
+1. 官方 URL 直接 WebFetch → 汇入 `data/youtube_case_studies.json`
+2. Category A YT 视频 URL(见文件尾部收集区)→ 跑 `scripts/fetch_youtube_metadata.py`(oembed 或 api)→ 汇入 `data/youtube_video_samples.json`
+3. Category B 博客 URL 待通过 `scripts/youtube_search_queries.md` 补齐
+
+---
+
+## C — YouTube 官方与 Google 官方(已知,直接可 WebFetch)
+
+### 算法与产品机制
+- https://blog.youtube/how-youtube-works/product-features/algorithms/ — YT 官方 algorithm overview
+- https://blog.youtube/how-youtube-works/product-features/recommendations/ — 推荐系统机制
+- https://blog.youtube/how-youtube-works/user-settings/personalization/ — 个性化控制
+- https://support.google.com/youtube/answer/9526279 — Ranking overview(Search / Home / Suggested)
+
+### 政策与合规
+- https://blog.youtube/inside-youtube/our-approach-to-responsible-ai-innovation/ — AI content 政策(2024-03)
+- https://support.google.com/youtube/answer/13554835 — AI-generated content disclosure requirements
+- https://support.google.com/youtube/answer/9527654 — YPP eligibility(1K subs + 4000 hrs OR 1K subs + 10M Shorts views)
+- https://support.google.com/youtube/answer/72851 — Community Guidelines
+- https://support.google.com/youtube/answer/1311392 — Reused content policy(2024 tightening)
+
+### 格式与规格
+- https://support.google.com/youtube/answer/2853702 — Video format specifications
+- https://support.google.com/youtube/answer/72640 — Thumbnail requirements
+- https://support.google.com/youtube/answer/9884579 — Chapters requirement + best practices
+- https://support.google.com/youtube/answer/6373554 — Hashtag usage(15 上限 + 有效使用)
+
+### Shorts
+- https://support.google.com/youtube/answer/10059070 — Shorts creator guide
+- https://blog.youtube/news-and-events/shorts-3-minutes/ — 3 分钟上限更新(2024-10)
+
+### 商业化
+- https://support.google.com/youtube/answer/72857 — YT ad revenue basics
+- https://support.google.com/youtube/answer/13940017 — YouTube Shopping affiliate program
+- https://support.google.com/youtube/answer/13072616 — Super Thanks / Memberships / partial monetization
+
+### Data API v3(Atoms 内部使用)
+- https://developers.google.com/youtube/v3/docs/videos/list — videos.list reference(与 fetch_youtube_metadata.py 对齐)
+- https://developers.google.com/youtube/v3/getting-started — API 入门 + quota 说明
+- https://oembed.com/ — oEmbed 通用规范(YT 是 provider 之一)
+
+### 多语言 / dubbing
+- https://blog.youtube/inside-youtube/aloud-multilingual-audio-tracks/ — Aloud AI dubbing(2024)
+
+---
+
+## B — 行业博客与分析报告(待通过 `scripts/youtube_search_queries.md` 补齐)
+
+<!-- 跑完 WebSearch 后按 B1/B2/B3/B4/B5 分组填入 -->
+
+### B1 — 算法与 SEO(待补)
+<!-- Backlinko YouTube SEO Guide 2025 -->
+<!-- VidIQ Blog algorithm posts 2025 -->
+<!-- TubeBuddy channel growth studies -->
+
+### B2 — Shorts vs long-form(待补)
+<!-- 2024 Shorts 3min 更新分析 -->
+<!-- Shorts-to-subscriber conversion rate studies -->
+
+### B3 — 分业务类型(待补)
+<!-- SaaS YT case studies 2025 -->
+<!-- Ecommerce channel growth strategy -->
+<!-- Indie hacker YT growth cases -->
+
+### B4 — 格式深度(thumbnail / title / retention)(待补)
+<!-- 高转化缩略图分析 -->
+<!-- Title optimization study -->
+<!-- Retention curve analysis -->
+
+### B5 — 商业化(待补)
+<!-- YPP / Shopping / Super Thanks / Membership earnings studies -->
+
+---
+
+## A — YouTube 视频 URL(直接跑 fetcher script)
+
+**目标**:每业务类型收集 8-15 支 top 视频(YT 站内搜 + 交叉推荐),批量抓元数据用于 §5-§9 归纳。
+
+### A1 SaaS / AI Tool videos
+<!-- 通过 YT 搜 "how to use notion 2025" / "AI tool tutorial 2025" 等,筛 top 视频粘贴 URL -->
+<!-- 参考 scripts/youtube_search_queries.md § A3 里的 query -->
+
+### A2 Ecommerce videos
+<!-- YT 搜 "unboxing [product] 2025" / "[product] honest review 2025" -->
+
+### A3 Creator / Indie hacker videos
+<!-- YT 搜 "build in public 2025" / "indie hacker MRR" -->
+
+---
+
+## 已知 Atoms-relevant 频道锚点(初始参考,非硬采集列表)
+
+以下是 Atoms 目标用户画像贴近的频道,可作为样本挖掘起点(逐个查看每个频道 top 视频):
+
+| 频道 | 类型 | Atoms 匹配点 |
+|---|---|---|
+| @AliAbdaal | Creator/productivity | Solo creator → SaaS(Skillshare 课程),build-in-public 早期典范 |
+| @NicolasCole1 | Creator/writing | Solo creator monetization + writing systems |
+| @LevelupTuts | SaaS/dev tutorial | Tech tutorial 稳定 cadence,SEO 命中"how to learn X" |
+| @Fireship | SaaS/dev tutorial | 短平快 dev tutorial + 高 CTR 缩略图 |
+| @SuperHumans_life | SaaS/tools review | AI 工具 review + comparison |
+| @MattWolfe | SaaS/AI news | AI tool 周更新 + 高频 review |
+| @Simplilearn | SaaS/education | 长视频教程 + SEO 长尾 |
+| @IndieHackers | Creator/founder | Solo builder journey + founder interview |
+| @thedankoe | Creator/writing/solo | Solo creator business + productized service |
+| @DanKoeOfficial | Creator/mindset+business | Solo creator income + build-in-public |
+
+**筛选原则**:
+- 优先选**独立 creator + 小团队频道**(SMB 相似度高),避开 MrBeast / Big Media
+- 优先选**近 3-6 个月更新的活跃频道**(数据反映当前算法环境)
+- Ecommerce 类可查看**D2C 品牌 own channel**(如 Away、Casper 等)+ 独立 review 频道
+
+---
+
+## 数据源可信度分级(用于 §9 归纳时打权重)
+
+| Category | Confidence | 用途 |
+|---|---|---|
+| A(YT Data API v3 直取) | **high** | 数据锚点主源;可作硬数字引用 |
+| A(YT oEmbed 只有 title/thumbnail) | medium | 定性对比,不作 engagement 数据 |
+| C(YT 官方 blog / help) | **high** | Algorithm / policy quote 权威源 |
+| B(Backlinko / VidIQ 类专业博客) | medium-high | 结构性洞察 + 案例引用 |
+| D(用户人工补齐) | medium | 中位样本 + 冷启动失败案例平衡 bias |
