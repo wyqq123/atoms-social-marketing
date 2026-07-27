@@ -2,7 +2,7 @@
 
 ## 使用方式
 
-以 **Category B 博客案例** 为主链路,Category C 官方文档为辅助权威源。跑完汇总到 `data/ig_industry_urls.txt`,交给 WebFetch 逐篇提取。
+以 **Category B 博客案例** 为主链路,Category C 官方文档为辅助权威源。跑完汇总到 `references/research-data/instagram/industry_urls.txt`,交给 WebFetch 逐篇提取。
 
 **执行者**:Agent(通过 WebSearch 工具)
 **执行时间**:P1.1 阶段
@@ -14,9 +14,9 @@
 
 原计划:site:instagram.com/p/ 定位 IG 原生公开 post → OG meta 抓取。
 
-**废弃原因**:2026-07-02 实测,IG 对未登录请求剥离 OG meta。相关脚本(`extract_og_metadata.py`)与产物(`_deprecated_*`)保留作为证据,但不再使用。
+**废弃原因**:2026-07-02 实测,IG 对未登录请求剥离 OG meta。相关脚本与旧空样本产物已删除,当前不再保留 IG OG 抓取链路。
 
-**如需 IG 原生数据**:走 Category D(人工补齐,见 `data/ig_manual_supplements.md`)。
+**如需 IG 原生数据**:走 Category D(人工补齐,见 `references/research-data/instagram/manual_supplements.md`)。
 
 ---
 
@@ -91,7 +91,7 @@ site:creators.instagram.com content strategy
 
 ## Category D — 人工补齐(替代已废弃的 A)
 
-用户提供样本,由 Agent 在 `data/ig_manual_supplements.md` 里按模板整理。
+用户提供样本,由 Agent 在 `references/research-data/instagram/manual_supplements.md` 里按模板整理。
 
 **优先补齐方向**:
 - SaaS/AI 2025 launch post(博客大多覆盖 2024 及以前)
@@ -105,5 +105,5 @@ site:creators.instagram.com content strategy
 - [ ] Category B1:跑 5-7 条 query,收集 8-10 篇通用报告 URL
 - [ ] Category B2/B3/B4:跑 10-15 条 query,收集 15-20 篇业务/机制 URL
 - [ ] Category C:跑 4-6 条 query,收集 5-8 篇官方文档
-- [ ] 输出:`data/ig_industry_urls.txt`(所有 URL,按 B1/B2/B3/B4/C 分组)
-- [ ] 逐个 WebFetch → 按 `data/case_study_schema.json` 结构提取 → `data/ig_case_studies.json`
+- [ ] 输出:`references/research-data/instagram/industry_urls.txt`(所有 URL,按 B1/B2/B3/B4/C 分组)
+- [ ] 逐个 WebFetch → 按 `references/research-data/schemas/case_study_schema.json` 结构提取 → `references/research-data/instagram/case_studies.json`

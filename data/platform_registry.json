@@ -1,0 +1,411 @@
+{
+  "$schema_version": "0.2.0",
+  "last_updated": "2026-07-26",
+  "platforms": {
+    "reddit": {
+      "platform_coverage_registry": {
+        "platform_id": "reddit",
+        "aliases": ["r"],
+        "supported_markets": ["US", "UK", "CA", "AU"],
+        "supported_languages": ["en"],
+        "content_surfaces": ["subreddit_post", "comment_reply", "discussion_thread", "subreddit_search"],
+        "renderer_support": ["text", "link_preview"],
+        "realtime_probe_mode": "api",
+        "data_policy": "official_api_or_public_web_summary",
+        "default_confidence_cap": "medium"
+      },
+      "stable_platform_profile": {
+        "audience_pools": [
+          { "label": "problem-aware communities", "roles": ["founder", "developer", "operator", "hobbyist"], "market_strength": "high_en" }
+        ],
+        "mindset_modes": [
+          { "mode": "advice_and_problem_solving", "strength": "high", "fit_goals": ["problem_validation", "soft_signup", "community_learning"] }
+        ],
+        "surface_map": [
+          { "surface": "subreddit_search", "content_formats": ["question", "problem_story", "resource_reply"], "small_account_access": "medium-high", "content_half_life": "medium", "cta_routes": ["comment_cta", "profile_link"] }
+        ],
+        "distribution_mechanics": ["community_gate", "search", "comment_depth"],
+        "content_format_affordances": ["problem_story", "transparent_answer", "comparison", "teardown"],
+        "conversion_affordances": ["comment_cta", "profile_link", "soft_resource_link"],
+        "production_requirements": ["clear founder voice", "specific non-promotional answer", "community rule fit"],
+        "policy_and_norms": { "commercial_content_tolerance": "low-medium", "risk_notes": ["anti-promotion norms", "subreddit-specific rules", "avoid astroturfing"] },
+        "measurement_options": ["UTM", "manual referral tracking", "profile click proxy"]
+      },
+      "data_access_profile": {
+        "runtime_access_mode": "realtime_api",
+        "available_signals": ["title", "selftext_excerpt", "subreddit", "score", "comments", "created_at", "permalink"],
+        "unavailable_signals": ["demographic_ground_truth", "income", "purchase_intent", "private_or_login_state_content"],
+        "source_priority": ["official_api", "public_web_summary", "cache"],
+        "freshness_sla": "72h",
+        "rate_limit_risk": "medium",
+        "fallback_mode": "use_cache_or_skip_probe",
+        "compliance_notes": ["no login-state scraping", "no private content", "store excerpts only"]
+      }
+    },
+    "youtube": {
+      "platform_coverage_registry": {
+        "platform_id": "youtube",
+        "aliases": ["yt"],
+        "supported_markets": ["US", "UK", "CA", "AU", "IN", "DE", "FR"],
+        "supported_languages": ["en", "de", "fr", "es"],
+        "content_surfaces": ["youtube_search", "shorts", "long_video", "community_post"],
+        "renderer_support": ["text", "image", "short_video", "long_video"],
+        "realtime_probe_mode": "api",
+        "data_policy": "official_api_or_oembed_only",
+        "default_confidence_cap": "medium"
+      },
+      "stable_platform_profile": {
+        "audience_pools": [
+          { "label": "search learners, product evaluators, and comparison shoppers", "roles": ["product evaluator", "buyer", "learner"], "market_strength": "high_global" }
+        ],
+        "mindset_modes": [
+          { "mode": "search_learning", "strength": "high", "fit_goals": ["education", "problem_solution", "demo_to_signup"] },
+          { "mode": "entertainment", "strength": "medium", "fit_goals": ["awareness"] }
+        ],
+        "surface_map": [
+          { "surface": "youtube_search", "content_formats": ["how_to_video", "comparison", "tutorial"], "small_account_access": "medium", "content_half_life": "long", "cta_routes": ["description_link", "pinned_comment"] },
+          { "surface": "shorts", "content_formats": ["short_demo", "before_after", "quick_tip"], "small_account_access": "medium", "content_half_life": "short-medium", "cta_routes": ["pinned_comment", "profile_link"] }
+        ],
+        "distribution_mechanics": ["search", "recommendation", "session_satisfaction", "thumbnail_title_fit"],
+        "content_format_affordances": ["tutorial", "demo", "comparison", "teardown", "short_tip"],
+        "conversion_affordances": ["description_link", "pinned_comment", "end_screen", "profile_link"],
+        "production_requirements": ["clear screen recording or visuals", "strong title", "credible demo or walkthrough"],
+        "policy_and_norms": { "commercial_content_tolerance": "medium-high", "risk_notes": ["claims need proof", "avoid misleading before-after claims"] },
+        "measurement_options": ["UTM", "YouTube Studio", "GA4 landing page attribution"]
+      },
+      "data_access_profile": {
+        "runtime_access_mode": "realtime_api",
+        "available_signals": ["title", "description", "channel_title", "published_at", "views", "likes", "comments", "duration"],
+        "unavailable_signals": ["viewer_demographic_ground_truth", "watch_duration_without_channel_auth", "signup_intent"],
+        "source_priority": ["official_api", "oembed", "cache"],
+        "freshness_sla": "72h",
+        "rate_limit_risk": "medium",
+        "fallback_mode": "use_cache_or_oembed_or_skip_probe",
+        "compliance_notes": ["official API only", "no comment scraping at scale"]
+      }
+    },
+    "instagram": {
+      "platform_coverage_registry": {
+        "platform_id": "instagram",
+        "aliases": ["ig"],
+        "supported_markets": ["US", "UK", "CA", "AU", "DE", "FR", "BR", "IN"],
+        "supported_languages": ["en", "de", "fr", "pt", "es"],
+        "content_surfaces": ["reels", "carousel", "story", "feed_post", "profile"],
+        "renderer_support": ["text", "image", "short_video"],
+        "realtime_probe_mode": "authorized",
+        "data_policy": "authorized_business_or_manual_cache_only",
+        "default_confidence_cap": "medium"
+      },
+      "stable_platform_profile": {
+        "audience_pools": [
+          { "label": "visual discovery and creator proof audiences", "roles": ["consumer", "creator", "small business buyer"], "market_strength": "high_visual" }
+        ],
+        "mindset_modes": [
+          { "mode": "visual_discovery", "strength": "high", "fit_goals": ["awareness", "trust_building", "light_purchase"] }
+        ],
+        "surface_map": [
+          { "surface": "reels", "content_formats": ["short_demo", "before_after", "creator_story"], "small_account_access": "medium", "content_half_life": "short", "cta_routes": ["bio_link", "comment_cta"] },
+          { "surface": "carousel", "content_formats": ["checklist", "mini_guide", "teardown"], "small_account_access": "medium", "content_half_life": "medium", "cta_routes": ["bio_link", "save_share"] }
+        ],
+        "distribution_mechanics": ["recommendation", "follower_graph", "saves_shares", "profile_trust"],
+        "content_format_affordances": ["before_after", "visual_demo", "carousel_guide", "creator_story"],
+        "conversion_affordances": ["bio_link", "comment_cta", "DM", "story_link_for_eligible_accounts"],
+        "production_requirements": ["strong visual identity", "screenshots or product visuals", "consistent cover design"],
+        "policy_and_norms": { "commercial_content_tolerance": "medium", "risk_notes": ["link friction", "avoid recycled watermark content", "claims need proof"] },
+        "measurement_options": ["authorized account insights", "UTM bio link", "GA4"]
+      },
+      "data_access_profile": {
+        "runtime_access_mode": "authorized_only",
+        "available_signals": ["own_account_reach", "impressions", "engagement", "saves", "shares", "comments_when_authorized"],
+        "unavailable_signals": ["platform_wide_public_trends", "consumer_account_private_data", "demographic_ground_truth_without_auth"],
+        "source_priority": ["authorized_insight", "manual_cache", "public_report"],
+        "freshness_sla": "7d",
+        "rate_limit_risk": "high",
+        "fallback_mode": "use_manual_cache_or_stable_profile",
+        "compliance_notes": ["no public feed scraping", "own-account insights are not platform-wide trends"]
+      }
+    },
+    "tiktok": {
+      "platform_coverage_registry": {
+        "platform_id": "tiktok",
+        "aliases": ["tt"],
+        "supported_markets": ["US", "UK", "CA", "AU", "BR", "IN", "ID", "VN"],
+        "supported_languages": ["en", "pt", "es"],
+        "content_surfaces": ["for_you_feed", "tiktok_search", "short_video", "spark_ad"],
+        "renderer_support": ["text", "image", "short_video"],
+        "realtime_probe_mode": "cache",
+        "data_policy": "creative_center_cache_or_manual_only",
+        "default_confidence_cap": "medium"
+      },
+      "stable_platform_profile": {
+        "audience_pools": [
+          { "label": "short-form discovery and impulse buyers", "roles": ["consumer", "creator", "small business buyer"], "market_strength": "high_short_video" }
+        ],
+        "mindset_modes": [
+          { "mode": "entertainment_discovery", "strength": "high", "fit_goals": ["awareness", "visual_demo", "low_friction_purchase"] }
+        ],
+        "surface_map": [
+          { "surface": "for_you_feed", "content_formats": ["fast_hook_demo", "before_after", "story"], "small_account_access": "medium-high", "content_half_life": "short", "cta_routes": ["comment_cta", "profile_link"] },
+          { "surface": "tiktok_search", "content_formats": ["how_to_short", "comparison", "keyword_caption"], "small_account_access": "medium", "content_half_life": "medium", "cta_routes": ["profile_link"] }
+        ],
+        "distribution_mechanics": ["recommendation", "completion_rate", "rewatch", "sound_or_keyword_context"],
+        "content_format_affordances": ["short_demo", "before_after", "founder_story", "pattern_remix"],
+        "conversion_affordances": ["profile_link", "comment_cta", "shop_or_spark_when_available"],
+        "production_requirements": ["strong first second", "vertical video", "clear motion or transformation"],
+        "policy_and_norms": { "commercial_content_tolerance": "medium", "risk_notes": ["do not depend on request-time UI scraping", "commercial sound safety"] },
+        "measurement_options": ["TikTok analytics when authorized", "UTM profile link", "manual cache"]
+      },
+      "data_access_profile": {
+        "runtime_access_mode": "cache_only",
+        "available_signals": ["creative_center_hashtags", "top_ads_patterns", "keyword_insights", "manual_category_samples"],
+        "unavailable_signals": ["request_time_public_feed", "private_user_data", "demographic_ground_truth"],
+        "source_priority": ["manual_cache", "official_business_tool_export", "authorized_insight"],
+        "freshness_sla": "14d",
+        "rate_limit_risk": "medium",
+        "fallback_mode": "use_stable_profile",
+        "compliance_notes": ["no login-state scraping", "no request-time UI crawling"]
+      }
+    },
+    "x": {
+      "platform_coverage_registry": {
+        "platform_id": "x",
+        "aliases": ["twitter"],
+        "supported_markets": ["US", "UK", "CA", "AU"],
+        "supported_languages": ["en"],
+        "content_surfaces": ["post", "thread", "reply", "community"],
+        "renderer_support": ["text", "image", "short_video"],
+        "realtime_probe_mode": "authorized",
+        "data_policy": "authorized_api_or_manual_cache_only",
+        "default_confidence_cap": "medium"
+      },
+      "stable_platform_profile": {
+        "audience_pools": [
+          { "label": "indie makers, operators, creators, and early adopters", "roles": ["founder", "developer", "creator", "operator", "investor"], "market_strength": "high_en_tech" }
+        ],
+        "mindset_modes": [
+          { "mode": "real_time_opinion_and_building_in_public", "strength": "medium-high", "fit_goals": ["awareness", "founder_credibility", "early_adopter_feedback"] }
+        ],
+        "surface_map": [
+          { "surface": "keyword_search", "content_formats": ["thread", "hot_take", "build_log"], "small_account_access": "medium", "content_half_life": "short", "cta_routes": ["profile_link", "reply_cta"] }
+        ],
+        "distribution_mechanics": ["follow_graph", "reply_network", "repost", "keyword_search"],
+        "content_format_affordances": ["build_log", "opinion", "thread", "launch_update"],
+        "conversion_affordances": ["profile_link", "reply_cta", "DM"],
+        "production_requirements": ["distinct point of view", "fast iteration", "founder voice"],
+        "policy_and_norms": { "commercial_content_tolerance": "medium", "risk_notes": ["API access and cost volatility", "avoid spam reply automation"] },
+        "measurement_options": ["UTM", "X analytics when authorized", "manual reply tracking"]
+      },
+      "data_access_profile": {
+        "runtime_access_mode": "authorized_only",
+        "available_signals": ["post_text", "created_at", "public_metrics", "author_context_when_authorized"],
+        "unavailable_signals": ["free_default_public_feed", "login_state_feed", "buyer_intent"],
+        "source_priority": ["authorized_api", "manual_cache"],
+        "freshness_sla": "7d",
+        "rate_limit_risk": "high",
+        "fallback_mode": "use_manual_cache_or_stable_profile",
+        "compliance_notes": ["no unauthorized scraping", "do not assume API availability"]
+      }
+    },
+    "linkedin": {
+      "platform_coverage_registry": {
+        "platform_id": "linkedin",
+        "aliases": ["li"],
+        "supported_markets": ["US", "UK", "CA", "AU", "DE", "FR", "IN"],
+        "supported_languages": ["en", "de", "fr"],
+        "content_surfaces": ["personal_post", "company_page_post", "document_post", "newsletter"],
+        "renderer_support": ["text", "image", "short_video"],
+        "realtime_probe_mode": "authorized",
+        "data_policy": "authorized_member_or_page_data_only",
+        "default_confidence_cap": "medium"
+      },
+      "stable_platform_profile": {
+        "audience_pools": [
+          { "label": "professional identity and B2B decision ecosystems", "roles": ["operator", "manager", "founder", "consultant"], "market_strength": "high_b2b" }
+        ],
+        "mindset_modes": [
+          { "mode": "professional_identity_and_learning", "strength": "high", "fit_goals": ["b2b_trust", "lead_capture", "thought_leadership"] }
+        ],
+        "surface_map": [
+          { "surface": "professional_feed", "content_formats": ["founder_story", "industry_point_of_view", "document_guide"], "small_account_access": "medium", "content_half_life": "medium", "cta_routes": ["profile_link", "comment_cta", "DM"] }
+        ],
+        "distribution_mechanics": ["professional_graph", "comment_network", "document_saves", "company_page"],
+        "content_format_affordances": ["point_of_view", "case_study", "document_carousel", "founder_story"],
+        "conversion_affordances": ["profile_link", "DM", "lead_form_when_authorized"],
+        "production_requirements": ["credible expertise", "specific business outcome", "professional tone"],
+        "policy_and_norms": { "commercial_content_tolerance": "medium", "risk_notes": ["public feed scraping prohibited", "overly promotional posts underperform"] },
+        "measurement_options": ["authorized page analytics", "UTM", "manual lead tracking"]
+      },
+      "data_access_profile": {
+        "runtime_access_mode": "authorized_only",
+        "available_signals": ["own_post_impressions", "engagement", "comments", "page_analytics_when_authorized"],
+        "unavailable_signals": ["public_profile_scrape", "platform_wide_feed_trends", "private_member_data"],
+        "source_priority": ["authorized_insight", "manual_cache", "public_report"],
+        "freshness_sla": "14d",
+        "rate_limit_risk": "high",
+        "fallback_mode": "use_manual_cache_or_stable_profile",
+        "compliance_notes": ["no public profile scraping", "analytics may be estimated"]
+      }
+    },
+    "pinterest": {
+      "platform_coverage_registry": {
+        "platform_id": "pinterest",
+        "aliases": ["pin"],
+        "supported_markets": ["US", "UK", "CA", "AU", "DE", "FR"],
+        "supported_languages": ["en", "de", "fr"],
+        "content_surfaces": ["pin", "idea_pin", "board", "pinterest_search"],
+        "renderer_support": ["text", "image", "short_video"],
+        "realtime_probe_mode": "cache",
+        "data_policy": "trends_api_or_manual_cache_only",
+        "default_confidence_cap": "medium"
+      },
+      "stable_platform_profile": {
+        "audience_pools": [
+          { "label": "planning, shopping, lifestyle, and visual search audiences", "roles": ["consumer", "planner", "small business buyer"], "market_strength": "high_visual_search" }
+        ],
+        "mindset_modes": [
+          { "mode": "planning_and_visual_search", "strength": "high", "fit_goals": ["long_tail_discovery", "shopping_consideration", "template_download"] }
+        ],
+        "surface_map": [
+          { "surface": "pinterest_search", "content_formats": ["checklist_pin", "template_preview", "before_after"], "small_account_access": "medium", "content_half_life": "long", "cta_routes": ["pin_link"] }
+        ],
+        "distribution_mechanics": ["search", "recommendation", "board_save", "long_tail"],
+        "content_format_affordances": ["template", "checklist", "visual_guide", "before_after"],
+        "conversion_affordances": ["pin_link", "profile_link"],
+        "production_requirements": ["clear visual promise", "vertical static creative", "keyword-rich title"],
+        "policy_and_norms": { "commercial_content_tolerance": "medium-high", "risk_notes": ["avoid misleading claims", "fresh pins matter"] },
+        "measurement_options": ["Pinterest analytics when authorized", "UTM", "GA4"]
+      },
+      "data_access_profile": {
+        "runtime_access_mode": "cache_only",
+        "available_signals": ["keyword_trends", "category_context", "pin_structure", "growth_indices_when_available"],
+        "unavailable_signals": ["full_platform_audience_demographics", "private_board_data"],
+        "source_priority": ["trends_api", "manual_cache", "authorized_insight"],
+        "freshness_sla": "14d",
+        "rate_limit_risk": "medium",
+        "fallback_mode": "use_stable_profile",
+        "compliance_notes": ["no page scraping dependency", "trend keyword is not app fit"]
+      }
+    },
+    "rednote": {
+      "platform_coverage_registry": {
+        "platform_id": "rednote",
+        "aliases": ["xiaohongshu", "xhs", "小红书"],
+        "supported_markets": ["CN"],
+        "supported_languages": ["zh"],
+        "content_surfaces": ["note", "short_video", "search", "shop"],
+        "renderer_support": ["text", "image", "short_video"],
+        "realtime_probe_mode": "manual",
+        "data_policy": "official_business_tool_or_manual_cache_only",
+        "default_confidence_cap": "medium"
+      },
+      "stable_platform_profile": {
+        "audience_pools": [
+          { "label": "CN lifestyle, consumption, and practical recommendation audiences", "roles": ["consumer", "local_service_buyer", "creator"], "market_strength": "high_cn_consumer" }
+        ],
+        "mindset_modes": [
+          { "mode": "search_and_lifestyle_recommendation", "strength": "high", "fit_goals": ["trust_building", "product_discovery", "local_conversion"] }
+        ],
+        "surface_map": [
+          { "surface": "rednote_search", "content_formats": ["note_guide", "before_after", "review"], "small_account_access": "medium", "content_half_life": "medium-long", "cta_routes": ["profile", "comment_cta", "shop_when_available"] }
+        ],
+        "distribution_mechanics": ["search", "recommendation", "save", "trust_signal"],
+        "content_format_affordances": ["note_guide", "comparison", "before_after", "review", "local_tip"],
+        "conversion_affordances": ["profile", "comment_cta", "shop_when_available"],
+        "production_requirements": ["localized Mandarin copy", "high-trust visuals", "claim sensitivity"],
+        "policy_and_norms": { "commercial_content_tolerance": "medium", "risk_notes": ["no unauthorized crawling", "avoid exaggerated claims"] },
+        "measurement_options": ["manual tracking", "authorized business dashboard", "UTM where available"]
+      },
+      "data_access_profile": {
+        "runtime_access_mode": "manual_only",
+        "available_signals": ["manual_category_samples", "business_dashboard_exports_when_authorized", "note_structure"],
+        "unavailable_signals": ["request_time_public_scrape", "login_state_feed", "demographic_ground_truth"],
+        "source_priority": ["manual_cache", "authorized_business_tool"],
+        "freshness_sla": "14d",
+        "rate_limit_risk": "high",
+        "fallback_mode": "use_stable_profile",
+        "compliance_notes": ["no login-state scraping", "third-party crawlers not default trusted sources"]
+      }
+    },
+    "douyin": {
+      "platform_coverage_registry": {
+        "platform_id": "douyin",
+        "aliases": ["抖音"],
+        "supported_markets": ["CN"],
+        "supported_languages": ["zh"],
+        "content_surfaces": ["short_video", "search", "shop", "live"],
+        "renderer_support": ["text", "image", "short_video"],
+        "realtime_probe_mode": "manual",
+        "data_policy": "official_business_tool_or_manual_cache_only",
+        "default_confidence_cap": "medium"
+      },
+      "stable_platform_profile": {
+        "audience_pools": [
+          { "label": "CN short-video discovery, local commerce, and consumer intent", "roles": ["consumer", "local_service_buyer", "merchant"], "market_strength": "high_cn_short_video" }
+        ],
+        "mindset_modes": [
+          { "mode": "entertainment_commerce_and_search", "strength": "high", "fit_goals": ["awareness", "local_conversion", "visual_demo"] }
+        ],
+        "surface_map": [
+          { "surface": "douyin_search", "content_formats": ["short_demo", "review", "local_offer"], "small_account_access": "medium", "content_half_life": "short-medium", "cta_routes": ["profile", "shop_or_form_when_available"] }
+        ],
+        "distribution_mechanics": ["recommendation", "search", "commerce_graph", "completion_rate"],
+        "content_format_affordances": ["short_demo", "before_after", "review", "local_story"],
+        "conversion_affordances": ["profile", "shop_or_form_when_available", "comment_cta"],
+        "production_requirements": ["localized Mandarin video", "strong first second", "commercial-safe claims"],
+        "policy_and_norms": { "commercial_content_tolerance": "medium", "risk_notes": ["no unauthorized crawling", "commerce claims compliance"] },
+        "measurement_options": ["official business dashboard", "manual tracking", "UTM where available"]
+      },
+      "data_access_profile": {
+        "runtime_access_mode": "manual_only",
+        "available_signals": ["manual_category_samples", "business_dashboard_exports_when_authorized", "creative_structure"],
+        "unavailable_signals": ["request_time_public_scrape", "login_state_feed", "demographic_ground_truth"],
+        "source_priority": ["manual_cache", "authorized_business_tool"],
+        "freshness_sla": "14d",
+        "rate_limit_risk": "high",
+        "fallback_mode": "use_stable_profile",
+        "compliance_notes": ["no login-state scraping", "no third-party crawler default"]
+      }
+    },
+    "web_search": {
+      "platform_coverage_registry": {
+        "platform_id": "web_search",
+        "aliases": ["web"],
+        "supported_markets": ["US", "UK", "CA", "AU", "CN", "DE", "FR"],
+        "supported_languages": ["en", "zh", "de", "fr", "es"],
+        "content_surfaces": ["public_search_result"],
+        "renderer_support": ["text", "link_preview"],
+        "realtime_probe_mode": "api",
+        "data_policy": "authorized_search_connector_summary_only",
+        "default_confidence_cap": "medium"
+      },
+      "stable_platform_profile": {
+        "audience_pools": [
+          { "label": "public evidence locator, not a publishing platform", "roles": ["unknown_public_web"], "market_strength": "fallback" }
+        ],
+        "mindset_modes": [
+          { "mode": "public_information_lookup", "strength": "medium", "fit_goals": ["evidence_discovery", "surface_discovery"] }
+        ],
+        "surface_map": [
+          { "surface": "public_search_result", "content_formats": ["snippet", "title", "url"], "small_account_access": "not_applicable", "content_half_life": "not_applicable", "cta_routes": [] }
+        ],
+        "distribution_mechanics": ["search_index"],
+        "content_format_affordances": ["evidence_lookup"],
+        "conversion_affordances": [],
+        "production_requirements": ["authorized connector", "public snippets only"],
+        "policy_and_norms": { "commercial_content_tolerance": "not_applicable", "risk_notes": ["not a platform trend source", "weak evidence unless source-specific"] },
+        "measurement_options": ["evidence_refs"]
+      },
+      "data_access_profile": {
+        "runtime_access_mode": "realtime_api",
+        "available_signals": ["title", "snippet", "url", "source", "observed_at"],
+        "unavailable_signals": ["platform_internal_metrics", "true_engagement", "demographic_ground_truth"],
+        "source_priority": ["authorized_search_connector", "cache"],
+        "freshness_sla": "72h",
+        "rate_limit_risk": "medium",
+        "fallback_mode": "skip_probe",
+        "compliance_notes": ["no full-text crawling by default", "no login bypass", "source-limited query required"]
+      }
+    }
+  }
+}
+

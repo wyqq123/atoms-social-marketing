@@ -10,8 +10,8 @@ sources_summary: YouTube 官方(Blog / Creator Insider)+ Data API v3 结构性�
 
 # YouTube Playbook
 
-> **服务对象**:Atoms 用户所构建应用的 YT 社媒运营(冷启动 discovery + 长期 authority build)
-> **规模假设**:Atoms 用户 90%+ 处于 0-1K subscribers,playbook 分级建议默认按此校准。到 1K/4K watch hours(YPP 门槛)或 10K subs 时切换到更高 tier 打法(见 §4 / §7 / §9)
+> **服务对象**:Atoms builder（应用创建者）所构建应用的 YT 社媒运营(冷启动 discovery + 长期 authority build)
+> **规模假设**:Atoms builder（应用创建者） 90%+ 处于 0-1K subscribers,playbook 分级建议默认按此校准。到 1K/4K watch hours(YPP 门槛)或 10K subs 时切换到更高 tier 打法(见 §4 / §7 / §9)
 > **关键差异 vs IG**:YouTube 是**搜索 + 会话双引擎平台**,不是纯推荐 feed。SEO(title / description / thumbnail)权重 ≥ 单条 engagement——**这个基本事实决定了 YT playbook 与 IG playbook 结构上的最大差异**。
 
 ---
@@ -22,7 +22,7 @@ sources_summary: YouTube 官方(Blog / Creator Insider)+ Data API v3 结构性�
 YouTube(Alphabet/Google 系,与 Google Search、Google Ads、Chrome 数据打通)
 
 ### `elevator_pitch`
-YouTube 是全球**第二大搜索引擎**(仅次于 Google Search)+ **最大长视频平台** + **Shorts 双引擎**。核心角色是**「搜索意图 + 会话 watch time 双驱动的深度学习/娱乐/评估层」**——用户来这里主要做三件事:学一个技能、评估一个产品、消磨一段完整时间。YT 不是纯 top-of-funnel(用户会主动搜),也不是纯 bottom-of-funnel(购买决策前会来看第三方 review)。**对 Atoms 用户,YT 是最强的「demo + 教程 + 品牌信任」承载层**。
+YouTube 是全球**第二大搜索引擎**(仅次于 Google Search)+ **最大长视频平台** + **Shorts 双引擎**。核心角色是**「搜索意图 + 会话 watch time 双驱动的深度学习/娱乐/评估层」**——用户来这里主要做三件事:学一个技能、评估一个产品、消磨一段完整时间。YT 不是纯 top-of-funnel(用户会主动搜),也不是纯 bottom-of-funnel(购买决策前会来看第三方 review)。**对 Atoms builder（应用创建者）,YT 是最强的「demo + 教程 + 品牌信任」承载层**。
 
 ### `mau_and_geography`
 - 全球 MAU:2.5B+ logged-in monthly(YouTube Press 官方 2024)+ 数亿匿名浏览
@@ -40,7 +40,7 @@ YouTube 是全球**第二大搜索引擎**(仅次于 Google Search)+ **最大长
 
 ### `builder_relevance`
 
-对 Atoms builder 的战略价值分为三层:
+对 Atoms builder（应用创建者）的战略价值分为三层:
 
 | 阶段 | YT 承担角色 | 关键动作 |
 |------|-----------|---------|
@@ -48,17 +48,17 @@ YouTube 是全球**第二大搜索引擎**(仅次于 Google Search)+ **最大长
 | 1K-10K subs | Authority build + 差异化 topic | 稳定 upload cadence(每周 1-2 支);建立可识别的 topic niche;chapters + description SEO |
 | 10K+ subs | 商业化 + 长尾流量复利 | YPP 开启(广告分成);Shopping affiliates;老视频长尾流量;live + Community post 深化关系 |
 
-**核心提醒**:YT 是**长尾流量复利 vs IG 短尾曝光**的结构性差异——一条优秀 how-to 视频可能连续 3 年持续带流量(通过 Search / Suggested 推荐),而 IG post 的 attention 窗口通常只有 48-72 小时。对 Atoms 用户,**YT 的 ROI 时间轴更长,但底层 SEO 投入更硬核**。
+**核心提醒**:YT 是**长尾流量复利 vs IG 短尾曝光**的结构性差异——一条优秀 how-to 视频可能连续 3 年持续带流量(通过 Search / Suggested 推荐),而 IG post 的 attention 窗口通常只有 48-72 小时。对 Atoms builder（应用创建者）,**YT 的 ROI 时间轴更长,但底层 SEO 投入更硬核**。
 
 **YPP 门槛必须让 builder 知道(直接影响商业化预期)**:
 - 标准通道:**1000 subs + 4000 有效公共观看小时(过去 12 个月)** [YouTube Help, 2024]
 - Shorts 通道:**1000 subs + 1000 万 Shorts 观看数(过去 90 天)** [YouTube Help, 2024]
 - 部分商业化通道(2023 扩展):500 subs + 3000 watch hours OR 300 万 Shorts views —— 可用 Super Thanks / Channel Memberships / Shopping,但不含广告分成
-- Atoms 用户默认路径:先冲 subs + Shorts views,再解锁长视频广告分成
+- Atoms builder（应用创建者）默认路径:先冲 subs + Shorts views,再解锁长视频广告分成
 
 ---
 
-## §2 用户画像三视图
+## §2 平台受众与使用心智三视图
 
 ### `demographics`
 - **年龄**:18-34 岁核心(约 50-55%);35-54 岁快速增长(2022-2024 各年 +10%+);**13-17 岁**是最活跃的 US teen 平台(Pew 2023:95% 使用,超过 IG 62% / TikTok 67%)
@@ -88,7 +88,7 @@ YouTube 是全球**第二大搜索引擎**(仅次于 Google Search)+ **最大长
 
 **Atoms 生成内容时的意图定位默认**:每条视频**必须锁定单一意图层**——试图同时讨好"学习"+"娱乐"+"购买"的视频,通常在 CTR 阶段就失败(标题+缩略图无法同时讨好三种心智)。
 
-### `builder_target_segments`
+### `built_app_business_segments`
 
 **SaaS / AI Tool** —— **YT 对 SaaS 是最强的 owned-media 平台**(比 IG 强得多)
 - 核心受众:developer / marketer / SMB decision maker / creator-turned-buyer;主动搜索"how to X"、"best tool for Y"、"X vs Y"
@@ -135,7 +135,7 @@ YouTube 是全球**第二大搜索引擎**(仅次于 Google Search)+ **最大长
 
 **6 个 surface 的分发角色**:
 - **Home**:算法推荐 + 订阅混合;个性化程度最高
-- **Search**:关键词 + 用户画像;YT SEO 主战场
+- **Search**:关键词 + viewer intent;YT SEO 主战场
 - **Suggested**(右侧栏 / mobile 下方):基于当前视频的 topic + 该用户历史;冷启动视频的最大流量来源
 - **Subscriptions**:相对纯 chronological + 频道 relevance 微调;不是 YT 主要推荐面
 - **Shorts feed**:独立算法,与 long-form 无耦合
@@ -176,7 +176,7 @@ YouTube 是全球**第二大搜索引擎**(仅次于 Google Search)+ **最大长
 | **购买决策转化** | Long-form review(5-15min) | 需要 depth 才建立 trust;Shorts 传达深度受限 |
 | **快速试内容方向** | Shorts | 制作成本低;数据反馈快;测试完再长视频化 |
 
-**Atoms 用户默认建议**(0-1K subs 冷启动阶段):
+**Atoms builder（应用创建者）默认建议**(0-1K subs 冷启动阶段):
 - **Shorts 主打 discovery**(每周 2-3 支)
 - **长视频主打 SEO + authority**(每周 1 支,10-15 分钟目标)
 - **Shorts 到 long-form 的 funnel**:Shorts 里明确 CTA "完整教程在长视频"
@@ -216,7 +216,7 @@ YouTube 是全球**第二大搜索引擎**(仅次于 Google Search)+ **最大长
 | **YPP 门槛降低(部分商业化)** | 2023-06 | 500 subs + 3K watch hours OR 3M Shorts views —— 可用 Super Thanks / Memberships / Shopping | Atoms builder 商业化起点提前;playbook 修改早期激励叙事 |
 | **YouTube Shopping 扩展** | 2023-2024 | Affiliate program 门槛降低;creator 可在视频内挂产品链接;不是 dropshipper 也能加入 | Ecommerce Atoms Template 加入 shopping tag 建议;SaaS Template 关注 affiliate revenue 增量 |
 | **AI 自动 dubbing** | 2024 | Aloud 集成到 YT Studio,自动多语言 dubbing 支持 8+ 语种 | 英文 SMB builder 立即扩展 non-English reach,不需要重新拍摄 |
-| **"Reused content" 政策收紧** | 2024 | 单纯 compilation / TTS narration / minor edit 大规模去货币化 | Atoms 用户若走 aggregator 路线警告风险 |
+| **"Reused content" 政策收紧** | 2024 | 单纯 compilation / TTS narration / minor edit 大规模去货币化 | Atoms builder（应用创建者）若走 aggregator 路线警告风险 |
 | **Video chapters SEO 权重加强** | 2023-2024 | Chapters 影响 Search snippet 与 key moments 功能 | §4 硬规则:>5min 视频必须加 chapters |
 | **Community posts 扩至所有频道** | 2023 | 门槛从 500 subs 降至任意 | Atoms builder 可从 day 1 用 Community post 与早期 subs 互动 |
 | **Product tag/YT Shopping in Shorts** | 2024 | Shorts 内可挂产品 tag | Ecommerce 类 Shorts 转化路径缩短 |
@@ -275,7 +275,7 @@ YouTube 支持的完整内容类型:
 
 **YT 是唯一支持 description clickable link 的主流社媒——这是 vs IG 的关键优势**:
 - **Description clickable link**:全 clickable;可放多个;推荐首行放主 CTA link + 折叠区放次要 links
-- **Pinned comment**:置顶评论支持 clickable link;是"Description 折叠后的第二 link 机会",Atoms 用户应默认使用
+- **Pinned comment**:置顶评论支持 clickable link;是"Description 折叠后的第二 link 机会",Atoms builder（应用创建者）应默认使用
 - **Cards**(视频内浮层):可挂 link / playlist / channel;适合中长视频推荐相关内容
 - **End screens**(最后 5-20s):可挂 subscribe / next video / external link(需 YPP + 白名单);对 subscriber growth 贡献显著
 - **YouTube Shopping tags**(产品链接):视频内 shoppable 挂载,Ecommerce 用户直接闭环
@@ -302,12 +302,12 @@ YouTube 支持的完整内容类型:
 
 | Tier | Regime | 目标 | Primary Format | 配比建议 |
 |------|--------|------|---------------|---------|
-| **Tier 0: 0-500 subs**(Atoms 用户起点) | Discovery + 找 topic-market fit | Shorts + 长视频试 topic | Shorts 主(每周 2-3)+ Long-form 1/week 测 topic |
+| **Tier 0: 0-500 subs**(Atoms builder（应用创建者）起点) | Discovery + 找 topic-market fit | Shorts + 长视频试 topic | Shorts 主(每周 2-3)+ Long-form 1/week 测 topic |
 | **Tier 1: 500-1K subs** | 冲部分商业化 + 建立 topic identity | Shorts + 长视频稳定 topic | Shorts 2/week + Long-form 1/week;开始命中 500 subs 部分商业化 |
 | **Tier 2: 1K-10K subs**(通过 YPP 门槛) | Authority + 长尾 SEO 累积 | **Long-form 主(SEO + AVD)** + Shorts 补 discovery | Long-form 1-2/week + Shorts 2-3/week + Community post 每周;playlist 结构化 |
 | **Tier 3: 10K+ subs** | 商业化最大化 + 长尾复利 | Long-form 主 + live + membership | Long-form 2/week + Shorts 3-5/week + Live monthly + Community post 3-5/week |
 
-**注意**:Atoms 用户 90%+ 处于 Tier 0/1,playbook 默认按此校准。**与主流"YT 直接做长视频"建议冲突的地方**:Atoms 建议 Tier 0 阶段**优先用 Shorts 做 topic-market fit 测试**,而不是一开始就投入长视频制作——因为长视频制作成本是 Shorts 的 5-10 倍,试错成本对 SMB 太高。
+**注意**:Atoms builder（应用创建者） 90%+ 处于 Tier 0/1,playbook 默认按此校准。**与主流"YT 直接做长视频"建议冲突的地方**:Atoms 建议 Tier 0 阶段**优先用 Shorts 做 topic-market fit 测试**,而不是一开始就投入长视频制作——因为长视频制作成本是 Shorts 的 5-10 倍,试错成本对 SMB 太高。
 
 ### **§4 Shorts vs Long-form 决策矩阵**
 
@@ -419,7 +419,7 @@ UTC-5 EST(美东);多语言频道按目标市场时区
 
 ## §8 业务类型 × 平台适配 [待补齐 - Category B research required]
 
-<!-- P1.4 下一步:结合 SaaS/Ecommerce/Creator 三类 Atoms 用户的 YT 案例研究,填充每类的 content angles / visual style / caption focus / CTA / traps -->
+<!-- P1.4 下一步:结合 SaaS/Ecommerce/Creator 三类 Atoms builder（应用创建者）的 YT 案例研究,填充每类的 content angles / visual style / caption focus / CTA / traps -->
 
 ### 8.1 SaaS / AI Tool
 
@@ -508,8 +508,8 @@ UTC-5 EST(美东);多语言频道按目标市场时区
 <!-- P1.4 下一步:基于 40-60 个 YT case sample(Backlinko / VidIQ / SocialBlade / Ahrefs YT SEO Guide),归纳跨业务/跨格式的高转化结构 -->
 
 ### `sample_size_and_source`(目标 40-60,现有 0,待收集)
-- **收集 pipeline**:`scripts/youtube_search_queries.md` → `data/youtube_industry_urls.txt` → WebFetch → `data/youtube_case_studies.json` + `scripts/fetch_youtube_metadata.py` 直取 YT 数据
-- **人工补齐**:`data/youtube_manual_supplements.md`
+- **收集 pipeline**:`scripts/youtube_search_queries.md` → `references/research-data/youtube/industry_urls.txt` → WebFetch → `references/research-data/youtube/case_studies.json` + `scripts/fetch_youtube_metadata.py` 直取 YT 数据
+- **人工补齐**:`references/research-data/youtube/manual_supplements.md`
 
 ### `winning_structures`(初稿占位,待 sample 归纳验证)
 
@@ -627,3 +627,4 @@ UTC-5 EST(美东);多语言频道按目标市场时区
 ---
 
 *次版本目标*:补齐 §5-§10 后进入 v0.2;v1.0 需要 Category B(至少 40-60 case)与 Data API v3 实抓样本(至少 20-30 支 Atoms 目标业务视频)交叉验证。scripts/fetch_youtube_metadata.py 就位后可直接接管样本数据层。
+

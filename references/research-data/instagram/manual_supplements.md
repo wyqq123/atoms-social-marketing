@@ -6,7 +6,7 @@
 - **2025 最新样本**(博客案例多为 2024 及以前)
 - **Creator 类 solo builder / indie hacker**(博客覆盖偏少)
 - **中位表现样本**(500-3000 likes 的真实 SMB 帖,平衡博客的"成功案例 bias")
-- **Atoms 用户画像贴近的品类**(vibe coding builders / no-code founders)
+- **Atoms builder（应用创建者）画像贴近的样本**(vibe coding builders / no-code founders),仅用于评估 builder 生产约束与冷启动打法,不得写入 built app 终端用户 ICP
 
 ## 使用方式
 

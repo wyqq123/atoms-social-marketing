@@ -2,7 +2,7 @@
 
 **Collection date**: 2026-07-02
 **Source**: WebSearch (Category B/C queries in `scripts/search_queries.md`)
-**Next step**: 逐个 WebFetch → 按 `data/case_study_schema.json` 提取 → 追加到 `data/ig_case_studies.json`
+**Next step**: 逐个 WebFetch → 按 `references/research-data/schemas/case_study_schema.json` 提取 → 追加到 `references/research-data/instagram/case_studies.json`
 
 ---
 
@@ -122,7 +122,7 @@
 - **Video views**: IG +29% YoY(view metric)
 - **Reels 权重**: Mosseri 2024 conference 确认 Reels 是主要增长渠道
 
-**批注**:这些数字直接进 playbook §2/§4/§9,是"Atoms 用户该知道什么"的基础事实层。
+**批注**:这些数字直接进 playbook §2/§4/§9,是"Atoms builder（应用创建者）在推广 built app 时该知道什么"的基础事实层。
 
 ---
 

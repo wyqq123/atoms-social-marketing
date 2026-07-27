@@ -1,0 +1,46 @@
+{
+  "app_id": "runtime",
+  "probe_subject": "built_app_end_users",
+  "icp_summary": "Shopify sellers improving product-page conversion",
+  "probes": [
+    {
+      "probe_id": "p01",
+      "intent": "pain_expression",
+      "query": "Shopify seller product page traffic no sales",
+      "query_variants": [
+        {"type": "long_tail_precision", "query": "Shopify seller product page traffic no sales"},
+        {"type": "keyword_recall", "terms": ["product page conversion", "traffic no sales", "Shopify"]},
+        {"type": "platform_native", "reddit": "product page traffic no sales Shopify", "web_search": "site:reddit.com/r product page traffic no sales Shopify"}
+      ],
+      "language": "en",
+      "market": "US",
+      "source_terms": {
+        "end_user_identity": ["Shopify seller"],
+        "pain": ["product page traffic no sales"],
+        "jtbd": ["improve product page conversion"],
+        "alternative": ["manual copywriting"],
+        "desired_outcome": ["increase sales"]
+      },
+      "priority": 0.92,
+      "expected_evidence_type": "pain discussion"
+    },
+    {
+      "probe_id": "p02",
+      "intent": "jtbd_how_to",
+      "query": "how to improve product page conversion for Shopify seller",
+      "query_variants": [
+        {"type": "platform_native", "youtube": "how to improve product page conversion Shopify tutorial", "web_search": "site:youtube.com improve product page conversion Shopify tutorial"}
+      ],
+      "language": "en",
+      "market": "US",
+      "source_terms": {
+        "end_user_identity": ["Shopify seller"],
+        "jtbd": ["improve product page conversion"],
+        "pain": ["product page traffic no sales"]
+      },
+      "priority": 0.9,
+      "expected_evidence_type": "how-to search"
+    }
+  ],
+  "constraints": {"max_probes": 8, "avoid_product_keywords_only": true}
+}

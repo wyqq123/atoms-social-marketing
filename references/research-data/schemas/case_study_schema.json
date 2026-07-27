@@ -50,7 +50,7 @@
     "engagement.notes": "任何 caveat,比如'为报道时数据,可能已变化'",
     "why_featured": "博客作者选它的原因(用博主视角)",
     "insight_from_blog": "博客对这个 case 的核心观察或结论",
-    "atoms_relevance": "**我们的判断**:适合哪类 Atoms 用户参考、可复用什么模式",
+    "atoms_relevance": "**我们的判断**:适合哪类 Atoms builder（应用创建者）/ built app 业务类型参考、可复用什么模式；不得当作 built app 终端用户 ICP",
     "confidence": "high | medium | low —— engagement 数字可信度、样本代表性"
   }
 }

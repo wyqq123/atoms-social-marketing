@@ -7,7 +7,7 @@
 - **未 index 的小样本**:1K-5K view 的真实 SMB 视频不容易通过 top search 挖到
 - **正在实验的形式**(如 Shorts 3min 上限刚上调,样本极少)
 - **中文/其他语言市场**:英语中心的博客 case 覆盖偏西方,非英语 SMB 需要用户补齐
-- **Atoms 用户自身频道** —— builder 自己的频道数据是最贴合的样本
+- **Atoms builder（应用创建者）自身频道** —— builder 自己的频道数据是最贴合的制作能力/渠道起点样本,不得当作 built app 终端用户画像
 
 ## 使用方式
 
@@ -28,7 +28,7 @@
 - **失败/中位样本**:1K-5K views 的真实 SMB 视频,平衡博客的 top 5% bias
 - **Shorts 3min 新形式实验**(2024-10 后上传的 >60s Shorts)
 - **中文/日文/西语 SMB 频道**(英文博客盲区)
-- **Atoms 用户本身频道**(如已有 builder 起步 YT 运营)
+- **Atoms builder（应用创建者）本身频道**(如已有 builder 起步 YT 运营;只进入 builder_context/production_constraints)
 
 ---
 

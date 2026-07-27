@@ -1,6 +1,6 @@
 {
   "$schema_version": "2026-07-02",
-  "$description": "TikTok Creative Center 公开趋势数据快照。每 2-4 周从 https://ads.tiktok.com/business/creativecenter 刷新,写入 trending_hashtags / trending_sounds / top_ads_patterns / keyword_insights 四个数组。此文件与 tiktok_case_studies.json 独立 —— case studies 关注结构模式(长期稳定),trend snapshot 关注具体素材(短期热点)。",
+  "$description": "TikTok Creative Center 公开趋势数据历史样例。v3 当前刷新目标应写入 .cache/social_intel/manual/tiktok/{region}/{language}/{YYYY-Www}/creative-center.json;本文件只作为 research-data 下的结构参考,不作为 Stage 2 运行时输入。",
   "$refresh_cadence": "2-4 周",
   "$refresh_workflow_ref": "scripts/tiktok_creative_center_workflow.md",
   "$last_refresh": null,
@@ -10,7 +10,7 @@
     "time_window": null
   },
   "$next_refresh_due": "2026-08-01",
-  "$data_freshness_warning": "TikTok trending 生命周期通常 7-14 天。若 last_refresh > 4 周,内容建议不再作为「借势素材」使用,只作为「历史 pattern 参考」。playbook §5/§6/§9 使用此数据时必须核查 last_refresh 时间戳。",
+  "$data_freshness_warning": "TikTok trending 生命周期通常 7-14 天。本 checked-in sample 不作为当前「借势素材」;真实刷新数据必须读取 .cache/social_intel/manual/tiktok/{region}/{language}/{YYYY-Www}/creative-center.json 并核查 last_refresh。",
 
   "trending_hashtags": {
     "$description": "从 Creative Center → Inspiration → Popular → Hashtag 抓取。按行业 + 地域 + 时间窗过滤。",
@@ -87,8 +87,8 @@
       "seo_keywords": "caption 与 voiceover 关键词候选来自 keyword_insights"
     },
     "cross_reference": {
-      "case_studies": "tiktok_case_studies.json 关注长期结构;此文件关注短期素材",
-      "playbook": "references/platform-playbooks/tiktok.md §5 §6 §9 引用此文件",
+      "case_studies": "references/research-data/tiktok/case_studies.json 关注长期结构;当前短期素材应来自 .cache/social_intel/manual/tiktok/{region}/{language}/{YYYY-Www}/creative-center.json",
+      "playbook": "references/platform-playbooks/tiktok.md §5 §6 §9 可参考本文件结构,但当前素材必须来自 v3 L5 cache",
       "refresh_log": "每次 refresh 后在 scripts/README.md TikTok 章节记录一行 log(日期 + 抓取范围 + 数量)"
     }
   }

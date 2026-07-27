@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "atoms-social-marketing/opportunity_evidence_brief_schema",
+  "$schema_version": "0.2.0",
+  "title": "Opportunity Evidence Brief",
+  "description": "Lightweight app-specific demand evidence for Stage 2 realtime adjustment. It must not contain fit labels or final scoring.",
+  "type": "object",
+  "required": [
+    "platform",
+    "status",
+    "freshness",
+    "evidence_count",
+    "matched_probe_ids",
+    "audience_clues",
+    "pain_clues",
+    "content_clues",
+    "distribution_clues",
+    "activity_clues",
+    "recommended_use",
+    "confidence",
+    "evidence_refs",
+    "known_biases"
+  ],
+  "properties": {
+    "platform": { "type": "string" },
+    "status": { "type": "string", "enum": ["usable", "weak", "unavailable", "timeout", "error", "skipped", "partial"] },
+    "freshness": { "type": "string" },
+    "evidence_count": { "type": "integer", "minimum": 0 },
+    "matched_probe_ids": { "type": "array", "items": { "type": "string" } },
+    "audience_clues": { "type": "array", "items": { "type": "string" } },
+    "pain_clues": { "type": "array", "items": { "type": "string" } },
+    "content_clues": { "type": "array", "items": { "type": "string" } },
+    "distribution_clues": { "type": "array", "items": { "type": "string" } },
+    "activity_clues": {
+      "type": "object",
+      "properties": {
+        "volume": { "type": "string" },
+        "velocity": { "type": "string" },
+        "engagement": { "type": "string" },
+        "saturation": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "recommended_use": { "type": "string" },
+    "confidence": { "type": "string", "enum": ["low", "medium", "medium-high", "high"] },
+    "evidence_refs": { "type": "array", "items": { "type": "string" } },
+    "known_biases": { "type": "array", "items": { "type": "string" } },
+    "warnings": { "type": "array", "items": { "type": "string" } }
+  },
+  "not": {
+    "anyOf": [
+      { "required": ["fit_verticals"] },
+      { "required": ["fit_goal_types"] },
+      { "required": ["relevance_to_atoms"] },
+      { "required": ["fit_score"] },
+      { "required": ["realtime_adjustment"] }
+    ]
+  },
+  "additionalProperties": false
+}

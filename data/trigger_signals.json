@@ -1,0 +1,182 @@
+{
+  "$schema_version": "0.1.0",
+  "description": "atoms-social-marketing Intent Router 信号词表与组合规则。PRD §4.3.1。",
+  "slash_command": "/social-marketing-skills",
+  "default_platform_scope": ["ig", "yt", "tt"],
+  "supported_platform_scope": ["ig", "yt", "tt"],
+  "modules": {
+    "platform": {
+      "purpose": "识别社媒渠道与分发平台",
+      "keywords": [
+        { "term": "instagram", "scope": "ig" },
+        { "term": "ig", "scope": "ig", "word_boundary": true },
+        { "term": "tiktok", "scope": "tt" },
+        { "term": "tt", "scope": "tt", "word_boundary": true },
+        { "term": "youtube", "scope": "yt" },
+        { "term": "yt", "scope": "yt", "word_boundary": true },
+        { "term": "facebook", "scope": null },
+        { "term": "linkedin", "scope": null },
+        { "term": "twitter", "scope": null },
+        { "term": "reddit", "scope": null },
+        { "term": "pinterest", "scope": null },
+        { "term": "whatsapp", "scope": null },
+        { "term": "threads", "scope": null },
+        { "term": "小红书", "scope": null },
+        { "term": "抖音", "scope": "tt" },
+        { "term": "x", "scope": null, "word_boundary": true }
+      ]
+    },
+    "content_form": {
+      "purpose": "识别内容生产需求",
+      "keywords": [
+        "caption",
+        "headline",
+        "title",
+        "hashtag",
+        "hashtags",
+        "video script",
+        "short video",
+        "carousel",
+        "thread",
+        "content calendar",
+        "storyboard",
+        "launch pack",
+        "social media pack",
+        "文案",
+        "标题",
+        "脚本",
+        "封面",
+        "图文",
+        "选题",
+        "口播",
+        "标签",
+        "视频脚本",
+        "内容包",
+        "推广包",
+        "发布节奏"
+      ]
+    },
+    "growth_action": {
+      "purpose": "识别推广、获客、增长意图",
+      "keywords": [
+        "cold start",
+        "cold-start",
+        "no users",
+        "get users",
+        "find users",
+        "get traffic",
+        "user acquisition",
+        "gtm",
+        "growth strategy",
+        "launch strategy",
+        "推广",
+        "引流",
+        "获客",
+        "冷启动",
+        "投放",
+        "找用户",
+        "没人用",
+        "没流量"
+      ]
+    },
+    "own_app": {
+      "purpose": "判断是否可能是 builder 自己的应用",
+      "keywords": [
+        "my app",
+        "our app",
+        "my website",
+        "my product",
+        "my saas",
+        "i built",
+        "i created",
+        "我的应用",
+        "我的产品",
+        "我的网站",
+        "我的工具",
+        "我开发的",
+        "我的 app"
+      ]
+    },
+    "app_promotion": {
+      "purpose": "识别直接推广意图",
+      "keywords": [
+        "promote my app",
+        "launch my app",
+        "market my product",
+        "help me launch",
+        "推广我的",
+        "宣传我的",
+        "帮我推广",
+        "launch pack",
+        "launch week",
+        "首周推广",
+        "首发推广",
+        "social launch pack"
+      ]
+    },
+    "marketing_tool": {
+      "purpose": "识别构建营销工具场景(分流用)",
+      "keywords": [
+        "marketing platform",
+        "social media management",
+        "campaign dashboard",
+        "ad manager",
+        "seo agent",
+        "content agent",
+        "营销平台",
+        "营销工具",
+        "社媒工具",
+        "排程工具",
+        "发帖工具",
+        "达人插件",
+        "scheduling tool",
+        "posting tool"
+      ]
+    }
+  },
+  "implicit_rules": [
+    {
+      "id": "I1",
+      "description": "App 推广词命中 ≥1,单独即可调起",
+      "condition": { "app_promotion": { "min": 1 } }
+    },
+    {
+      "id": "I2",
+      "description": "(增长动作词 OR 自有应用词) AND (内容形式词 OR 平台词)",
+      "condition": {
+        "any_of": ["growth_action", "own_app"],
+        "any_of_min": 1,
+        "and": {
+          "any_of": ["content_form", "platform"],
+          "any_of_min": 1
+        }
+      }
+    },
+    {
+      "id": "I3",
+      "description": "平台词 AND 内容形式词,且 builder 上下文存在已构建 app",
+      "condition": {
+        "platform": { "min": 1 },
+        "content_form": { "min": 1 },
+        "requires_app_context": true
+      }
+    },
+    {
+      "id": "I4",
+      "description": "预设 prompt 来自生命周期 Chip",
+      "condition": { "from_lifecycle_chip": true }
+    }
+  ],
+  "diversion_rules": [
+    {
+      "id": "D1",
+      "description": "仅命中营销工具词且无自有应用/App 推广词 → 分流至 marketing_tool_builder",
+      "condition": {
+        "marketing_tool": { "min": 1 },
+        "app_promotion": { "max": 0 },
+        "own_app": { "max": 0 }
+      },
+      "route_to": "marketing_tool_builder"
+    }
+  ]
+}

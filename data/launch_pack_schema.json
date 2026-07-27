@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "atoms-social-marketing/launch_pack_schema",
-  "$schema_version": "0.1.0",
+  "$schema_version": "0.2.0",
   "title": "Launch Pack",
   "description": "atoms-social-marketing skill pipeline 顶层产物。Stage 5 组装。",
   "type": "object",
@@ -17,9 +17,8 @@
     "_pipeline_meta"
   ],
   "properties": {
-    "$schema_version": { "type": "string", "const": "0.1.0" },
+    "$schema_version": { "type": "string", "const": "0.2.0" },
     "generated_at": { "type": "string", "format": "date-time" },
-
     "launch_brief": {
       "type": "object",
       "required": ["app_name", "one_liner", "promo_goal", "target_audience", "key_selling_point"],
@@ -32,44 +31,37 @@
         "primary_market": { "type": "array", "items": { "type": "string" } }
       }
     },
-
     "platform_fit": {
       "type": "object",
       "required": ["ranking", "scores"],
       "properties": {
-        "ranking": {
-          "type": "array",
-          "items": { "type": "string", "enum": ["ig", "yt", "tt"] }
-        },
+        "ranking": { "type": "array", "items": { "$ref": "#/definitions/PlatformId" } },
+        "probe_shortlist": { "type": "array", "items": { "type": "string" }, "maxItems": 3 },
         "scores": {
           "type": "object",
           "patternProperties": {
-            "^(ig|yt|tt)$": {
-              "type": "object",
-              "required": ["fit_score", "strengths", "weaknesses", "recommended_focus"],
-              "properties": {
-                "fit_score": { "type": "integer", "minimum": 0, "maximum": 100 },
-                "strengths": { "type": "array", "items": { "type": "string" } },
-                "weaknesses": { "type": "array", "items": { "type": "string" } },
-                "recommended_focus": { "type": "array", "items": { "type": "string" } }
-              }
-            }
-          }
-        }
+            "^(instagram|youtube|tiktok|reddit|x|linkedin|pinterest|rednote|douyin)$": { "$ref": "#/definitions/PlatformFitScore" }
+          },
+          "additionalProperties": false
+        },
+        "opportunity_evidence_briefs": {
+          "type": "array",
+          "items": { "$ref": "opportunity_evidence_brief_schema.json" }
+        },
+        "_rationale": { "type": "string" }
       }
     },
-
     "strategies": {
       "type": "object",
       "patternProperties": {
-        "^(ig|yt|tt)$": { "$ref": "#/definitions/PlatformStrategy" }
-      }
+        "^(instagram|youtube|tiktok|reddit|x|linkedin|pinterest|rednote|douyin)$": { "$ref": "#/definitions/PlatformStrategy" }
+      },
+      "additionalProperties": false
     },
-
     "deliverables": {
       "type": "object",
       "patternProperties": {
-        "^(ig|yt|tt)$": {
+        "^(instagram|youtube|tiktok|reddit|x|linkedin|pinterest|rednote|douyin)$": {
           "type": "object",
           "required": ["posts"],
           "properties": {
@@ -78,9 +70,9 @@
             "ab_variants": { "type": "array", "items": { "$ref": "#/definitions/Caption" } }
           }
         }
-      }
+      },
+      "additionalProperties": false
     },
-
     "schedule": {
       "type": "object",
       "required": ["week_1"],
@@ -94,7 +86,7 @@
             "properties": {
               "day": { "type": "string" },
               "date_offset_from_launch": { "type": "integer", "minimum": 0 },
-              "platform": { "type": "string", "enum": ["ig", "yt", "tt"] },
+              "platform": { "$ref": "#/definitions/PlatformId" },
               "post_ref": { "type": "string" },
               "recommended_time": { "type": "string" },
               "rationale": { "type": "string" }
@@ -104,7 +96,6 @@
         "notes": { "type": "string" }
       }
     },
-
     "checks": {
       "type": "object",
       "required": ["blocker", "warning", "info"],
@@ -114,32 +105,38 @@
         "info": { "type": "array", "items": { "type": "string" } }
       }
     },
-
     "_pipeline_meta": {
       "type": "object",
       "required": [
         "playbook_versions",
-        "trend_snapshot_last_refresh",
+        "platform_registry_version",
         "confidence_summary",
         "ga4_used",
         "media_generation_deferred",
         "injectable_prompts_count"
       ],
       "properties": {
-        "playbook_versions": {
+        "playbook_versions": { "type": "object", "additionalProperties": { "type": "string" } },
+        "platform_registry_version": { "type": "string" },
+        "trend_snapshot_last_refresh": { "type": ["string", "null"] },
+        "probe_meta": {
           "type": "object",
           "properties": {
-            "ig": { "type": "string" },
-            "yt": { "type": "string" },
-            "tt": { "type": "string" }
+            "enabled": { "type": "boolean" },
+            "global_timeout_ms": { "type": "integer" },
+            "platforms_attempted": { "type": "array", "items": { "type": "string" } },
+            "briefs_usable_count": { "type": "integer", "minimum": 0 }
           }
         },
-        "trend_snapshot_last_refresh": { "type": ["string", "null"] },
         "confidence_summary": {
           "type": "object",
           "patternProperties": {
-            "^(ig|yt|tt)$": { "type": "string", "enum": ["low", "medium", "medium-high", "high"] }
-          }
+            "^(instagram|youtube|tiktok|reddit|x|linkedin|pinterest|rednote|douyin)$": {
+              "type": "string",
+              "enum": ["low", "medium", "medium-high", "high"]
+            }
+          },
+          "additionalProperties": false
         },
         "ga4_used": { "type": "boolean" },
         "media_generation_deferred": { "type": "boolean", "const": true },
@@ -154,13 +151,74 @@
       }
     }
   },
-
   "definitions": {
+    "PlatformId": {
+      "type": "string",
+      "enum": ["instagram", "youtube", "tiktok", "reddit", "x", "linkedin", "pinterest", "rednote", "douyin"]
+    },
+    "PlatformFitScore": {
+      "type": "object",
+      "required": [
+        "fit_score",
+        "stable_fit_score",
+        "realtime_adjustment",
+        "score_confidence",
+        "probe_status",
+        "subscores",
+        "audience_intersection",
+        "recommended_surfaces",
+        "why_this_platform",
+        "why_now",
+        "risks",
+        "_evidence_refs"
+      ],
+      "properties": {
+        "fit_score": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "stable_fit_score": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "realtime_adjustment": { "type": "integer", "minimum": -5, "maximum": 10 },
+        "score_confidence": { "type": "string", "enum": ["low", "medium", "medium-high", "high"] },
+        "probe_status": { "type": "string", "enum": ["usable", "weak", "unavailable", "timeout", "error", "skipped", "partial", "not_run"] },
+        "subscores": {
+          "type": "object",
+          "required": [
+            "icp_reach_quality",
+            "mindset_intent_fit",
+            "value_expression_fit",
+            "distribution_feasibility",
+            "conversion_path_fit",
+            "production_feasibility"
+          ],
+          "properties": {
+            "icp_reach_quality": { "type": "integer", "minimum": 0, "maximum": 30 },
+            "mindset_intent_fit": { "type": "integer", "minimum": 0, "maximum": 20 },
+            "value_expression_fit": { "type": "integer", "minimum": 0, "maximum": 15 },
+            "distribution_feasibility": { "type": "integer", "minimum": 0, "maximum": 15 },
+            "conversion_path_fit": { "type": "integer", "minimum": 0, "maximum": 10 },
+            "production_feasibility": { "type": "integer", "minimum": 0, "maximum": 10 }
+          }
+        },
+        "audience_intersection": {
+          "type": "object",
+          "required": ["matched_dimensions", "missing_dimensions", "reachable_icp_scale", "quality"],
+          "properties": {
+            "matched_dimensions": { "type": "array", "items": { "type": "string" } },
+            "missing_dimensions": { "type": "array", "items": { "type": "string" } },
+            "reachable_icp_scale": { "type": "string" },
+            "quality": { "type": "string" }
+          }
+        },
+        "recommended_surfaces": { "type": "array", "items": { "type": "string" } },
+        "why_this_platform": { "type": "array", "items": { "type": "string" } },
+        "why_now": { "type": "array", "items": { "type": "string" } },
+        "risks": { "type": "array", "items": { "type": "string" } },
+        "_evidence_refs": { "type": "array", "items": { "type": "string" } }
+      }
+    },
     "PlatformStrategy": {
       "type": "object",
       "required": ["platform", "angles", "hashtag_mix", "posting_cadence"],
       "properties": {
-        "platform": { "type": "string", "enum": ["ig", "yt", "tt"] },
+        "platform": { "$ref": "#/definitions/PlatformId" },
         "angles": {
           "type": "array",
           "minItems": 3,
@@ -206,21 +264,22 @@
         "trend_borrow": {
           "type": ["object", "null"],
           "properties": {
-            "trending_hashtags_slot_2": { "type": "array" },
-            "trending_sounds_top_3": { "type": "array" },
-            "snapshot_date": { "type": "string" }
+            "source": { "type": "string", "enum": ["usable_evidence", "manual_cache", "authorized_insight", "none"] },
+            "evidence_refs": { "type": "array", "items": { "type": "string" } },
+            "borrowed_terms": { "type": "array", "items": { "type": "string" } },
+            "snapshot_date": { "type": "string" },
+            "usage_boundary": { "type": "string" }
           }
         },
         "_rationale": { "type": "string" }
       }
     },
-
     "Caption": {
       "type": "object",
       "required": ["angle_id", "platform", "post_type", "hook", "body", "cta", "hashtags", "confidence"],
       "properties": {
         "angle_id": { "type": "string" },
-        "platform": { "type": "string", "enum": ["ig", "yt", "tt"] },
+        "platform": { "$ref": "#/definitions/PlatformId" },
         "post_type": { "type": "string" },
         "hook": { "type": "string" },
         "body": { "type": "string" },
@@ -229,7 +288,7 @@
           "required": ["text", "link_style"],
           "properties": {
             "text": { "type": "string" },
-            "link_style": { "type": "string", "enum": ["bio-link", "comment-pin", "swipe-up", "none"] }
+            "link_style": { "type": "string", "enum": ["bio-link", "description-link", "comment-pin", "dm", "profile-link", "swipe-up", "none"] }
           }
         },
         "hashtags": { "type": "array", "items": { "type": "string" }, "minItems": 5 },
@@ -238,15 +297,14 @@
         "_rationale": { "type": "string" }
       }
     },
-
     "Storyboard": {
       "type": "object",
       "required": ["angle_id", "platform", "post_type", "total_duration_s", "scenes", "caption"],
       "properties": {
         "angle_id": { "type": "string" },
-        "platform": { "type": "string", "enum": ["ig", "yt", "tt"] },
+        "platform": { "$ref": "#/definitions/PlatformId" },
         "post_type": { "type": "string" },
-        "total_duration_s": { "type": "integer", "minimum": 5, "maximum": 180 },
+        "total_duration_s": { "type": "integer", "minimum": 5, "maximum": 600 },
         "sound_ref": {
           "type": ["object", "null"],
           "properties": {
@@ -277,7 +335,6 @@
         "_rationale": { "type": "string" }
       }
     },
-
     "MediaPromptsCaption": {
       "type": "object",
       "properties": {
@@ -288,7 +345,7 @@
             "trigger": { "type": "string", "const": "on-demand" },
             "injectable_prompt": { "type": "string", "minLength": 20 },
             "target_tool_hint": { "type": "string" },
-            "aspect_ratio": { "type": "string", "enum": ["1:1", "9:16", "16:9", "4:5"] }
+            "aspect_ratio": { "type": "string", "enum": ["1:1", "9:16", "16:9", "4:5", "2:3"] }
           }
         },
         "carousel_slides": {
@@ -307,7 +364,6 @@
         }
       }
     },
-
     "MediaPromptsScene": {
       "type": "object",
       "required": ["trigger"],

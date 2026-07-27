@@ -4,7 +4,7 @@
 
 补齐 Category B 博客案例覆盖不到的样本。TikTok 博客选样偏「爆款」+「大品牌」,人工补齐主要补:
 
-- **Vibe coding / SMB solo builder 类样本**(博客几乎不覆盖,需重度补齐 ≥10 条)
+- **Vibe coding / SMB solo builder 类样本**(博客几乎不覆盖,需重度补齐 ≥10 条),仅用于评估 builder 生产约束与冷启动打法,不得写入 built app 终端用户 ICP
 - **2025 起最新样本**(博客案例多为 2024 及以前,TikTok trend 变化快,时效性关键)
 - **Creator 类 indie hacker / solo builder TikTok 案例**(博客稀疏)
 - **中位表现样本**(1K-30K views,平衡博客的"高转化 bias")
@@ -99,4 +99,4 @@
 ## 主动约定
 
 - **动态更新触发**:每次新增 5 条样本或 Creative Center 快照更新时,提示 Agent 复核 playbook §9 winning structures 是否需要迭代
-- **交叉验证**:样本填完后,与 `tiktok_trend_snapshot.json` 中当期 trending hashtag/sound 对照——若样本使用的 sound 已过时,标注"数据快照过期"caveat
+- **交叉验证**:样本填完后,与 `.cache/social_intel/manual/tiktok/{region}/{language}/{YYYY-Www}/creative-center.json` 中当期 trending hashtag/sound 对照——若样本使用的 sound 已过时,标注"数据快照过期"caveat

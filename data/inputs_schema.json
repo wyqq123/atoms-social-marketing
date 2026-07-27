@@ -1,9 +1,9 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "atoms-social-marketing/inputs_schema",
-  "$schema_version": "0.1.0",
+  "$schema_version": "0.2.0",
   "title": "Launch Pack Pipeline Inputs",
-  "description": "atoms-social-marketing skill 的 pipeline 输入契约。上层调用方(Atoms builder)负责收集并按此结构传入。",
+  "description": "atoms-social-marketing skill 的 pipeline 输入契约。上层调用方负责收集并按此结构传入。注意区分 builder（应用创建者）、built app（被推广应用）与 app end users（应用终端用户）。",
   "type": "object",
   "required": ["app_context", "builder_prompt", "positioning"],
   "properties": {
@@ -36,7 +36,7 @@
     "builder_prompt": {
       "type": "string",
       "minLength": 50,
-      "description": "Atoms builder 里用户构建应用时的原始 prompt"
+      "description": "Atoms builder（应用创建者）构建 built app 时的原始 prompt。只能作为 app/context/素材/约束线索,不能直接当作终端用户画像。"
     },
     "positioning": {
       "type": "object",
@@ -48,7 +48,7 @@
         },
         "target_audience": {
           "type": "string",
-          "description": "目标用户画像, e.g. 'SMB solo builders working on AI side projects'"
+          "description": "built app 的终端用户画像,不是 builder 自画像。e.g. 'Shopify sellers who need faster product-page copy' 或 'local gym owners trying to get more bookings'"
         },
         "key_selling_point": {
           "type": "string",
@@ -56,56 +56,66 @@
         }
       }
     },
-    "ga4_snapshot": {
-      "type": ["object", "null"],
+    "production_context": {
+      "type": "object",
+      "description": "可选。builder 为推广 built app 可提供的素材与制作约束。只用于 builder_context / production_constraints,不得写入 built app 终端用户 ICP。",
       "properties": {
-        "period": { "type": "string", "enum": ["last_7d", "last_30d"] },
-        "top_geo": {
+        "available_assets": {
           "type": "array",
           "items": {
-            "type": "object",
-            "properties": {
-              "country": { "type": "string" },
-              "sessions": { "type": "integer" }
-            }
-          }
+            "type": "string",
+            "enum": ["built_app_screenshots", "built_app_demo_recording", "built_app_landing_page", "customer_testimonials", "founder_story", "brand_assets", "analytics_snapshot", "none"]
+          },
+          "uniqueItems": true
         },
-        "top_referrer": {
+        "channel_preferences": {
           "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "source": { "type": "string" },
-              "sessions": { "type": "integer" }
-            }
-          }
+          "items": { "type": "string" },
+          "description": "builder 明确偏好的发布渠道;不是 built app 终端用户画像。"
         },
-        "device_split": {
+        "creator_constraints": {
           "type": "object",
           "properties": {
-            "mobile": { "type": "number" },
-            "desktop": { "type": "number" },
-            "tablet": { "type": "number" }
-          }
-        },
-        "top_pages": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "path": { "type": "string" },
-              "pv": { "type": "integer" }
-            }
-          }
+            "can_record_founder_video": { "type": "boolean" },
+            "can_create_short_video": { "type": "boolean" },
+            "has_customer_proof": { "type": "boolean" },
+            "weekly_content_capacity": { "type": "string", "enum": ["low", "medium", "high", "unknown"] },
+            "notes": { "type": "array", "items": { "type": "string" } }
+          },
+          "additionalProperties": false
         }
-      }
+      },
+      "additionalProperties": false
+    },
+    "ga4_snapshot": {
+      "description": "可选。用户 app 内集成 GA4 后,上层调 skill 前拉取的 GA4 汇总快照。口径见 data/ga4_snapshot_schema.json 与 references/ga4-snapshot-contract.md。未集成则为 null。",
+      "oneOf": [{ "type": "null" }, { "$ref": "ga4_snapshot_schema.json" }]
     },
     "platform_scope": {
       "type": "array",
-      "items": { "type": "string", "enum": ["ig", "yt", "tt"] },
+      "items": {
+        "type": "string",
+        "enum": ["instagram", "youtube", "tiktok", "reddit", "x", "linkedin", "pinterest", "rednote", "douyin"]
+      },
       "minItems": 1,
       "uniqueItems": true,
-      "default": ["ig", "yt", "tt"]
+      "default": ["instagram", "youtube", "tiktok", "reddit"],
+      "description": "发布平台候选。Stage 2 可额外使用 web_search 作为 evidence fallback,但 web_search 不作为发布平台。旧别名 ig/yt/tt 应在上层映射为 instagram/youtube/tiktok。"
+    },
+    "probe_options": {
+      "type": "object",
+      "description": "可选。控制 Stage 2b 实时/缓存探针预算。",
+      "properties": {
+        "enable_realtime_probe": { "type": "boolean", "default": true },
+        "no_network": { "type": "boolean", "default": false },
+        "timeout_ms": { "type": "integer", "minimum": 1000, "maximum": 12000, "default": 8000 },
+        "max_platforms": { "type": "integer", "minimum": 1, "maximum": 3, "default": 3 },
+        "queries_per_platform": { "type": "integer", "minimum": 1, "maximum": 3, "default": 3 },
+        "fresh_cache_max_age_hours": { "type": "integer", "minimum": 1, "maximum": 336, "default": 24 }
+      },
+      "additionalProperties": false
     }
   }
 }
+
+

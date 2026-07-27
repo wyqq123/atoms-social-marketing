@@ -17,20 +17,20 @@ YT 公开元数据可通过两条路径拿到:
 ### A1 — oEmbed(无需 API key,基础字段)
 - Endpoint: `https://www.youtube.com/oembed?url=<VIDEO_URL>&format=json`
 - 返回字段:title / author_name / author_url / thumbnail_url / html embed
-- 用法:走 `scripts/fetch_youtube_metadata.py --mode oembed --input data/youtube_industry_urls.txt`
+- 用法:走 `scripts/fetch_youtube_metadata.py --mode oembed --input references/research-data/youtube/industry_urls.txt`
 - 适用场景:快速构建样本 title/thumbnail 对比;不需要 view/like 数字的定性研究
 
 ### A2 — YouTube Data API v3(需 API key,完整字段)
 - Endpoint: `https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics,contentDetails&id=<VIDEO_ID>&key=<API_KEY>`
 - 返回字段:标题 / 描述 / tags / 分类 / 发布时间 / duration / viewCount / likeCount / commentCount / definition(HD/SD)/ caption 是否可用
-- 用法:走 `scripts/fetch_youtube_metadata.py --mode api --input data/youtube_industry_urls.txt`(需 `YOUTUBE_API_KEY` 环境变量)
+- 用法:走 `scripts/fetch_youtube_metadata.py --mode api --input references/research-data/youtube/industry_urls.txt`(需 `YOUTUBE_API_KEY` 环境变量)
 - Quota:免费 10000 units/day;单个 videos.list 请求消耗 1 unit,可抓 10000 支视频/天
 - 申请路径:https://console.cloud.google.com/ → 新建项目 → 启用 YouTube Data API v3 → 生成 API key
 - Atoms 用法:配到本地 `.env` 或 shell profile;不进 skill 仓库(secret hygiene)
 
 ### A3 — 目标视频挖掘 query(在 YT 内搜)
 
-先通过 YT 站内搜索找到 Atoms 目标业务类型的 top 视频,收集 URL 到 `data/youtube_industry_urls.txt`,再喂给脚本:
+先通过 YT 站内搜索找到 Atoms 目标业务类型的 top 视频,收集 URL 到 `references/research-data/youtube/industry_urls.txt`,再喂给脚本:
 
 **SaaS / AI Tool**
 ```
@@ -59,8 +59,8 @@ solopreneur daily vlog
 
 **采集流程**:
 1. YT 站内跑 query,肉眼筛出 5-10 支 top 视频/query(按 view / likes / 发布时间 综合判断)
-2. URL 追加到 `data/youtube_industry_urls.txt`,按业务类型分组
-3. 跑 `scripts/fetch_youtube_metadata.py` 批量抓元数据到 `data/youtube_video_samples.json`
+2. URL 追加到 `references/research-data/youtube/industry_urls.txt`,按业务类型分组
+3. 跑 `scripts/fetch_youtube_metadata.py` 批量抓元数据到 `references/research-data/youtube/video_samples.json`
 4. 归纳时结合 §9 winning structures 拆解 title / description / thumbnail / hashtag 规律
 
 ---
@@ -149,11 +149,11 @@ site:developers.google.com/youtube/v3
 
 ## Category D — 人工补齐(与 IG 相同角色)
 
-用户提供的 YT 频道/视频样本,由 Agent 在 `data/youtube_manual_supplements.md` 按模板整理。
+用户提供的 YT 频道/视频样本,由 Agent 在 `references/research-data/youtube/manual_supplements.md` 按模板整理。
 
 **优先补齐方向**:
 - 2025 最新 launch / demo 视频(博客覆盖偏 2024 及以前)
-- **Atoms 用户画像贴近的 solo builder** —— indie hacker / vibe coding builder / no-code founder
+- **Atoms builder（应用创建者）画像贴近的 solo-builder 频道样本** —— indie hacker / vibe coding builder / no-code founder；只用于 builder 生产能力/冷启动路径参考,不得写入 built app 终端用户 ICP
 - **中位表现视频**(1K-10K views 的真实 SMB 视频,平衡博客的"top 5% success 案例 bias")
 - 失败案例(YT 视频冷启动失败或 monetization rejected 的具体案例)—— 教训价值高
 
@@ -162,13 +162,13 @@ site:developers.google.com/youtube/v3
 ## 执行 checklist
 
 - [ ] Category A1 oEmbed:跑 30-50 支视频 URL 快速抓 title/thumbnail(无需 API key)
-- [ ] Category A2 Data API v3:若已配 key,同一批 URL 补完整元数据到 `data/youtube_video_samples.json`
+- [ ] Category A2 Data API v3:若已配 key,同一批 URL 补完整元数据到 `references/research-data/youtube/video_samples.json`
 - [ ] Category B1/B2:跑 8-10 条 query,收集 10-15 篇 SEO + algorithm 博客 URL
 - [ ] Category B3/B4/B5:跑 10-15 条 query,收集 12-18 篇业务 + 格式 + 商业化 URL
 - [ ] Category C:直接 WebFetch 已知 URL(5-8 篇官方)
-- [ ] 汇总:所有 URL 落到 `data/youtube_industry_urls.txt`(按 A/B/C 分组)
-- [ ] LLM 按 `data/youtube_case_study_schema.json` 提取 → `data/youtube_case_studies.json`
-- [ ] Category D 人工补齐 4-7 条(尤其 Creator 类)→ `data/youtube_manual_supplements.md`
+- [ ] 汇总:所有 URL 落到 `references/research-data/youtube/industry_urls.txt`(按 A/B/C 分组)
+- [ ] LLM 按 `references/research-data/schemas/youtube_case_study_schema.json` 提取 → `references/research-data/youtube/case_studies.json`
+- [ ] Category D 人工补齐 4-7 条(尤其 Creator 类)→ `references/research-data/youtube/manual_supplements.md`
 - [ ] §5-§10 归纳填充 playbook
 
 ---

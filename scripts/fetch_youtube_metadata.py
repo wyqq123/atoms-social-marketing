@@ -2,7 +2,7 @@
 """
 fetch_youtube_metadata.py
 
-从 YouTube video URL 抓公开元数据。与 IG 的 extract_og_metadata.py 关键差异:
+从 YouTube video URL 抓公开元数据。与已删除的 IG OG 抓取路线不同:
 YT 公开暴露元数据接口,不会被剥离——因此这个脚本是**工作中的动态采集通路**,
 不像 IG 老脚本已废弃。
 
@@ -13,14 +13,14 @@ YT 公开暴露元数据接口,不会被剥离——因此这个脚本是**工�
                      caption(是否可用) / description
 
 用法:
-  python3 fetch_youtube_metadata.py --input data/youtube_industry_urls.txt \\
-      --output data/youtube_video_samples.json
+  python3 fetch_youtube_metadata.py --input references/research-data/youtube/industry_urls.txt \\
+      --output references/research-data/youtube/video_samples.json
 
   python3 fetch_youtube_metadata.py --url https://www.youtube.com/watch?v=xxx --mode api
 
   # 用 API key:
   export YOUTUBE_API_KEY="AIzaSy..."
-  python3 fetch_youtube_metadata.py --input data/youtube_industry_urls.txt --mode api
+  python3 fetch_youtube_metadata.py --input references/research-data/youtube/industry_urls.txt --mode api
 
 设计原则:
 - 只调 YT 公开 API,不用 scraping、不用 login session
@@ -307,8 +307,8 @@ def main() -> int:
         default="oembed",
         help="oembed (default, no key) | api (requires YOUTUBE_API_KEY env var)",
     )
-    parser.add_argument("--output", type=Path, default=Path("data/youtube_video_samples.json"))
-    parser.add_argument("--errors", type=Path, default=Path("data/youtube_errors.txt"))
+    parser.add_argument("--output", type=Path, default=Path("references/research-data/youtube/video_samples.json"))
+    parser.add_argument("--errors", type=Path, default=Path("references/research-data/youtube/errors.txt"))
     args = parser.parse_args()
 
     if args.url:

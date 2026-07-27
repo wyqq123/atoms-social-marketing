@@ -1,89 +1,127 @@
 ---
 name: atoms-social-marketing
-description: 为 Atoms 用户构建的应用生成首发社媒内容包(IG/YT/TikTok)。输入应用上下文 + 定位澄清 + 可选 GA4,输出多产物 JSON(caption + storyboard + schedule + 挂载 media prompt)。媒体产物只挂载 injectable_prompt,不触发生成。
+description: 为 Atoms builder（应用创建者）在 Atoms 上构建的应用生成首发社媒内容包,并用轻量稳定的平台 fit score 选择社媒平台。输入 built app 上下文 + 终端用户定位澄清 + 可选 GA4/授权数据,输出多产物 Launch Pack JSON(caption + storyboard + schedule + media prompt)。Stage 1/2 会生成 app_icp_vector、demand_probe_pack、平台 stable_fit_score、optional realtime_adjustment 和 evidence-gated confidence。媒体产物只挂载 injectable_prompt,不触发生成。
 ---
 
 # Atoms Social Marketing
 
 ## 何时启用
 
-- 用户已在 Atoms builder 完成应用构建
-- 需要为该应用生成社媒首发内容包(首周节奏)
-- 已通过上层对话/表单收集齐 positioning 三要素(promo_goal / target_audience / key_selling_point)
+- Atoms builder（应用创建者）已在 Atoms platform 完成 built app 构建。
+- 需要为该应用生成社媒首发内容包或判断优先投放平台。
+- 已收集 positioning 三要素:`promo_goal` / `target_audience` / `key_selling_point`,其中 `target_audience` 必须指 built app 的终端用户。
 
 **不适用**:
-- 长期(> 1 周)运营节奏规划(v0.1 不覆盖)
-- LinkedIn / X 平台(playbook 未沉淀)
-- 直接生成图片/视频素材(见"媒体资产两级触发契约")
+
+- 长期(> 1 周)运营节奏规划。
+- 直接生成图片/视频素材(见媒体资产两级触发契约)。
+- 无授权抓取平台登录态、profile/feed 或第三方爬虫数据。
+## 概念边界
+
+本 skill 必须始终区分 4 个对象:
+
+| 对象 | 含义 | 在 pipeline 中的位置 |
+|---|---|---|
+| Atoms platform | 承载应用构建与 skill 调用的平台 | 只用于系统责任说明 |
+| Builder / Atoms user | 在 Atoms 上创建 built app 并发起营销生成的人 | `builder_prompt`、素材能力、授权数据、生产约束 |
+| Built app | Builder 创建并需要推广的应用/产品 | `app_context`、`app_capability_summary`、`value_prop`、proof assets |
+| App end users | Built app 真正服务、触达和转化的终端用户 | `target_audience`、`app_icp_vector.end_user_identity`、pains/JTBD/probes |
+
+`app_icp_vector` 和 `demand_probe_pack` 的 ICP 永远指 built app 的终端用户,不是 builder 自己。只有当输入明确说明 built app 面向 builders/founders/no-code creators 时,这些身份才可作为终端用户身份写入 `end_user_identity`。
+
+全局硬约束:
+
+- Built app 功能/代码/UI 先归纳为 `app_capability_summary`,不得直接推成终端用户身份、购买力或真实痛点。
+- `pains`、`jtbd`、`alternatives` 可以是 hypothesis,但必须标注 source/confidence;没有证据时不得写成 observed fact。
+- 竞品名只来自用户输入、cache、授权数据或 web evidence;Stage 1 默认只推断 workaround category。
+- `demand_probe_pack` 应使用长尾精准 query + 关键词组召回 + platform-native rewrite 的混合检索,并保留 `query` 作为兼容 primary query。
 
 ## Pipeline 概览
 
 5 阶段线性 pipeline,无状态,每次调用独立完成。
 
-```
+```text
 inputs
    ↓
-Stage 1  Intent & Positioning   →  intent_profile
+Stage 1  Intent, End-User ICP Vector & Demand Probes
+         → intent_profile + app_icp_vector(end users) + demand_probe_pack(end-user language)
    ↓
-Stage 2  Platform Fit           →  platform_fit
+Stage 2  Platform Shortlist, Demand Evidence & Fit Score
+         → stable_fit_score + realtime_adjustment + fit_score + confidence
    ↓
-Stage 3  Content Strategy       →  strategies[per platform]
+Stage 3  Content Strategy
+         → strategies[per platform]
    ↓
-Stage 4  Deliverable Rendering  →  deliverables[per platform]
+Stage 4  Deliverable Rendering
+         → deliverables[per platform]
    ↓
-Stage 5  Pack & Self-check      →  Launch Pack JSON
+Stage 5  Pack & Self-check
+         → Launch Pack JSON
+```
+
+主链路降级路径:
+
+```text
+no realtime evidence -> stable platform strategy -> confidence <= medium -> no current-trend wording
 ```
 
 详见 `references/pipeline/stage-{1..5}-*.md`。
 
 ## 输入契约
 
-见 `data/inputs_schema.json`(JSON Schema draft-07)。
+见 `data/inputs_schema.json`。
 
 **必填**:
+
 - `app_context.{name, description, category}`
-- `builder_prompt`(> 50 字符)
+- `builder_prompt`(> 50 字符;描述 builder 构建 built app 的原始 prompt,不能直接当作终端用户画像)
 - `positioning.{promo_goal, target_audience, key_selling_point}`
 
 **可选**:
-- `ga4_snapshot`(GA4 汇总数据;若无,pipeline 只用 positioning 与 builder_prompt)
-- `platform_scope`(默认 `["ig", "yt", "tt"]`)
+
+- `production_context`:可选 builder 素材、渠道偏好和制作约束;只进入 `builder_context` / `production_constraints`,不得进入终端用户 ICP。
+- `ga4_snapshot`:上层拉取的 GA4 汇总快照;若无,pipeline 只用 positioning 与 builder_prompt。
+- `platform_scope`:默认 `['instagram', 'youtube', 'tiktok', 'reddit']`;旧别名 `ig/yt/tt` 应在上层映射到全称。
+- `probe_options`:控制 Stage 2b 是否跑 realtime/cache probe、超时、平台数和 query 数。
 
 ## 输出契约
 
 见 `data/launch_pack_schema.json`。
 
 顶层字段:
-- `launch_brief` — 精简摘要
-- `platform_fit` — 平台匹配度 ranking + scores
-- `strategies` — 每平台 angles + hashtag mix + cadence
-- `deliverables` — 每平台 posts + storyboards + ab_variants
-- `schedule` — 首周节奏表
-- `checks` — 自检结果(blocker / warning / info)
-- `_pipeline_meta` — 版本 / 时效 / 计数元数据
 
-## 媒体资产两级触发契约
+- `launch_brief` — 精简摘要。
+- `platform_fit` — ranking + stable/realtime score + evidence-gated confidence。
+- `strategies` — 每平台 angles + hashtag/keyword mix + cadence。
+- `deliverables` — 每平台 posts + storyboards + ab_variants。
+- `schedule` — 首周节奏表。
+- `checks` — blocker / warning / info。
+- `_pipeline_meta` — registry/playbook 版本、probe meta、置信摘要、媒体 prompt 计数。
 
-**Pipeline 只挂载 `injectable_prompt` 字符串,不生成任何图片/视频**。
+## 平台覆盖与数据边界
 
-- Stage 4 输出的每个 `media_prompts.*` 对象含 `trigger: "on-demand"` 标记
-- `injectable_prompt` 是可直接注入对话让下游 image/video 工具消费的完整 prompt
-- **上层 Atoms builder 负责**:
-  1. 展示挂载的 prompt(隐藏或折叠)
-  2. 提供"生成图片"/"生成视频"按钮
-  3. 用户点击时,把 `injectable_prompt` 注入对话由下游工具生成
+平台覆盖由 `data/platform_registry.json` 管理,契约见 `data/platform_registry_schema.json`。每个平台必须包含:
 
-Pipeline 侧责任边界到此为止,不管生成成功与否。`_pipeline_meta.media_generation_deferred == true` 恒成立。
+- L0 `platform_coverage_registry`:支持市场/语言、content surfaces、renderer support、realtime mode、data policy、confidence cap。
+- L1 `stable_platform_profile`:长期 audience pools、mindset、surface、distribution、conversion、production、policy/norms。
+- L2 `data_access_profile`:运行时可获得哪些信号、不可获得哪些信号、fallback 和合规边界。
+
+默认 realtime 自动路径仅面向 `reddit`、`youtube`、`web_search` fallback。Instagram、TikTok、X、LinkedIn、Pinterest、Rednote、Douyin 默认使用 stable profile + cache/authorized/manual evidence,不得 request-time 抓取公共 feed 或登录态页面。
+
+`web_search` 只用于 evidence fallback,不是发布平台。
 
 ## Stage 索引
 
 | Stage | 文件 | 用途 |
 |---|---|---|
-| 1 Intent | `references/pipeline/stage-1-intent.md` | 归一化定位画像 |
-| 2 Fit | `references/pipeline/stage-2-fit.md` | 平台匹配度评分 |
-| 3 Strategy | `references/pipeline/stage-3-strategy.md` | Angles + hashtag mix + cadence |
+| 1 Intent/ICP | `references/pipeline/stage-1-intent.md` | 生成 `intent_profile`、`app_icp_vector`、`demand_probe_pack` |
+| 2 Fit | `references/pipeline/stage-2-fit.md` | 平台短名单、可选 probe、稳定评分和实时校准 |
+| 3 Strategy | `references/pipeline/stage-3-strategy.md` | Angles + hashtag/keyword mix + cadence |
 | 4 Render | `references/pipeline/stage-4-render.md` | 渲染 caption/storyboard + 挂载 prompt |
-| 5 Pack | `references/pipeline/stage-5-pack.md` | 组装 + 自检 |
+| 5 Pack | `references/pipeline/stage-5-pack.md` | 组装 + evidence/wording 自检 |
+| GA4 契约 | `references/ga4-snapshot-contract.md` | 上层拉取 GA4 快照口径 |
+| Probe 架构 | `references/just-in-time-demand-probe-architecture.md` | Stage 2b 执行细节 |
+| v3 重构方案 | `references/platform-coverage-and-trend-intelligence-rebuild.md` | 平台覆盖、趋势情报和 fit score 设计来源 |
 
 ## 模板
 
@@ -93,41 +131,49 @@ Pipeline 侧责任边界到此为止,不管生成成功与否。`_pipeline_meta.
 | Storyboard | `references/templates/storyboard.md` | Stage 4 |
 | Schedule | `references/templates/schedule.md` | Stage 5 |
 
-## Playbook 引用
+## Playbook 与 Registry
 
-`references/platform-playbooks/{ig,yt,tiktok}.md` —— 各平台十节结构知识(契约见 `_schema.md`)。
+- `references/platform-playbooks/{instagram,youtube,tiktok}.md`:已沉淀的内容生成 playbook。
+- `references/platform-playbooks/_schema.md`:playbook 结构和 v3 registry/stable profile 对齐说明。
+- `data/platform_registry.json`:Stage 2 的平台覆盖与稳定评分主数据源。
 
-Stage 消费映射:
-- Stage 2 读 §2 §4
-- Stage 3 读 §5 §6 §7 §9
-- Stage 5 读顶部 frontmatter 取 `_schema_version`
+没有 playbook 但 registry 完整的平台可以进入 Stage 2 排序;Stage 3/4 应生成保守 strategy 并降低 confidence。
 
-## 数据资产
+## Realtime Probe 脚本
 
-| 文件 | 用途 |
-|---|---|
-| `data/tiktok_trend_snapshot.json` | Creative Center 快照(2-4 周刷新);Stage 3 TT trend_borrow 消费 |
-| `data/tiktok_case_studies.json` | TT 案例;Stage 3 定性引用 |
-| `data/ig_case_studies.json` | IG 案例;Stage 3 定性引用 |
-| `data/youtube_case_studies.json` | YT 案例;Stage 3 定性引用 |
-| `data/*_manual_supplements.md` | 各平台人工补齐;Stage 3 定性引用 |
+`Stage 2b` 可使用 `scripts/realtime_probe/` 的轻量脚本骨架:
 
-## 采集脚本(不在 pipeline 内)
+- `select_platform_shortlist.py`
+- `query_planner.py`
+- `run_realtime_probe.py`
+- `summarize_opportunity_brief.py`
+- `validate_probe_output.py`
+- `cache_store.py`
+- `adapters/{reddit_probe,youtube_probe,web_search_probe,cached_platform_probe}.py`
 
-`scripts/` 目录含平台数据采集流程(oEmbed / Data API / Creative Center refresh)。Pipeline 只消费 `data/` 内已落盘产物,不实时抓取。
+默认 no-network/cache path 必须可跑。缺 credential 不报错中断,只输出 `skipped` brief 并让 Stage 2c 使用 stable strategy。
 
-## 扩展点(v0.1 不实现,v0.2+ 会引入)
+## 媒体资产两级触发契约
 
-| 扩展点 | 预留位置 | 处理 |
-|---|---|---|
-| Session/memory | inputs 顶层 `session_id` | v0.1 忽略;v0.2 引入,支持二次生成 diff |
-| 反馈闭环 | Stage 5 后接 Stage 6 | v0.1 不实现;v0.3 接效果反馈 |
-| LinkedIn / X | `platform_scope` 白名单扩展 | v0.1 拒绝非 ig/yt/tt;补齐 playbook 后自动生效 |
-| 自定义模板 | `references/templates/` | v0.1 固定 3 类;v0.2 用户可上传 |
-| 多语言 | Stage 4 `locale_override` | v0.1 英文;v0.3 按 target_market 本地化 |
+Pipeline 只挂载 `injectable_prompt` 字符串,不生成任何图片/视频。
+
+- Stage 4 输出的每个 `media_prompts.*` 对象含 `trigger: "on-demand"`。
+- `injectable_prompt` 是可直接注入下游 image/video 工具的完整 prompt。
+- 上层 Atoms builder 负责展示按钮、用户点击和工具调用;这些行为属于 builder 操作,不得进入终端用户 ICP。
+- `_pipeline_meta.media_generation_deferred == true` 恒成立。
+
+## Evidence 与措辞硬约束
+
+- 趋势/证据对象不得包含 `fit_verticals`、`fit_goal_types`、`relevance_to_atoms`、`fit_score`、`realtime_adjustment`。
+- 没有 `usable` evidence 时,不得写“当前热门”“近期大家都在讨论”等表达。
+- `why_now` 只有在 `probe_status == usable` 且 evidence refs >= 2 且 freshness 在 SLA 内才可填写。
+- 不推断真实 demographics、收入、购买力或 signup intent。
 
 ## 版本
 
-- $schema_version: **0.1.0**
-- 首次落盘:2026-07-03
-- Spec: `/Users/shendufuzhi2026/Documents/社媒内容需求洞察/2026-07-03-launch-pack-pipeline-design.md`
+- $schema_version: **0.2.0**
+- v3 重构落盘:2026-07-26
+
+
+
+

@@ -1,176 +1,144 @@
 ---
 name: platform-playbook-schema
 type: template
-description: 三大社媒平台(IG/TikTok/LinkedIn) playbook 的通用结构模板,所有平台 playbook 均按此结构撰写与更新,保证 skill 加载时结构一致、字段可预测。
-version: 1.0
-last_updated: 2026-07-01
+description: 社媒平台 playbook 的通用结构模板。v3 中 playbook 主要服务 Stage 3/4 内容生成;Stage 2 平台覆盖、稳定 profile 和 data access 以 data/platform_registry.json 为准。
+version: 2.0
+last_updated: 2026-07-26
 ---
 
 # Platform Playbook Schema
 
-## 使用说明
+## v3 使用说明
 
-- 每个平台 playbook 严格按下列 10 个 section 编写,section 顺序、标题不变
-- 数据来源必标注:每个数据点后跟 `[来源: xxx, 时间]`,便于后续复核
-- 更新节奏:每 6 个月强制复核算法机制与内容格式规格章节;其他章节按需
-- 目标读者:Skill 加载时的 Agent(用于生成内容决策)+ 人类维护者(用于校准与迭代)
-- **不写什么**:不写产品营销案例的全文引用(占字段);只提炼可复用的结构化规律
+- Stage 2 平台评分优先读取 `data/platform_registry.json` 的 L0/L1/L2 层。
+- Playbook 主要服务 Stage 3/4:语言风格、内容格式、发布节奏、可复用结构、避坑。
+- Playbook 不得写 app-specific 趋势适配字段,也不得把 Atoms builder 自身身份写成 built app 的终端用户画像,包括 `fit_verticals`、`fit_goal_types`、`relevance_to_atoms`。
+- 旧 §8 的业务类型适配只能作为 evergreen 内容策略参考,不得作为 Stage 2 `fit_score` 输入。
+- 每个平台 playbook 的平台 id 应使用 registry 全称:`instagram`, `youtube`, `tiktok`, `reddit`, `x`, `linkedin`, `pinterest`, `rednote`, `douyin`。
 
----
+## 与 Registry 的字段映射
 
-## Section 1 — 平台定位与核心用户
+| v3 Registry 层 | 主文件 | Playbook 是否可补充 | 用途 |
+|---|---|---|---|
+| L0 `platform_coverage_registry` | `data/platform_registry.json` | 否 | 平台覆盖、renderer、数据策略 |
+| L1 `stable_platform_profile` | `data/platform_registry.json` | 可补充说明 | Stage 2 稳定评分;Stage 3 surface 选择 |
+| L2 `data_access_profile` | `data/platform_registry.json` | 否 | Stage 2b 是否可 probe/缓存/授权 |
+| 内容格式/语言/节奏 | playbook | 是 | Stage 3/4 生成内容 |
+| 案例/结构归纳 | playbook | 是 | Angle、hook、storyboard 结构 |
 
-**目标**:1-2 段话讲清"这个平台是什么,谁在上面,他们在这里做什么"
+## 必填 Section
 
-**必填字段**
+每个平台 playbook 严格按下列 section 编写,标题和顺序尽量保持稳定。
 
-- `platform_name`:平台名称
-- `elevator_pitch`:一句话定位(该平台在社媒生态中的独特位置)
-- `mau_and_geography`:月活规模 + 主要地域分布 + 数据来源
-- `primary_use_cases`:用户使用该平台的核心场景(3-5 项)
-- `builder_relevance`:该平台对 Atoms builder(SMB 创业者)的战略价值
+### Section 1 - 平台定位与核心用户
 
----
+- `platform_name`
+- `platform_id`(必须匹配 registry)
+- `elevator_pitch`
+- `primary_use_cases`
+- `builder_relevance`: 只描述 Atoms builder（应用创建者）为什么应考虑该平台,不得当作 built app 终端用户画像
+- `registry_ref`: 指向 `data/platform_registry.json.platforms.{platform_id}`
 
-## Section 2 — 用户画像三视图
+### Section 2 - 稳定受众与心智补充
 
-**目标**:让 Agent 生成内容时能"想象读者是谁"
+补充 registry L1,但不得用作 app-specific 推荐结论。
 
-**必填字段**
+- `audience_pools_notes`
+- `mindset_modes_notes`
+- `intent_layers`
+- `known_limits`: 不可推断 demographics/购买力的边界
 
-- `demographics`:年龄分布 / 性别比例 / 收入区间 / 教育背景
-- `psychographics`:核心心理动机(为什么打开这个平台)、内容偏好、消费决策链路
-- `intent_layers`:平台上用户的意图分层(消遣 / 学习 / 购买 / 关注创作者 / 商业社交等)及各层大致占比
-- `builder_target_segments`:结合 Atoms builder 业务类型(SaaS / ecommerce / creator),该平台适合触达哪些用户细分
+### Section 3 - 分发机制
 
----
+- `distribution_model`
+- `ranking_signals`
+- `content_type_priorities`
+- `engagement_window`
+- `algo_penalties`
+- `recent_changes`
 
-## Section 3 — 算法机制(核心)
+### Section 4 - 内容格式规格
 
-**目标**:让 Agent 生成内容时知道"什么样的内容会被推流"
+- `post_types`
+- `dimensions_and_ratios`
+- `caption_length_recommendation`
+- `hashtag_or_keyword_rules`
+- `link_and_cta_rules`
 
-**必填字段**
+### Section 5 - 调性关键词与语言风格
 
-- `distribution_model`:分发逻辑总览(关注流 vs 推荐流 vs 混合)
-- `ranking_signals`:排名信号权重(如 IG 是 saves > shares > comments > likes > time spent)
-- `content_type_priorities`:不同内容类型的推流优先级(如 Reels vs Feed vs Story)
-- `engagement_window`:内容表现关键窗口期(发布后多少小时决定后续推流)
-- `algo_penalties`:哪些做法会被算法降权(如 IG 的 hashtag 滥用、外链跳转、重复内容)
-- `recent_changes`:近 12 个月算法重大调整(附时间戳与来源)
+- `tone_descriptors`
+- `voice_do`
+- `voice_dont`
+- `emoji_and_emphasis`
+- `hook_patterns`
 
----
+### Section 6 - Hashtag/Keyword 策略
 
-## Section 4 — 内容格式规格
+不同平台可解释为 hashtag、keyword、topic 或 title/description term。
 
-**目标**:硬性规格清单,供内容生成时直接引用
+- `optimal_count`
+- `mix_strategy`
+- `research_method`
+- `banned_or_risky`
+- `evidence_gate`: 无 usable evidence 时只使用 evergreen terms
 
-**必填字段**
+### Section 7 - 发布节奏与频率
 
-- `post_types`:平台支持的内容类型全清单(如 IG:Feed Post / Reels / Story / Carousel / Live / Guide)
-- `dimensions_and_ratios`:每种类型的尺寸 / 时长 / 比例硬性要求
-- `caption_length_recommendation`:每种类型的 caption 长度建议(短 / 中 / 长各自适用场景)
-- `hashtag_capacity`:hashtag 数量硬上限 + 有效数量建议
-- `link_and_cta_rules`:外链 / CTA 位置规则(如 IG 主 feed 无法直接放外链,只能引导 bio link)
+- `best_posting_times`
+- `default_timezone`
+- `frequency_recommendation`
+- `first_week_ramp_up`
+- `production_load_notes`
 
----
+### Section 8 - 业务类型 × 内容打法参考
 
-## Section 5 — 调性关键词与语言风格
+仅作内容策略参考,不得直接输出 Stage 2 `fit_score`。
 
-**目标**:让 Agent 生成的文案"说话方式对味"
+每业务类型可包含。注意这里的业务类型指 built app 的业务/品类,不是 builder 自身身份:
 
-**必填字段**
+- `content_angles`
+- `visual_style`
+- `caption_focus`
+- `cta_style`
+- `common_traps`
+- `stable_fit_notes`(文字说明,非数值评分)
 
-- `tone_descriptors`:5-8 个调性形容词(如 IG:aspirational / aesthetic / authentic / community-driven)
-- `voice_do`:该平台鼓励的语言风格(3-5 条)
-- `voice_dont`:该平台会显得违和的语言风格(3-5 条)
-- `emoji_and_emphasis`:emoji 使用密度、大小写强调、换行节奏等具体规范
-- `hook_patterns`:高转化开头钩子的 3-5 种典型模式(附示例结构,非具体案例文案)
+### Section 9 - 高转化模式
 
----
+- `sample_size_and_source`
+- `winning_structures`
+- `visual_patterns`
+- `engagement_triggers`
+- `known_biases`
 
-## Section 6 — Hashtag 策略
+### Section 10 - 避坑清单 + 数据源
 
-**目标**:hashtag 选择的决策框架
-
-**必填字段**
-
-- `optimal_count`:该平台的最优 hashtag 数量区间(附实测数据来源)
-- `mix_strategy`:hashtag 组合策略(如 IG 的 golden mix:1-2 大 hashtag + 3-5 中等 + 3-5 小众 + 1 品牌 tag)
-- `research_method`:如何为具体 caption 找到合适的 hashtag(工具 + 步骤)
-- `banned_or_risky`:平台明令禁止或已知会导致 shadowban 的 hashtag 类别
-
----
-
-## Section 7 — 发布节奏与频率
-
-**目标**:发布时机建议(注意时区依赖,标注默认时区)
-
-**必填字段**
-
-- `best_posting_times`:该平台 SMB / Creator 类账号的最佳发布时段(按平日 / 周末分)
-- `default_timezone`:上述时段基于的时区(默认 UTC-5 EST 或 UTC-8 PST)
-- `frequency_recommendation`:各内容类型的建议发布频率
-- `first_week_ramp_up`:新账号 / 冷启动阶段的发布策略(与稳态期不同)
-
----
-
-## Section 8 — 业务类型 × 平台适配
-
-**目标**:同一平台在 3 种 Atoms 业务类型下的差异化打法(直接对应 Template 矩阵的输入)
-
-**必填字段**(每业务类型独立子节)
-
-**8.1 SaaS / AI Tool**
-- `fit_score`:该平台对 SaaS 业务的适配度评分(1-5)+ 一句话理由
-- `content_angles`:该业务在该平台上有效的 3-4 种内容切入角度
-- `visual_style`:视觉呈现建议
-- `caption_focus`:文案重点(功能展示 vs 用户案例 vs 创始人叙事等)
-- `cta_style`:该组合下的 CTA 表达方式
-- `common_traps`:该业务在该平台上最常见的踩坑
-
-**8.2 Ecommerce**
-- 同上结构
-
-**8.3 Creator**
-- 同上结构
-
----
-
-## Section 9 — 高转化模式(样本归纳,非案例引用)
-
-**目标**:从大量高互动内容里归纳出可复用的结构模式
-
-**必填字段**
-
-- `sample_size_and_source`:归纳基于的样本数量 + 抓取时间 + 数据来源
-- `winning_structures`:3-5 种反复出现的高转化结构骨架(纯结构,不含具体品牌 / 产品文案)
-- `visual_patterns`:高转化视觉模式(封面 / 首帧 / 排版规律)
-- `engagement_triggers`:反复推动 saves / shares 的元素类型(信息密度 / 教学价值 / 情感共鸣 / 反常识观点 / 视觉冲击 / 幽默等)
-
----
-
-## Section 10 — 避坑清单 + 数据源
-
-**必填字段**
-
-- `avoid_list`:8-12 条明确的"不要做"清单(按严重程度排序:导致 shadowban > 降权 > 转化差 > 观感差)
-- `references`:所有引用的官方资源 / 行业报告 / 抓取数据的详细来源(URL + 访问日期)
-- `next_review_date`:下次强制复核日期(建议 6 个月后)
-
----
+- `avoid_list`
+- `references`
+- `next_review_date`
+- `data_access_boundary`: 与 registry L2 一致,禁止 request-time 非授权抓取
 
 ## Frontmatter Convention
-
-每个平台 playbook 头部必须包含:
 
 ```yaml
 ---
 name: <platform>-playbook
-platform: <instagram | tiktok | linkedin>
+platform: <instagram | youtube | tiktok | reddit | x | linkedin | pinterest | rednote | douyin>
 version: <major.minor>
 last_updated: <YYYY-MM-DD>
-data_freshness_note: <关键数据的时效性说明>
+data_freshness_note: <关键数据时效性说明>
 review_by: <下次复核日期>
-sources_summary: <数据源摘要,一句话>
+sources_summary: <数据源摘要>
 ---
 ```
+
+## 质量约束
+
+- 每个动态或近期样本必须标来源和时间。
+- 不引用长段原文 caption/description,只做结构归纳。
+- 不把单条爆款或热榜样本泛化为平台趋势。
+- 不把授权账号 insight 泛化为平台整体趋势。
+- 新平台先补 registry,再补 playbook,最后才接 adapter。
+
+

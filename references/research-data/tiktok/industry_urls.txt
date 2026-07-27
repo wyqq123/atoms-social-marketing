@@ -2,11 +2,11 @@
 
 **Collection date**: 2026-07-02(v0.1 首版占位;首轮 WebSearch 后填充完整)
 **Sources**: WebSearch (Category B/C queries in `scripts/search_queries.md` TikTok 章节)
-**Next step**: 逐个 WebFetch → 按 `data/case_study_schema.json` 提取 → 追加到 `data/tiktok_case_studies.json`
+**Next step**: 逐个 WebFetch → 按 `references/research-data/schemas/case_study_schema.json` 提取 → 追加到 `references/research-data/tiktok/case_studies.json`
 
 **动态更新节奏**:
 - Category B/C URL 池:每 6 个月强制刷新(与 playbook §3/§4 复核同步)
-- Category E(Creative Center 趋势):每 2-4 周刷新 → 写入 `data/tiktok_trend_snapshot.json`
+- Category E(Creative Center 趋势):每 2-4 周刷新 → 写入 `.cache/social_intel/manual/tiktok/{region}/{language}/{YYYY-Www}/creative-center.json`
 
 ---
 
@@ -107,7 +107,7 @@
 
 ## E — TikTok Creative Center(动态趋势层,TikTok 独有)
 
-**每 2-4 周刷新,数据落 `data/tiktok_trend_snapshot.json`**
+**每 2-4 周刷新,数据落 `.cache/social_intel/manual/tiktok/{region}/{language}/{YYYY-Www}/creative-center.json`**
 
 ### 主入口
 - https://ads.tiktok.com/business/creativecenter — Creative Center 主页
@@ -152,9 +152,9 @@
 - [ ] Category B2:跑 6-8 条 query,收集 12-15 篇分业务/形式 URL
 - [ ] Category B3(Creator 类):至少 5 条 query,尽量收集(预期稀疏)
 - [ ] Category C:跑 4-6 条 query,收集 5-8 篇官方文档
-- [ ] Category E:首次 Creative Center 快照,写入 `tiktok_trend_snapshot.json`
-- [ ] 逐个 WebFetch → 按 `data/case_study_schema.json` 结构提取 → `data/tiktok_case_studies.json`
-- [ ] 人工补齐 → `data/tiktok_manual_supplements.md`(重点:Creator 类 + vibe coding SMB)
+- [ ] Category E:首次 Creative Center 快照,写入 `.cache/social_intel/manual/tiktok/{region}/{language}/{YYYY-Www}/creative-center.json`
+- [ ] 逐个 WebFetch → 按 `references/research-data/schemas/case_study_schema.json` 结构提取 → `references/research-data/tiktok/case_studies.json`
+- [ ] 人工补齐 → `references/research-data/tiktok/manual_supplements.md`(重点:Creator 类 + vibe coding SMB)
 
 ---
 

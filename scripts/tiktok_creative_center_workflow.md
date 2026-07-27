@@ -2,7 +2,7 @@
 
 ## 目的
 
-TikTok 独有的官方开放趋势数据入口,是 TikTok playbook 相对 IG 的最大差异化能力。每 2-4 周走一次流程,把 4 类数据落到 `data/tiktok_trend_snapshot.json`,供 playbook §5 hook 建议 / §6 hashtag mix / §9 sound recommendation 引用。
+TikTok 独有的官方开放趋势数据入口,是 TikTok playbook 相对 IG 的最大差异化能力。每 2-4 周走一次流程,把 4 类数据落到 `.cache/social_intel/manual/tiktok/{region}/{language}/{YYYY-Www}/creative-center.json`,供 playbook §5 hook 建议 / §6 hashtag mix / §9 sound recommendation 引用。
 
 ---
 
@@ -141,7 +141,7 @@ const items = await page.$$eval('[data-testid="hashtag-item"]', els =>
 
 ### Step 0 — 确认前置
 
-- 检查 `data/tiktok_trend_snapshot.json` 的 `$last_refresh` 时间
+- 检查 `.cache/social_intel/manual/tiktok/{region}/{language}/{YYYY-Www}/creative-center.json` 的 `$last_refresh` 时间
 - 若距今 < 2 周 → skip(数据还新)
 - 若距今 > 6 周 → 全量重抓(旧数据无参考价值)
 - 若距今 2-4 周 → 增量刷新(保留 60% 老数据 + 40% 新替换)
@@ -154,11 +154,11 @@ const items = await page.$$eval('[data-testid="hashtag-item"]', els =>
 
 ### Step 2 — 结构化整理
 
-- 每类抓取结果按 snapshot json 的 `$structure_ref` 格式化
-- **必须给每条 entry 加 `atoms_relevance` 字段**(一句话,说清对 Atoms 用户场景的价值)
+- 每类抓取结果按 Creative Center cache schema/样例结构格式化(样例见 `references/research-data/tiktok/creative_center_snapshot_sample.json`)
+- **必须给每条 entry 加 `atoms_relevance` 字段**(一句话,说清对 Atoms builder（应用创建者）推广 built app 的场景价值；不得写成 built app 终端用户画像)
 - 对 sound 类,**必须估 decay_estimate**
 
-### Step 3 — 写入 snapshot json
+### Step 3 — 写入 L5 cache json
 
 - 更新 `$last_refresh`(ISO date)
 - 更新 `$last_refresh_scope.regions` / `industries` / `time_window`
@@ -189,7 +189,7 @@ const items = await page.$$eval('[data-testid="hashtag-item"]', els =>
 | §9 winning structures | `trending_sounds[]` | 生成 content brief 时,若在 sound decay 窗口内,主动建议借势 sound |
 | §9 winning structures | `top_ads_patterns[]` | Ads pattern 中反复出现的结构可下沉进 §9(需 2+ 次连续 refresh 验证) |
 
-**核心原则**:snapshot 提供 **短期借势素材**,不提供 **长期结构**。长期结构走 case studies + manual supplements。
+**核心原则**:L5 cache 提供 **短期借势素材**,不提供 **长期结构**。长期结构走 case studies + manual supplements。
 
 ---
 
@@ -199,7 +199,7 @@ const items = await page.$$eval('[data-testid="hashtag-item"]', els =>
 |------|----------|
 | WebFetch 返回空 / 只读到 header 无 data | 走 playwright 兜底(需按需构建脚本) |
 | Creative Center UI 改版导致提取失败 | 记录到 `scripts/README.md` TikTok changelog,人工在页面直接看后手填 5-10 条最关键的 |
-| Region 数据缺失(如 DE 无 Tech 数据) | 跳过,不强填 —— snapshot 只覆盖有真实数据的 region × industry |
+| Region 数据缺失(如 DE 无 Tech 数据) | 跳过,不强填 —— L5 cache 只覆盖有真实数据的 region × industry |
 | Sound license 无法判断 | 标 `license_type: "unknown"`,不建议直接用 |
 
 ---
@@ -208,7 +208,7 @@ const items = await page.$$eval('[data-testid="hashtag-item"]', els =>
 
 - `tiktok_case_studies.json`:长期结构模式,**12 个月刷新**
 - `tiktok_manual_supplements.md`:人工补齐,**按增量**
-- `tiktok_trend_snapshot.json`:短期素材,**2-4 周刷新** ← 本文档负责
+- `.cache/social_intel/manual/tiktok/{region}/{language}/{YYYY-Www}/creative-center.json`:短期素材,**2-4 周刷新** ← 本文档负责
 
 三者互相独立,不做 merge。playbook §9 引用时按需分别取。
 

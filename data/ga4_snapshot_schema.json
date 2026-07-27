@@ -1,0 +1,149 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "atoms-social-marketing/ga4_snapshot_schema",
+  "$schema_version": "0.1.1",
+  "title": "GA4 App Analytics Snapshot",
+  "description": "用户 Atoms 应用内集成 GA4(measurement id)后,上层在调 skill 前拉取的汇总快照。指标与维度口径对齐 GA4 Data API / 报告界面。MVP 补充数据:未集成 GA4 时为 null。",
+  "type": "object",
+  "required": ["fetched_at", "period", "summary"],
+  "properties": {
+    "fetched_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "上层拉取快照的 UTC 时间(ISO 8601)"
+    },
+    "measurement_id": {
+      "type": "string",
+      "pattern": "^G-[A-Z0-9]+$",
+      "description": "GA4 Measurement ID,来自用户在 Atoms 应用内集成的 GA4 配置"
+    },
+    "period": {
+      "type": "string",
+      "enum": ["last_7d", "last_30d"],
+      "description": "summary / by_country / by_channel / by_event 的汇总时间窗口。active_users_30m 不受此字段约束,恒为滚动近 30 分钟。"
+    },
+    "summary": {
+      "type": "object",
+      "required": [
+        "new_users",
+        "returning_users",
+        "active_users_30m",
+        "sessions",
+        "engaged_sessions"
+      ],
+      "properties": {
+        "new_users": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "GA4 metric: newUsers,窗口内新用户数"
+        },
+        "returning_users": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "GA4 metric: 窗口内回访用户数(returningUsers 或 totalUsers - newUsers)"
+        },
+        "active_users_30m": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "GA4 metric: activeUsers,滚动近 30 分钟活跃用户数"
+        },
+        "sessions": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "GA4 metric: sessions,窗口内会话数"
+        },
+        "engaged_sessions": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "GA4 metric: engagedSessions。GA4 定义:会话时长>10s,或发生转化事件,或 screen/page views≥2"
+        }
+      },
+      "additionalProperties": false
+    },
+    "by_country": {
+      "type": "array",
+      "description": "dimension: country,按 sessions 降序;top N(建议≤10)",
+      "items": { "$ref": "#/definitions/geoRow" },
+      "default": []
+    },
+    "by_channel": {
+      "type": "array",
+      "description": "dimension: sessionDefaultChannelGroup(GA4 默认渠道分组)",
+      "items": { "$ref": "#/definitions/channelRow" },
+      "default": []
+    },
+    "by_event": {
+      "type": "array",
+      "description": "dimension: eventName;MVP 仅采集 GA4 自动/常见事件",
+      "items": { "$ref": "#/definitions/eventRow" },
+      "default": []
+    }
+  },
+  "definitions": {
+    "geoRow": {
+      "type": "object",
+      "required": ["country", "users", "new_users", "sessions", "engaged_sessions"],
+      "properties": {
+        "country": {
+          "type": "string",
+          "description": "ISO 3166-1 alpha-2 国家代码"
+        },
+        "users": { "type": "integer", "minimum": 0 },
+        "new_users": { "type": "integer", "minimum": 0 },
+        "sessions": { "type": "integer", "minimum": 0 },
+        "engaged_sessions": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "channelRow": {
+      "type": "object",
+      "required": ["channel", "users", "new_users", "sessions", "engaged_sessions"],
+      "properties": {
+        "channel": {
+          "type": "string",
+          "description": "GA4 sessionDefaultChannelGroup 枚举值",
+          "enum": [
+            "Direct",
+            "Cross-network",
+            "Paid Search",
+            "Paid Social",
+            "Organic Search",
+            "Organic Social",
+            "Email",
+            "Referral",
+            "Affiliates",
+            "Display",
+            "SMS",
+            "Audio",
+            "Video",
+            "Unassigned"
+          ]
+        },
+        "users": { "type": "integer", "minimum": 0 },
+        "new_users": { "type": "integer", "minimum": 0 },
+        "sessions": { "type": "integer", "minimum": 0 },
+        "engaged_sessions": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "eventRow": {
+      "type": "object",
+      "required": ["event_name", "sessions"],
+      "properties": {
+        "event_name": {
+          "type": "string",
+          "enum": [
+            "first_visit",
+            "page_view",
+            "scroll",
+            "session_start",
+            "user_engagement"
+          ]
+        },
+        "sessions": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

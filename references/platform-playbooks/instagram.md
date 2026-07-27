@@ -10,8 +10,8 @@ sources_summary: 4 篇 Category B 博客案例(Hootsuite / SocialInsider / Later
 
 # Instagram Playbook
 
-> **服务对象**:Atoms 用户所构建应用的 IG 社媒运营(冷启动 + 长期)
-> **规模假设**:Atoms 用户 90%+ 处于 0-5K followers,playbook 分级建议默认按此校准。规模上到 10K+ 时切换到 tier 2 打法(见 §4 / §9)
+> **服务对象**:Atoms builder（应用创建者）所构建应用的 IG 社媒运营(冷启动 + 长期)
+> **规模假设**:Atoms builder（应用创建者） 90%+ 处于 0-5K followers,playbook 分级建议默认按此校准。规模上到 10K+ 时切换到 tier 2 打法(见 §4 / §9)
 
 ---
 
@@ -37,7 +37,7 @@ IG 是全球第二大视觉社媒(仅次于 TikTok),核心角色是**「视觉�
 
 ### `builder_relevance`
 
-对 Atoms builder 的战略价值分为三层:
+对 Atoms builder（应用创建者）的战略价值分为三层:
 
 | 阶段 | IG 承担角色 | 关键动作 |
 |------|------------|---------|
@@ -49,7 +49,7 @@ IG 是全球第二大视觉社媒(仅次于 TikTok),核心角色是**「视觉�
 
 ---
 
-## §2 用户画像三视图
+## §2 平台受众与使用心智三视图
 
 ### `demographics`
 - **年龄**:18-34 岁核心(约 60%),35-54 岁快速增长(2024-2025);13-17 岁默认「Teen Account」限制,内容触达受严格过滤 [来源: Hootsuite 2026]
@@ -73,7 +73,7 @@ IG 是全球第二大视觉社媒(仅次于 TikTok),核心角色是**「视觉�
 
 **Atoms 生成内容时的意图定位默认**:一条帖子的目标层次要单一——不试图在同一帧同时讨好「消遣」+「学习」+「购物」。
 
-### `builder_target_segments`
+### `built_app_business_segments`
 
 **SaaS / AI Tool**
 - 核心受众:solopreneur / creator / SMB owner / marketer(自己就是 IG 高频用户)
@@ -251,11 +251,11 @@ IG 支持的完整内容类型:
 
 | Tier | Regime | 目标 | Primary Format | 配比建议 |
 |------|--------|------|---------------|---------|
-| **Tier 1: 1-10K**(Atoms 用户主体) | Views + baseline exposure | **Carousel-first** | Carousel(views 优势 1.7x-2x Reels) | Carousel 50% / Reel 30% / Image 10% / Stories daily |
+| **Tier 1: 1-10K**(Atoms builder（应用创建者）主体) | Views + baseline exposure | **Carousel-first** | Carousel(views 优势 1.7x-2x Reels) | Carousel 50% / Reel 30% / Image 10% / Stories daily |
 | **Tier 2: 10K-100K** | Engagement depth | Carousel(saves 反超) + Reel(comments 领先) | Carousel 40% / Reel 40% / Image 15% / Stories daily |
 | **Tier 3: 100K+** | Algorithm favor + brand equity | Reel-first(接近 Sam Oliver 主流建议) | Reel 60-70% / Carousel 20-30% / Image 10% / Stories 高频 |
 
-**注意**:Atoms 用户 90%+ 处于 Tier 1,playbook 默认按 Tier 1 生成,与主流媒体宣传的「Reels-first」建议直接冲突——这是数据背书的差异化定位。
+**注意**:Atoms builder（应用创建者） 90%+ 处于 Tier 1,playbook 默认按 Tier 1 生成,与主流媒体宣传的「Reels-first」建议直接冲突——这是数据背书的差异化定位。
 
 ---
 
@@ -271,8 +271,9 @@ IG 支持的完整内容类型:
 - §9 winning structures:Nancy Oganezov 的 Carousel 双 hook、Mosseri 爆款接续、Sierra Winnow 三段式增长
 - §10 avoid list:Later mistakes(7 项)+ Hootsuite algo penalties(6 项)可合并
 
-**待用户输入**:`data/ig_manual_supplements.md` 中的 Creator 类补齐样本(4-7 条),用于 §8.3
+**待用户输入**:`references/research-data/instagram/manual_supplements.md` 中的 Creator 类补齐样本(4-7 条),用于 §8.3
 
 ---
 
 *次版本目标*:补齐 §5-§10 后进入 v0.2;v1.0 需要 Category C 官方文档交叉验证(distribution model / algorithm 章节)。
+

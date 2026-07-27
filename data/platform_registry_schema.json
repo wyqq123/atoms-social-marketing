@@ -1,0 +1,117 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "atoms-social-marketing/platform_registry_schema",
+  "$schema_version": "0.2.0",
+  "title": "Platform Coverage Registry",
+  "description": "Stable platform coverage, profile, and data-access contract for Stage 2 platform shortlist and fit scoring.",
+  "type": "object",
+  "required": ["$schema_version", "last_updated", "platforms"],
+  "properties": {
+    "$schema_version": { "type": "string", "const": "0.2.0" },
+    "last_updated": { "type": "string", "format": "date" },
+    "platforms": {
+      "type": "object",
+      "additionalProperties": { "$ref": "#/definitions/PlatformEntry" }
+    }
+  },
+  "definitions": {
+    "PlatformEntry": {
+      "type": "object",
+      "required": [
+        "platform_coverage_registry",
+        "stable_platform_profile",
+        "data_access_profile"
+      ],
+      "properties": {
+        "platform_coverage_registry": { "$ref": "#/definitions/Coverage" },
+        "stable_platform_profile": { "$ref": "#/definitions/StableProfile" },
+        "data_access_profile": { "$ref": "#/definitions/DataAccess" }
+      },
+      "additionalProperties": false
+    },
+    "Coverage": {
+      "type": "object",
+      "required": [
+        "platform_id",
+        "supported_markets",
+        "supported_languages",
+        "content_surfaces",
+        "renderer_support",
+        "realtime_probe_mode",
+        "data_policy",
+        "default_confidence_cap"
+      ],
+      "properties": {
+        "platform_id": { "type": "string" },
+        "aliases": { "type": "array", "items": { "type": "string" } },
+        "supported_markets": { "type": "array", "items": { "type": "string" } },
+        "supported_languages": { "type": "array", "items": { "type": "string" } },
+        "content_surfaces": { "type": "array", "items": { "type": "string" } },
+        "renderer_support": {
+          "type": "array",
+          "items": { "type": "string", "enum": ["text", "image", "short_video", "long_video", "link_preview"] }
+        },
+        "realtime_probe_mode": {
+          "type": "string",
+          "enum": ["api", "cache", "authorized", "manual", "unsupported"]
+        },
+        "data_policy": { "type": "string" },
+        "default_confidence_cap": { "type": "string", "enum": ["low", "medium", "medium-high", "high"] }
+      },
+      "additionalProperties": false
+    },
+    "StableProfile": {
+      "type": "object",
+      "required": [
+        "audience_pools",
+        "mindset_modes",
+        "surface_map",
+        "distribution_mechanics",
+        "content_format_affordances",
+        "conversion_affordances",
+        "production_requirements",
+        "policy_and_norms",
+        "measurement_options"
+      ],
+      "properties": {
+        "audience_pools": { "type": "array", "items": { "type": "object" } },
+        "mindset_modes": { "type": "array", "items": { "type": "object" } },
+        "surface_map": { "type": "array", "items": { "type": "object" } },
+        "distribution_mechanics": { "type": "array", "items": { "type": "string" } },
+        "content_format_affordances": { "type": "array", "items": { "type": "string" } },
+        "conversion_affordances": { "type": "array", "items": { "type": "string" } },
+        "production_requirements": { "type": "array", "items": { "type": "string" } },
+        "policy_and_norms": { "type": "object" },
+        "measurement_options": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": false
+    },
+    "DataAccess": {
+      "type": "object",
+      "required": [
+        "runtime_access_mode",
+        "available_signals",
+        "unavailable_signals",
+        "source_priority",
+        "freshness_sla",
+        "rate_limit_risk",
+        "fallback_mode",
+        "compliance_notes"
+      ],
+      "properties": {
+        "runtime_access_mode": {
+          "type": "string",
+          "enum": ["realtime_api", "cache_only", "authorized_only", "manual_only", "unsupported"]
+        },
+        "available_signals": { "type": "array", "items": { "type": "string" } },
+        "unavailable_signals": { "type": "array", "items": { "type": "string" } },
+        "source_priority": { "type": "array", "items": { "type": "string" } },
+        "freshness_sla": { "type": "string" },
+        "rate_limit_risk": { "type": "string", "enum": ["low", "medium", "high"] },
+        "fallback_mode": { "type": "string" },
+        "compliance_notes": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": false
+    }
+  }
+}

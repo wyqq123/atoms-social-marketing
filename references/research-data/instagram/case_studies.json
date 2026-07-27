@@ -31,7 +31,7 @@
         },
         "why_featured": "Buffer 选它作为 organic-only、solo-founder、真实 SMB 增长的样板——没有 ad spend、没有 team、founder Assie 一人扛全流程(marketing / buying / customer service)",
         "insight_from_blog": "核心增长机制不是'内容工艺',而是**vulnerability + build-in-public**:(1) Stories 里随手分享 baby plates,followers 反馈直接催生了产品线转向;(2) 用 Stories & polls 收集颜色/设计意见,让 followers 有 'co-owner' 感;(3) '不化妆、素颜出镜时 engagement 反而更高' —— Assie 亲述,反工艺化的真实感是 unlock 转化的关键;(4) 补充渠道:Facebook parenting Groups 引流至 IG,以'解决痛点的产品'切入而非硬广",
-        "atoms_relevance": "**极匹配 Atoms 用户画像**:(1) solo founder、非技术背景、无营销预算——正是 vibe coding SMB 的常见状态;(2) 'build-in-public + community-driven pivot' 模式可直接作为 Atoms Ecommerce Template §2(内容策略)的锚点样本;(3) 反工艺化启示——playbook 应避免推'高制作门槛'的内容形式(专业剪辑 Reels、精修 carousel);(4) '产品迭代由 followers 意见驱动'的机制,可映射到 Atoms 'Agent 帮你解读 IG 评论 → 生成产品调整建议' 的功能设想",
+        "atoms_relevance": "**极匹配 Atoms builder（应用创建者）冷启动样本**:(1) solo founder、非技术背景、无营销预算——贴近 vibe coding SMB builder 的常见生产约束,但不得写入 built app 终端用户 ICP;(2) 'build-in-public + community-driven pivot' 模式可直接作为 Atoms Ecommerce Template §2(内容策略)的锚点样本;(3) 反工艺化启示——playbook 应避免推'高制作门槛'的内容形式(专业剪辑 Reels、精修 carousel);(4) '产品迭代由 followers 意见驱动'的机制,可映射到 Atoms 'Agent 帮你解读 IG 评论 → 生成产品调整建议' 的功能设想",
         "confidence": "medium (定性洞察 confidence 高;具体 engagement 数字 confidence 低——博客未披露)"
       }
     ],
@@ -72,7 +72,7 @@
         },
         "why_featured": "Later 用它示范'search-led hashtag + branded hashtag' 双轨结构:前者(#GlobalRunningDay)抓活跃搜索意图,后者(#IAmASweabyBetty)聚合 UGC + 建社群身份",
         "insight_from_blog": "Hashtag 只做 targeting,内容质量 + community 感闭合 engagement——'hashtags do the targeting work, content quality and community feeling close the engagement loop'",
-        "atoms_relevance": "Ecommerce Template §6 的双 hashtag 类型样板:1 个 cultural-moment/topic tag + 1 个 branded tag。Atoms 用户品牌初期没有 branded tag 沉淀,可先只用 topic + niche,后续引导用户建立 branded tag",
+        "atoms_relevance": "Ecommerce Template §6 的双 hashtag 类型样板:1 个 cultural-moment/topic tag + 1 个 branded tag。Atoms builder（应用创建者）的 built app 品牌初期通常没有 branded tag 沉淀,可先只用 topic + niche,后续引导 builder 建立 branded tag",
         "confidence": "medium (品牌真实,数字未 timestamp)"
       }
     ],
@@ -168,7 +168,7 @@
     "atoms_playbook_direct_mapping": {
       "§6_hashtag_seo_rewrite": "整章重写:从'hashtag 组合'旧范式 → '5-slot portfolio + algorithm-classification signal' 新范式",
       "template_defaults": {
-        "saas": "2 × niche community(如 #ContentCreatorTips ~175K, #SocialMediaManager ~285K) + 1 × topic(#SmallBusinessMarketing ~130K) + 1 × format(#CarouselTips 类) + 1 × branded (Atoms 用户自建)",
+        "saas": "2 × niche community(如 #ContentCreatorTips ~175K, #SocialMediaManager ~285K) + 1 × topic(#SmallBusinessMarketing ~130K) + 1 × format(#CarouselTips 类) + 1 × branded (builder 为 built app 自建)",
         "ecommerce": "参考 Sweaty Betty 双轨:1 × cultural-moment/topic + 1 × branded + 2 × niche community + 1 × location(如本地品牌)",
         "creator": "2 × niche community + 2 × topic + 1 × format(#ReelsTutorial 类,当形式为 hook)"
       },
@@ -362,7 +362,7 @@
       "overall_engagement_rate": {
         "value": "0.48%",
         "yoy_change": "-24%",
-        "playbook_implication": "playbook §2 基线数字:告诉 Atoms 用户'0.48% 是平台平均,你的目标应至少匹配此数'",
+        "playbook_implication": "playbook §2 基线数字:告诉 Atoms builder（应用创建者）'0.48% 是平台平均,你的 built app 社媒账号目标应至少匹配此数'",
         "confidence": "high"
       },
       "engagement_by_format_full_year_2025": {
@@ -389,7 +389,7 @@
         "100K-1M": {"reels": 60, "carousel": 40, "image": 38}
       },
       "structural_insight": "Reels 在所有 brand size 都领先 comments,且**领先幅度随规模扩大**——小账号 Reel/Carousel/Image = 3/2/1(格式差异微弱),大账号 60/40/38(Reel 全面碾压)。含义:**tiny brands(1-5K)选格式对 comments 影响很小,应先解决其他基础问题;规模上来后再堆 Reels**",
-      "atoms_relevance": "**核心 Atoms 定标数字**:Atoms 用户以 1-5K 为主(甚至 0-1K),Reel 平均 3 条 comment、Carousel 2 条、Image 1 条——'一条帖子 3 条 comment 就是行业中位' 是需要写进 playbook 的现实主义预期,防止用户被大 V 数字打击信心",
+      "atoms_relevance": "**核心 Atoms 定标数字**:Atoms builder（应用创建者）的 built app 社媒账号以 1-5K 为主(甚至 0-1K),Reel 平均 3 条 comment、Carousel 2 条、Image 1 条——'一条帖子 3 条 comment 就是行业中位' 是需要写进 playbook 的现实主义预期,防止 builder 被大 V 数字打击信心",
       "confidence": "high"
     },
     "saves_by_brand_size_and_format_2026": {
@@ -402,7 +402,7 @@
         "100K-1M": {"reels": 96, "carousel": 98, "image": 43}
       },
       "structural_insight": "Carousel 是 saves 王者,但**只在 10K+ 规模显现**。1-5K 时 saves 全都是 1,格式无差异;10-50K 起 Carousel 反超 Reel;50-100K 时 Carousel(35) > Reel(22),差距 60%;100K+ Carousel 与 Reel 齐平(98 vs 96)",
-      "atoms_relevance": "对 Atoms 用户(1-5K):saves 不是可优化 metric——数据就是 1,做啥都是 1。**不要让 Agent 把 saves 当 KPI 建议给用户,除非账号 >10K**。playbook §9 metric 优先级:comments > shares > saves(saves 仅在 10K+ 有意义)",
+      "atoms_relevance": "对 Atoms builder（应用创建者）的 built app 早期社媒账号(1-5K):saves 不是可优化 metric——数据就是 1,做啥都是 1。**不要让 Agent 把 saves 当 KPI 建议给 builder,除非账号 >10K**。playbook §9 metric 优先级:comments > shares > saves(saves 仅在 10K+ 有意义)",
       "confidence": "high"
     },
     "views_by_brand_size_and_format_2026": {
@@ -433,7 +433,7 @@
         "images": "10% (culture-driven / humanise brand)",
         "stories": "frequently alongside — 'relationship layer that turns reach into brand trust'"
       },
-      "atoms_deviation_from_industry": "Atoms 用户以 1-5K 为主,数据显示此规模下 **Carousel views 已经 = 1.7x Reels**。因此 Atoms 推荐的 mix 应偏离 Sam Oliver 的 60-30-10 主流建议,更接近 **40-40-10-10(Reel-Carousel-Image-Stories)** 或直接 Carousel-first",
+      "atoms_deviation_from_industry": "Atoms builder（应用创建者）的 built app 早期社媒账号以 1-5K 为主,数据显示此规模下 **Carousel views 已经 = 1.7x Reels**。因此 Atoms 推荐的 mix 应偏离 Sam Oliver 的 60-30-10 主流建议,更接近 **40-40-10-10(Reel-Carousel-Image-Stories)** 或直接 Carousel-first",
       "confidence": "high"
     },
     "audience_growth_collapse_2024_to_2025": {
@@ -446,7 +446,7 @@
         "100K-1M": {"2024": "27%", "2025": "11.25%", "yoy_drop": "-58%"}
       },
       "structural_insight": "**所有规模的增长率都腰斩**,越大账号越惨(100K+ 跌 58%)。原因:Sam Oliver 观察 '算法停止给早期 boost,只推给已有 followers'",
-      "atoms_playbook_expectation_setting": "playbook §1 必须写清楚:'2025 起 IG 增长已结构性放缓——1-5K 阶段年增长中位 22%(而非博客常引用的 38%);不要用 2024 及以前的数字定 KPI'。这是防止 Atoms 用户失望离开的关键预期管理",
+      "atoms_playbook_expectation_setting": "playbook §1 必须写清楚:'2025 起 IG 增长已结构性放缓——1-5K 阶段年增长中位 22%(而非博客常引用的 38%);不要用 2024 及以前的数字定 KPI'。这是防止 Atoms builder（应用创建者）对 built app 早期社媒表现产生错误预期的关键预期管理",
       "confidence": "high"
     },
     "expert_quotes_key_insights": [
@@ -473,7 +473,7 @@
       {
         "speaker": "Kyle Mccall, Social Media Manager (running brand)",
         "quote_paraphrase": "'save-worthy carousel' 的核心是 service content——真正 useful 的信息。给跑鞋品牌做的最成功帖子是 shoes + product feature callout(简单、有用、可分享)",
-        "atoms_relevance": "对 ecommerce Atoms 用户:carousel 首选主题不是 lifestyle,是'产品特性拆解'(1 slide 1 feature 结构)"
+        "atoms_relevance": "对 ecommerce built app:carousel 首选主题不是 lifestyle,是'产品特性拆解'(1 slide 1 feature 结构);builder 只作为内容生产者而非终端用户 ICP"
       },
       {
         "speaker": "Sam Oliver, Social Media Strategist",
@@ -488,7 +488,7 @@
     ],
     "atoms_playbook_direct_mapping": {
       "§1_expectation_setting_new_chapter": [
-        "'2025 是 Instagram 结构性 reset,不是你个人做错了什么'——开篇首页共情",
+        "'2025 是 Instagram 结构性 reset,不是你的 built app 或社媒运营个人做错了什么'——开篇首页共情",
         "1-5K 阶段年增长中位 22%(而非 38%,防止过高预期)",
         "1-5K 阶段单帖 comments 中位:Reel 3 / Carousel 2 / Image 1——把'一条帖子 3 条 comment' 定为'达标',不是失败",
         "saves 在 <10K 阶段全都是 1,不作 KPI"
@@ -535,7 +535,7 @@
       "样本量 35M posts / 447K pages 是 Category B 最大源;数据 confidence 高于其他",
       "SocialInsider 自述'2026 数据实际是 2025 全年',我们按 2025 引用避免误导",
       "**关键洞察修正**:'Reels-first' 是错误的行业惯性——数据显示 Carousel 才是 views + saves 双料王者,尤其对 tiny brand(<10K)",
-      "对 Atoms 定位的战略含义:Atoms 用户 90%+ 是 1-5K 规模,playbook 主推 Carousel-first,与主流媒体宣传的 'Reels-first' 直接冲突——但这是数据背书的差异化建议"
+      "对 Atoms 定位的战略含义:Atoms builder（应用创建者）的 built app 早期社媒账号 90%+ 是 1-5K 规模,playbook 主推 Carousel-first,与主流媒体宣传的 'Reels-first' 直接冲突——但这是数据背书的差异化建议"
     ]
   }
 ]

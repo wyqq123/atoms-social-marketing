@@ -1,0 +1,11 @@
+{
+  "icp_id": "runtime",
+  "icp_subject": "built_app_end_users",
+  "geo_language": {"markets": ["US"], "languages": ["en"]},
+  "end_user_identity": {
+    "roles": [{"value": "Shopify seller", "source": "positioning.target_audience", "confidence": "high"}],
+    "organization_context": [{"value": "small ecommerce operator", "source": "inferred", "confidence": "medium"}],
+    "industry_context": [{"value": "ecommerce", "source": "app_context.category", "confidence": "medium-high"}],
+    "community_identities": []
+  }
+}

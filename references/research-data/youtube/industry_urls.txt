@@ -3,8 +3,8 @@
 **Collection date**: 2026-07-02(初始种子;后续通过 `scripts/youtube_search_queries.md` 补齐)
 **Source**: 已知官方 URL + 待跑 WebSearch
 **Next step**:
-1. 官方 URL 直接 WebFetch → 汇入 `data/youtube_case_studies.json`
-2. Category A YT 视频 URL(见文件尾部收集区)→ 跑 `scripts/fetch_youtube_metadata.py`(oembed 或 api)→ 汇入 `data/youtube_video_samples.json`
+1. 官方 URL 直接 WebFetch → 汇入 `references/research-data/youtube/case_studies.json`
+2. Category A YT 视频 URL(见文件尾部收集区)→ 跑 `scripts/fetch_youtube_metadata.py`(oembed 或 api)→ 汇入 `references/research-data/youtube/video_samples.json`
 3. Category B 博客 URL 待通过 `scripts/youtube_search_queries.md` 补齐
 
 ---
@@ -95,7 +95,7 @@
 
 ## 已知 Atoms-relevant 频道锚点(初始参考,非硬采集列表)
 
-以下是 Atoms 目标用户画像贴近的频道,可作为样本挖掘起点(逐个查看每个频道 top 视频):
+以下是 Atoms builder（应用创建者）画像或 built app 早期社媒运营场景贴近的频道,可作为样本挖掘起点(逐个查看每个频道 top 视频)。这些频道只用于 builder 生产能力/冷启动路径/内容结构参考,不得写入 built app 终端用户 ICP:
 
 | 频道 | 类型 | Atoms 匹配点 |
 |---|---|---|

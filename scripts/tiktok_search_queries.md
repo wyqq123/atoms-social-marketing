@@ -138,7 +138,7 @@ site:effecthouse.tiktok.com
 
 ## Category D — 人工补齐
 
-用户提供样本,由 Agent 在 `data/tiktok_manual_supplements.md` 按模板整理。
+用户提供样本,由 Agent 在 `references/research-data/tiktok/manual_supplements.md` 按模板整理。
 
 **重点补齐方向**(比 IG / YT 更关键):
 - **Creator 类 solo builder / indie hacker**(≥10 条)—— 博客覆盖极稀疏,需重度补齐
@@ -151,7 +151,7 @@ site:effecthouse.tiktok.com
 
 ## Category E(TikTok 独有)— Creative Center 趋势快照
 
-**动态刷新层,与 Category B/C 独立**。数据落 `data/tiktok_trend_snapshot.json`,workflow 见 `scripts/tiktok_creative_center_workflow.md`。
+**动态刷新层,与 Category B/C 独立**。数据落 `.cache/social_intel/manual/tiktok/{region}/{language}/{YYYY-Www}/creative-center.json`,workflow 见 `scripts/tiktok_creative_center_workflow.md`。
 
 **刷新节奏**:2-4 周(TikTok trending 生命周期 7-14 天,过期数据无价值)
 **主入口**:https://ads.tiktok.com/business/creativecenter
@@ -181,10 +181,10 @@ site:effecthouse.tiktok.com
 - [ ] Category B3(SaaS + Ecom + Creator):跑 12-15 条 query,收集 15-20 篇业务 URL
 - [ ] Category B4/B5:跑 8-10 条 query,收集 10-15 篇机制 + 形式 URL
 - [ ] Category C:直接 WebFetch 已知 URL(5-8 篇官方)
-- [ ] 汇总所有 URL 到 `data/tiktok_industry_urls.txt`(按 B1/B2/B3/B4/B5/C 分组)
-- [ ] 逐个 WebFetch → 按 `data/case_study_schema.json` + TikTok 独有字段 → `data/tiktok_case_studies.json`
-- [ ] Category D 人工补齐 ≥10 条(重点 Creator 类)→ `data/tiktok_manual_supplements.md`
-- [ ] **Category E 首次 Creative Center 快照** → 按 `tiktok_creative_center_workflow.md` → `data/tiktok_trend_snapshot.json`
+- [ ] 汇总所有 URL 到 `references/research-data/tiktok/industry_urls.txt`(按 B1/B2/B3/B4/B5/C 分组)
+- [ ] 逐个 WebFetch → 按 `references/research-data/schemas/case_study_schema.json` + TikTok 独有字段 → `references/research-data/tiktok/case_studies.json`
+- [ ] Category D 人工补齐 ≥10 条(重点 Creator 类)→ `references/research-data/tiktok/manual_supplements.md`
+- [ ] **Category E 首次 Creative Center 快照** → 按 `tiktok_creative_center_workflow.md` → `.cache/social_intel/manual/tiktok/{region}/{language}/{YYYY-Www}/creative-center.json`
 - [ ] §5-§10 归纳填充 playbook
 
 ### 长期维护

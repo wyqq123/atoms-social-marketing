@@ -10,9 +10,9 @@ sources_summary: 4 篇 Category B 行业报告(SocialInsider/Hootsuite/Later/Buf
 
 # TikTok Playbook
 
-> **服务对象**:Atoms 用户所构建应用的 TikTok 社媒运营(冷启动 + 长期)
-> **规模假设**:Atoms 用户 90%+ 处于 0-10K followers,playbook 分级建议默认按此校准。TikTok 与 IG 不同,**follower 数不是 reach 的强门槛**——0 粉账号也可能单条 100K+ views(FYP 分发主导)。规模上到 100K+ 时切换到 tier 2 打法(见 §4 / §7)
-> **动态更新**:TikTok trend 变化速度远高于 IG,§5 hook / §6 hashtag / §9 winning structures 三节需配合 `data/tiktok_trend_snapshot.json` 每 2-4 周更新;算法机制与格式规格章节 6 个月复核
+> **服务对象**:Atoms builder（应用创建者）所构建应用的 TikTok 社媒运营(冷启动 + 长期)
+> **规模假设**:Atoms builder（应用创建者） 90%+ 处于 0-10K followers,playbook 分级建议默认按此校准。TikTok 与 IG 不同,**follower 数不是 reach 的强门槛**——0 粉账号也可能单条 100K+ views(FYP 分发主导)。规模上到 100K+ 时切换到 tier 2 打法(见 §4 / §7)
+> **动态更新**:TikTok trend 变化速度远高于 IG,§5 hook / §6 hashtag / §9 winning structures 三节需配合 `.cache/social_intel/manual/tiktok/{region}/{language}/{YYYY-Www}/creative-center.json` 每 2-4 周更新;算法机制与格式规格章节 6 个月复核
 
 ---
 
@@ -40,7 +40,7 @@ TikTok 是全球最强的 **「算法驱动兴趣发现引擎」**——它把�
 
 ### `builder_relevance`
 
-对 Atoms builder 的战略价值分为三层:
+对 Atoms builder（应用创建者）的战略价值分为三层:
 
 | 阶段 | TikTok 承担角色 | 关键动作 |
 |------|----------------|---------|
@@ -56,7 +56,7 @@ TikTok 是全球最强的 **「算法驱动兴趣发现引擎」**——它把�
 
 ---
 
-## §2 用户画像三视图
+## §2 平台受众与使用心智三视图
 
 ### `demographics`
 - **年龄**:2026 起结构显著变化——18-24 岁核心占比 ≈35%(2022 时超 50%);25-34 岁 ≈32%(增速最快);35-54 岁 ≈25%(2023-2025 翻倍);55+ ≈8% [来源: Statista 2025 / DataReportal 2026-01]
@@ -83,7 +83,7 @@ TikTok 是全球最强的 **「算法驱动兴趣发现引擎」**——它把�
 
 **Atoms 生成内容时的意图定位**:**娱乐 > 学习 > 购物** 是默认优先级。SaaS/AI 类 builder 常见错误是「直接进入 tutorial 模式」——缺娱乐外壳,完播率崩,算法不推。**必须把 utility 内容包裹在娱乐/故事/反差骨架里**。
 
-### `builder_target_segments`
+### `built_app_business_segments`
 
 **SaaS / AI Tool**
 - 核心受众:22-35 岁 solopreneur / creator / early-career pro(自己就是 TikTok 高频用户)
@@ -188,7 +188,7 @@ TikTok 与 IG 的关键差异:
 | **Creator Search Insights** | 2024-Q3 | 官方提供搜索热词工具 | 增加 SEO 层机会(见 §6) |
 | **TikTok Shop 美国扩张** | 2023-09 起 | 直接闭环购物 | ecommerce 类 builder 分发-转化通路缩短;SaaS/digital 暂不支持 |
 | **Symphony Creative Studio** | 2024-06 | TikTok 官方 AI 视频生成套件 | 观察其对 organic content 生态的长期影响;Atoms 不依赖但可辅助 |
-| **Series(付费订阅内容)** | 2022-2024 | 长内容付费墙 | 对 Creator 类可能是变现渠道,但 Atoms 用户暂不作为主推 |
+| **Series(付费订阅内容)** | 2022-2024 | 长内容付费墙 | 对 Creator 类可能是变现渠道,但 Atoms builder（应用创建者）暂不作为主推 |
 | **US divest-or-ban timeline** | 2024-04 立法 → 多次延期 | 美国市场分发存在结构性风险 | 建议纯美国依赖 builder 建立多渠道 backup |
 
 ---
@@ -273,11 +273,11 @@ TikTok 支持的完整内容类型:
 
 | Tier | Regime | 目标 | 主要格式 | 配比建议 |
 |------|--------|------|---------|---------|
-| **Tier 1: 0-10K**(Atoms 用户主体) | 冷启动 + FYP 试错 | **短视频 21-34s** 打爆款率 | 短视频 90% / Photo Mode 5% / Story daily / Live 偶尔 | 目标:每 20-40 条产出 1 个爆款(views > 账号中位 5x) |
+| **Tier 1: 0-10K**(Atoms builder（应用创建者）主体) | 冷启动 + FYP 试错 | **短视频 21-34s** 打爆款率 | 短视频 90% / Photo Mode 5% / Story daily / Live 偶尔 | 目标:每 20-40 条产出 1 个爆款(views > 账号中位 5x) |
 | **Tier 2: 10K-100K** | 建立 niche + 复用高转化模板 | 短视频 + 中视频 | 短视频 70% / 中视频 20% / Photo Mode 5% / Live 每周 1-2 | 目标:爆款率提升到 1/10,单条 average view 稳定 |
 | **Tier 3: 100K+** | Product-led + 转化优化 | 全格式 + Shop/Live | 短视频 60% / 中视频 20% / Photo 5% / Live 每周 3-5(ecom) | 目标:视频 → external CTR(或 Shop GMV)持续增长 |
 
-**注意**:Atoms 用户 90%+ 处于 Tier 1,playbook 默认按 Tier 1 生成——**核心 KPI 是"爆款率"而非稳态 view count**。
+**注意**:Atoms builder（应用创建者） 90%+ 处于 Tier 1,playbook 默认按 Tier 1 生成——**核心 KPI 是"爆款率"而非稳态 view count**。
 
 ---
 
@@ -487,9 +487,9 @@ TikTok 平台调性 8 个关键词:
 ### `sample_size_and_source`
 
 **归纳基于**:
-- Category B 博客案例 20-30 条(计划 P1.3-P1.4 补齐,数据存 `data/tiktok_case_studies.json`)
-- TikTok Creative Center 公开 Top Ads / Trending Sounds 每 2-4 周快照,存 `data/tiktok_trend_snapshot.json`
-- Atoms 用户人工补齐 10-20 条(vibe coding SMB 类样本,存 `data/tiktok_manual_supplements.md`)
+- Category B 博客案例 20-30 条(计划 P1.3-P1.4 补齐,数据存 `references/research-data/tiktok/case_studies.json`)
+- TikTok Creative Center 公开 Top Ads / Trending Sounds 每 2-4 周快照,存 `.cache/social_intel/manual/tiktok/{region}/{language}/{YYYY-Www}/creative-center.json`
+- Atoms builder（应用创建者）人工补齐 10-20 条(vibe coding SMB 类样本,存 `references/research-data/tiktok/manual_supplements.md`)
 
 **当前版本(v0.1)结构框架来源**:SocialInsider 2026 TikTok Benchmark + Hootsuite 2026 Algorithm + Later 2025 TikTok Strategy + Buffer TikTok case studies 交叉。
 
@@ -587,17 +587,17 @@ TikTok 平台调性 8 个关键词:
 - TikTok For Business — Creative Best Practices — https://www.tiktok.com/business/en/blog
 - TikTok Creator Portal — https://www.tiktok.com/creators/creator-portal/
 
-**详细 URL 与检索路径**:见 `data/tiktok_industry_urls.txt`(结构化 URL 池)+ `scripts/search_queries.md`(TikTok 章节)
+**详细 URL 与检索路径**:见 `references/research-data/tiktok/industry_urls.txt`(结构化 URL 池)+ `scripts/search_queries.md`(TikTok 章节)
 
 **动态数据快照**:
-- Trending sounds / hashtags / top ads 每 2-4 周从 Creative Center 刷新 → `data/tiktok_trend_snapshot.json`
-- 案例样本增量 → `data/tiktok_case_studies.json`
-- 人工补齐样本 → `data/tiktok_manual_supplements.md`
+- Trending sounds / hashtags / top ads 每 2-4 周从 Creative Center 刷新 → `.cache/social_intel/manual/tiktok/{region}/{language}/{YYYY-Www}/creative-center.json`
+- 案例样本增量 → `references/research-data/tiktok/case_studies.json`
+- 人工补齐样本 → `references/research-data/tiktok/manual_supplements.md`
 
 ### `next_review_date`
 
 - **算法机制(§3)+ 内容格式(§4)+ 业务适配(§8)**:2027-01-02(6 个月强制复核)
-- **调性(§5)+ Hashtag(§6)+ Winning structures(§9)**:每 2-4 周结合 `tiktok_trend_snapshot.json` 增量刷新;每 3 个月做完整章节复核
+- **调性(§5)+ Hashtag(§6)+ Winning structures(§9)**:每 2-4 周结合 `.cache/social_intel/manual/tiktok/{region}/{language}/{YYYY-Www}/creative-center.json` 增量刷新;每 3 个月做完整章节复核
 
 ---
 
@@ -613,3 +613,4 @@ TikTok 平台调性 8 个关键词:
 ---
 
 *maintained by: atoms-social-marketing skill maintainer | 数据管道见 `scripts/README.md` TikTok 章节*
+

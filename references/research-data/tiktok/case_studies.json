@@ -1,6 +1,6 @@
 {
   "$schema_version": "2026-07-02",
-  "$description": "TikTok case studies extracted from Category B industry blogs (SocialInsider / Later / Buffer / Hootsuite / RivalIQ / HubSpot). 每篇博客文章可提取 1-N 个 case 到 cases 数组。schema 与 IG 保持一致以便复用提取管线(见 data/case_study_schema.json)。",
+  "$description": "TikTok case studies extracted from Category B industry blogs (SocialInsider / Later / Buffer / Hootsuite / RivalIQ / HubSpot). 每篇博客文章可提取 1-N 个 case 到 cases 数组。schema 与 IG 保持一致以便复用提取管线(见 references/research-data/schemas/case_study_schema.json)。",
   "$refresh_cadence": "案例增量:每 6 个月;结构性大调整:每 12 个月",
   "$last_refresh": "2026-07-02 (v0.1 初始骨架,cases 数组待 WebFetch 后填充)",
   "$next_refresh_due": "2027-01-02",
@@ -43,10 +43,10 @@
     "atoms_relevance": "SaaS/AI 类 launch post 或 educational post 可参考 before-after 结构 + 28s 时长 + trending sound 组合",
     "confidence": "high"
   },
-  "$field_definitions_ref": "详见 data/case_study_schema.json,新增 TikTok 独有字段见 $tiktok_specific_fields",
+  "$field_definitions_ref": "详见 references/research-data/schemas/case_study_schema.json,新增 TikTok 独有字段见 $tiktok_specific_fields",
   "$notes": {
     "sampling_bias": "博客案例偏向高转化爆款;人工补齐(tiktok_manual_supplements.md)负责平衡样本 bias",
     "creator_class_sparsity": "TikTok Creator/indie 类案例博客覆盖极少,需重度依赖人工补齐(≥10 条)",
-    "trend_decoupled_from_case_studies": "案例样本关注结构模式(hook / length / loop);具体 trending sound / hashtag 每 2-4 周从 Creative Center 单独刷新(tiktok_trend_snapshot.json)"
+    "trend_decoupled_from_case_studies": "案例样本关注结构模式(hook / length / loop);具体 trending sound / hashtag 每 2-4 周从 Creative Center 单独刷新(.cache/social_intel/manual/tiktok/{region}/{language}/{YYYY-Www}/creative-center.json)"
   }
 }

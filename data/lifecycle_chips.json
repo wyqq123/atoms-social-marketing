@@ -1,0 +1,48 @@
+{
+  "$schema_version": "0.1.0",
+  "description": "生命周期 Chip 定义。Chip 本身不直接调 skill;用户发送注入的预设 prompt 后调起。PRD §4.3.3。",
+  "display_rules": {
+    "pre_launch": { "show": true, "priority": 1 },
+    "launch": { "show": true, "priority": 1 },
+    "post_launch": { "show": true, "priority": 1 },
+    "building": { "show": true, "priority": 2, "optional": true },
+    "idea": { "show": false, "priority": 0 }
+  },
+  "chips": [
+    {
+      "id": "prepare_launch_pack_en",
+      "label": "Prepare launch pack",
+      "lifecycle_stages": ["pre_launch"],
+      "locale": "en",
+      "preset_prompt": "/social-marketing-skills Help me prepare a launch-week social media pack for my app on Instagram, TikTok, and YouTube — captions, hashtags, video scripts, and a week-1 posting schedule."
+    },
+    {
+      "id": "launch_week_content_en",
+      "label": "Launch week content",
+      "lifecycle_stages": ["launch"],
+      "locale": "en",
+      "preset_prompt": "/social-marketing-skills My app is launching now. Generate a week-1 social launch pack for Instagram, TikTok, and YouTube with captions, storyboards, and posting schedule."
+    },
+    {
+      "id": "cold_start_content_en",
+      "label": "Cold-start content",
+      "lifecycle_stages": ["post_launch"],
+      "locale": "en",
+      "preset_prompt": "/social-marketing-skills My app launched but has no users yet. Help me create a cold-start social content pack for Instagram, TikTok, and YouTube to get my first users."
+    },
+    {
+      "id": "launch_pack_zh",
+      "label": "首周推广包",
+      "lifecycle_stages": ["pre_launch", "launch"],
+      "locale": "zh",
+      "preset_prompt": "/social-marketing-skills 帮我为我的应用生成 Instagram、TikTok、YouTube 三平台首周社媒推广内容包,包括文案、标签、视频脚本和发布节奏。"
+    },
+    {
+      "id": "cold_start_zh",
+      "label": "冷启动内容",
+      "lifecycle_stages": ["post_launch"],
+      "locale": "zh",
+      "preset_prompt": "/social-marketing-skills 我的应用已经上线但没人用,帮我做 Instagram、TikTok、YouTube 的冷启动社媒内容包。"
+    }
+  ]
+}
