@@ -1,0 +1,14 @@
+{
+  "$schema_version": "0.3.0",
+  "platforms": {
+    "instagram": {"formats": ["carousel", "reel", "static_image"], "hashtags": {"min": 3, "max": 8}, "keywords": {"min": 1}, "carousel_min_slides": 3, "video_aspect_ratio": "9:16"},
+    "youtube": {"formats": ["youtube_short", "long_video"], "hashtags": {"min": 0, "max": 3}, "keywords": {"min": 3}, "video_aspect_ratio": "9:16"},
+    "reddit": {"formats": ["reddit_post", "comment_reply"], "hashtags": {"min": 0, "max": 0}, "keywords": {"min": 2}, "body_min_chars": 100},
+    "tiktok": {"formats": ["short_video"], "hashtags": {"min": 3, "max": 8}, "keywords": {"min": 1}, "video_aspect_ratio": "9:16"},
+    "linkedin": {"formats": ["linkedin_document", "personal_post"], "hashtags": {"min": 0, "max": 3}, "keywords": {"min": 3}, "body_min_chars": 150},
+    "pinterest": {"formats": ["pin"], "hashtags": {"min": 0, "max": 3}, "keywords": {"min": 3}, "image_aspect_ratio": "2:3"},
+    "x": {"formats": ["thread", "post"], "hashtags": {"min": 0, "max": 2}, "keywords": {"min": 2}},
+    "rednote": {"formats": ["note", "short_video"], "hashtags": {"min": 3, "max": 8}, "keywords": {"min": 1}},
+    "douyin": {"formats": ["short_video"], "hashtags": {"min": 3, "max": 8}, "keywords": {"min": 1}, "video_aspect_ratio": "9:16"}
+  }
+}

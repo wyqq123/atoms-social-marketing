@@ -1,0 +1,5 @@
+﻿{
+  "promo_goal": {"value": "Get 100 week-one signups", "source": "user_prompt", "evidence_excerpt": "I want 100 signups in the first week.", "confidence": "high"},
+  "target_audience": {"value": "Shopify independent sellers", "source": "user_prompt", "evidence_excerpt": "for independent Shopify sellers", "confidence": "high"},
+  "key_selling_point": {"value": "Generate product-page copy from product details", "source": "app_context", "evidence_excerpt": "creates product-page copy from product details", "confidence": "high"}
+}

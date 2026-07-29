@@ -56,6 +56,16 @@
         }
       }
     },
+    "intake_meta": {
+      "type": "object",
+      "description": "Optional audit metadata from HIL form or conversation clarifier. It must not replace positioning or alter end-user ICP semantics.",
+      "properties": {
+        "mode": { "type": "string", "enum": ["hil_form", "conversation_clarifier"] },
+        "field_sources": { "type": "object", "additionalProperties": { "type": "string" } },
+        "user_confirmed_at": { "type": "string", "format": "date-time" }
+      },
+      "additionalProperties": false
+    },
     "production_context": {
       "type": "object",
       "description": "可选。builder 为推广 built app 可提供的素材与制作约束。只用于 builder_context / production_constraints,不得写入 built app 终端用户 ICP。",

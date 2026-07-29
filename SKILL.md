@@ -84,9 +84,33 @@ no realtime evidence -> stable platform strategy -> confidence <= medium -> no c
 - `platform_scope`:默认 `['instagram', 'youtube', 'tiktok', 'reddit']`;旧别名 `ig/yt/tt` 应在上层映射到全称。
 - `probe_options`:控制 Stage 2b 是否跑 realtime/cache probe、超时、平台数和 query 数。
 
+## Positioning Intake
+
+当上层未提供完整 `positioning` 时,先走 Positioning Intake,再进入 Stage 1。支持同级两条路径:
+
+- `hil_form`:上层 HIL 表单直接收集并由用户确认三要素。
+- `conversation_clarifier`:通用模型从用户 prompt 和 built app context 抽取候选,再通过单选/多选/自定义编辑逐项澄清。
+
+默认自动路由:只有 `promo_goal`、`target_audience`、`key_selling_point` 都来自 `user_prompt` 或 `app_context`、置信为 high 时,才展示快速确认;仍必须由用户确认。任一字段缺失、冲突、low/medium,或疑似把 builder 自述当成终端用户身份时,按 `target_audience -> promo_goal -> key_selling_point` 逐项澄清。
+
+使用 `scripts/positioning_intake/run_positioning_intake.py` 处理确定性的 intake state。其 `route == "ready"` 且 `handoff` 非空是生成 `app_icp_vector`、`demand_probe_pack` 或运行 Stage 2b 的前置条件。用户随时可切换至 HIL 表单;使用 `form_prefill` 保留已收集值。详情见 `references/conversation-clarifier-protocol.md` 与 `data/positioning_intake_schema.json`。
+
+严禁在用户确认前把候选值当作事实、调用实时 API 或写入 cache。`intake_meta` 仅用于审计;下游一律读取同一份 `positioning` 契约。
+
+## Executable Runtime
+
+当运行环境支持 tool calling 时,通用模型必须通过唯一入口 `scripts/social_marketing_runtime/tool_adapter.py::run_social_marketing` 调用本 skill,而不是自行拼接 shell 命令或直接调用平台 API。没有 Python tool adapter 的宿主可调用 `scripts/social_marketing_runtime/run_social_marketing.py --request <json> --output <json>`。
+
+调用结果只可能是:
+
+- `needs_input` / `needs_confirmation`:展示 `next_hil`,收集或确认 positioning 后带同一 `session_id` 再次调用。
+- `completed`:读取 `result` 中 schema `0.3.0` 的完整 Launch Pack。
+- `blocked`:展示 `checks.blocker`,不得让模型编造缺失信息继续生成。
+
+`completed` 的 Launch Pack 包含 `publish_platforms`、每平台的完整标题/hook/正文/CTA/discoverability、图文 slides 或视频 storyboard 的按需多媒体 prompt,以及可引用真实 `post_id` 的 `schedule.week_1`。无 usable realtime evidence 时仍交付 evergreen 包,但禁止加入当前热门或近期趋势措辞。
 ## 输出契约
 
-见 `data/launch_pack_schema.json`。
+兼容层见 `data/launch_pack_schema.json`;可执行 runtime 的完整交付契约见 `data/launch_pack_runtime_schema.json` (schema 0.3.0)。
 
 顶层字段:
 

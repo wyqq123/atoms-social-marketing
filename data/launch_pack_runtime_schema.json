@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "atoms-social-marketing/launch_pack_runtime_schema",
+  "title": "Executable Launch Pack",
+  "type": "object",
+  "required": ["$schema_version", "generated_at", "launch_brief", "platform_fit", "publish_platforms", "pilot_platforms", "strategies", "deliverables", "schedule", "checks", "_pipeline_meta"],
+  "properties": {
+    "$schema_version": {"const": "0.3.0"},
+    "generated_at": {"type": "string", "format": "date-time"},
+    "publish_platforms": {"type": "array", "items": {"$ref": "#/definitions/platform"}},
+    "pilot_platforms": {"type": "array", "items": {"$ref": "#/definitions/platform"}},
+    "launch_brief": {"type": "object", "required": ["app_name", "promo_goal", "target_audience", "key_selling_point"]},
+    "platform_fit": {"type": "object", "required": ["ranking", "scores"]},
+    "strategies": {"type": "object"},
+    "deliverables": {"type": "object", "additionalProperties": {"type": "object", "required": ["posts"], "properties": {"posts": {"type": "array", "minItems": 1, "items": {"$ref": "#/definitions/post"}}}}},
+    "schedule": {"type": "object", "required": ["week_1"], "properties": {"week_1": {"type": "array", "minItems": 3}}},
+    "checks": {"type": "object", "required": ["blocker", "warning", "info"]},
+    "_pipeline_meta": {"type": "object", "required": ["probe_meta", "confidence_summary", "media_generation_deferred", "injectable_prompts_count"]}
+  },
+  "definitions": {
+    "platform": {"type": "string", "enum": ["instagram", "youtube", "tiktok", "reddit", "x", "linkedin", "pinterest", "rednote", "douyin"]},
+    "post": {
+      "type": "object",
+      "required": ["post_id", "platform", "title", "hook", "body", "cta", "discoverability", "creative", "confidence"],
+      "properties": {
+        "post_id": {"type": "string", "minLength": 1},
+        "platform": {"$ref": "#/definitions/platform"},
+        "title": {"type": "string", "minLength": 1},
+        "hook": {"type": "string", "minLength": 1},
+        "body": {"type": "string", "minLength": 20},
+        "cta": {"type": "object", "required": ["text", "link_style"]},
+        "discoverability": {"type": "object", "required": ["hashtags", "keywords", "placement_note"]},
+        "creative": {"type": "object", "required": ["kind", "slides", "storyboard", "asset_requirements"]},
+        "confidence": {"type": "string", "enum": ["low", "medium", "high"]}
+      }
+    }
+  }
+}

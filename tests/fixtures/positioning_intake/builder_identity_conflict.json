@@ -1,0 +1,5 @@
+﻿{
+  "promo_goal": {"value": "Get early users", "source": "user_prompt", "evidence_excerpt": "I need early users", "confidence": "high"},
+  "target_audience": {"value": "Solo founder", "source": "builder_prompt", "evidence_excerpt": "I am a solo founder", "confidence": "high"},
+  "key_selling_point": {"value": "Generate product-page copy", "source": "app_context", "evidence_excerpt": "generates copy", "confidence": "high"}
+}

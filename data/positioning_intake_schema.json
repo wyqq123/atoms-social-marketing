@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "atoms-social-marketing/positioning_intake_schema",
+  "$schema_version": "0.3.0",
+  "title": "Positioning Intake Session",
+  "description": "Conversation and form intake state. Only a ready session may hand positioning to the marketing pipeline.",
+  "type": "object",
+  "required": ["schema_version", "mode", "route", "fields", "clarification_attempts", "form_prefill", "handoff"],
+  "properties": {
+    "schema_version": {"type": "string", "const": "0.3.0"},
+    "session_id": {"type": ["string", "null"]},
+    "mode": {"type": "string", "enum": ["auto", "conversation", "form"]},
+    "route": {"type": "string", "enum": ["quick_confirm", "clarify", "form_fallback", "ready"]},
+    "next_field": {"type": ["string", "null"], "enum": ["promo_goal", "target_audience", "key_selling_point", null]},
+    "fields": {
+      "type": "object",
+      "required": ["promo_goal", "target_audience", "key_selling_point"],
+      "properties": {
+        "promo_goal": {"$ref": "#/definitions/PositioningField"},
+        "target_audience": {"$ref": "#/definitions/PositioningField"},
+        "key_selling_point": {"$ref": "#/definitions/PositioningField"}
+      },
+      "additionalProperties": false
+    },
+    "clarification_attempts": {
+      "type": "object",
+      "required": ["promo_goal", "target_audience", "key_selling_point"],
+      "properties": {
+        "promo_goal": {"type": "integer", "minimum": 0},
+        "target_audience": {"type": "integer", "minimum": 0},
+        "key_selling_point": {"type": "integer", "minimum": 0}
+      },
+      "additionalProperties": false
+    },
+    "suggested_options": {"type": "object"},
+    "form_prefill": {"type": "object"},
+    "question": {"type": ["object", "null"]},
+    "handoff": {"type": ["object", "null"]},
+    "reason": {"type": "string"},
+    "validation_errors": {"type": "object"}
+  },
+  "additionalProperties": false,
+  "definitions": {
+    "PositioningField": {
+      "type": "object",
+      "required": ["value", "source", "evidence_excerpt", "confidence", "status", "user_confirmed"],
+      "properties": {
+        "value": {"type": ["string", "null"]},
+        "source": {"type": "string", "enum": ["user_prompt", "app_context", "builder_prompt", "user_custom", "user_selected", "form", "unknown"]},
+        "evidence_excerpt": {"type": ["string", "null"], "maxLength": 160},
+        "confidence": {"type": "string", "enum": ["low", "medium", "high"]},
+        "status": {"type": "string", "enum": ["missing", "candidate", "confirmed", "invalid", "ambiguous"]},
+        "user_confirmed": {"type": "boolean"}
+      },
+      "additionalProperties": false
+    }
+  }
+}
